@@ -4,6 +4,7 @@ import { useState } from "react";
 import "./galleryBuilder.css";
 import axios from "axios";
 export default function GalleryBuilder() {
+  console.log("rendering component");
   const [validateErrors, setValidateErrors] = useState({});
   console.log(validateErrors);
 
@@ -55,7 +56,7 @@ export default function GalleryBuilder() {
       }));
     }
 
-    if (!files) {
+    if (!files.length) {
       setValidateErrors((prevErrors) => ({
         ...prevErrors,
         files: {

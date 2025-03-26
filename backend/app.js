@@ -78,7 +78,7 @@ app.post("/add-gallery", (req, res) => {
       return res.status(500).json({ error: "Failed to read database file" });
     }
 
-    let galleriesData = { galleries: [] }; // Default structure
+    let galleriesData = { galleries: [] };
 
     try {
       galleriesData = JSON.parse(data);
@@ -86,7 +86,6 @@ app.post("/add-gallery", (req, res) => {
       return res.status(500).json({ error: "Invalid JSON format in database" });
     }
 
-    // Ensure galleriesData.galleries is an array before pushing
     if (!Array.isArray(galleriesData.galleries)) {
       galleriesData.galleries = [];
     }
@@ -107,10 +106,6 @@ app.post("/add-gallery", (req, res) => {
     );
   });
 });
-
-// getAltText("example.jpg").then((altText) => {
-//   console.log(`<img src="example.jpg" alt="${altText}">`);
-// });
 
 app.listen(port, () => {
   console.log("listening on the port 8000");

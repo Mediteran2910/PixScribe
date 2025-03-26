@@ -1,3 +1,62 @@
 {
-  "galleries": []
+  "galleries": [
+    {
+      "id": "c773eb86-de63-49e9-ae18-10769cc19c9b",
+      "createdTime": "2025-03-26T20:41:32.829Z",
+      "title": "fasfasfasf",
+      "description": "asfasfasfasfasfasf",
+      "format": "json",
+      "files": [
+        {
+          "name": "Screenshot 2025-02-25 at 19.59.13.png",
+          "size": 831898,
+          "type": "image/png"
+        },
+        {
+          "name": "Screenshot 2025-02-25 at 19.59.20.png",
+          "size": 823866,
+          "type": "image/png"
+        },
+        {
+          "name": "Screenshot 2025-02-26 at 13.40.20.png",
+          "size": 475255,
+          "type": "image/png"
+        },
+        {
+          "name": "Screenshot 2025-03-03 at 16.17.10 (2).png",
+          "size": 2491560,
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "832bf1e8-cc0d-4d57-8ed9-f8cfe3f092ca",
+      "createdTime": "2025-03-26T20:55:08.212Z",
+      "title": "fsfafa",
+      "description": "asfasfasfasfsafa",
+      "format": "yaml",
+      "files": [
+        {
+          "name": "Screenshot 2025-02-25 at 19.59.13.png",
+          "size": 831898,
+          "type": "image/png"
+        },
+        {
+          "name": "Screenshot 2025-02-25 at 19.59.20.png",
+          "size": 823866,
+          "type": "image/png"
+        },
+        {
+          "name": "Screenshot 2025-02-26 at 13.40.20.png",
+          "size": 475255,
+          "type": "image/png"
+        },
+        {
+          "name": "Screenshot 2025-03-03 at 16.17.10 (2).png",
+          "size": 2491560,
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
 }

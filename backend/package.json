@@ -15,7 +15,6 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "nodemon": "^3.1.9",
-    "react-router-dom": "^7.3.0",
     "uuid": "^11.1.0"
   }
 }

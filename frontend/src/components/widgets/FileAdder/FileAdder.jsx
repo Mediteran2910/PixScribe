@@ -1,4 +1,4 @@
-import FileInput from "../../widgets/FileAdder/FileAdder";
+import FileInput from "../../UI/FileInput/FileInput";
 import Typography from "../../UI/typography/typography";
 import Button from "../../UI/button/Button";
 import "./FileAdder.css";
