@@ -1,0 +1,9 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30%;
+  color: transparent;
+  background-color: transparent;
+  height: 60px;
+}

@@ -1,0 +1,24 @@
+.txt {
+  color: var(--color-black);
+  margin: 0;
+}
+
+.txt-body-white {
+  font-size: 1.4rem;
+  color: var(--color-white);
+}
+
+.txt-body-black {
+  font-size: 1.4rem;
+}
+
+.txt-label-black {
+  font-size: 1.3rem;
+  color: var(--color-black);
+  margin-bottom: 5px;
+}
+
+.txt-caption-grey {
+  color: var(--color-medium-grey);
+  font-size: 0.9rem;
+}

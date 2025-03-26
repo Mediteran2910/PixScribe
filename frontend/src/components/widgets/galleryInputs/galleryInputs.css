@@ -1,0 +1,8 @@
+.gallery-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 48%;
+  height: 100%;
+}

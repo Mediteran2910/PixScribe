@@ -1,0 +1,31 @@
+:root {
+  --color-medium-grey: rgb(157, 157, 157);
+  --color-black: rgb(2, 2, 2);
+  --color-white: rgb(252, 252, 252);
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 1.1px;
+}
+
+body {
+  margin: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--color-black);
+  background-color: var(--color-white);
+}
+
+#root {
+  min-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}

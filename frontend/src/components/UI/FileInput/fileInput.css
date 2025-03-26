@@ -1,0 +1,29 @@
+.file-input {
+  width: 50%;
+  display: none;
+}
+.choose-file-label {
+  margin-top: 10px;
+  color: grey;
+  font-size: 1.1rem;
+  letter-spacing: 1.2px;
+  background: transparent;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.choose-file-btn {
+  background-color: transparent;
+  color: transparent;
+  border: none;
+}
+
+.choose-file-btn img {
+  margin-bottom: 10px;
+}

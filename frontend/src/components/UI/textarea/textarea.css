@@ -1,0 +1,13 @@
+.input-wrapper textarea {
+  height: 80px;
+  border: 1px solid var(--color-medium-grey);
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-family: "Lato", sans-serif;
+  padding: 5px;
+}
+
+.input-wrapper textarea::placeholder {
+  font-size: 1rem;
+  color: var(--color-medium-grey);
+}
