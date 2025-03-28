@@ -11,6 +11,7 @@ export default function InputRadio({ value, ...restProps }) {
         value={value}
         className="input-radio"
       />
+
       <label htmlFor={value} className="radio-label">
         {value}
       </label>

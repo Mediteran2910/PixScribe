@@ -1,0 +1,24 @@
+.gallery-card {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--color-medium-grey);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.tags-wrapper {
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: 40px;
+}
+
+.tags-wrapper span {
+  margin: 10px;
+}

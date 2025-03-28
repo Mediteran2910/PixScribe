@@ -1,7 +1,9 @@
 :root {
-  --color-medium-grey: rgb(157, 157, 157);
-  --color-black: rgb(2, 2, 2);
+  --color-medium-grey: rgb(173, 173, 173);
+  --color-light-grey: rgb(232, 232, 232);
+  --color-black: rgb(32, 32, 32);
   --color-white: rgb(252, 252, 252);
+  --color-red-errors: rgb(227, 12, 12);
   font-family: "Lato", sans-serif;
   font-size: 12px;
   line-height: 1.5;

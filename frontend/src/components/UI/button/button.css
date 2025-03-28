@@ -4,15 +4,27 @@
   border: 1px solid transparent;
   border-radius: 5px;
   letter-spacing: 1.1px;
+  cursor: pointer;
 }
 
 .btn-outline-white {
-  background-color: var(--color-black);
+  background: transparent;
   color: var(--color-white);
   border: 1px solid var(--color-white);
 }
+
+.btn-outline-black-small {
+  background: transparent;
+  color: var(--color-black);
+  border: 1px solid var(--color-white);
+  width: auto;
+  height: auto;
+  font-size: 1.2rem;
+  padding: 5px 15px;
+}
+
 .btn-outline-black {
-  background-color: transparent;
+  background: transparent;
   color: var(--color-black);
   border: 1px solid var(--color-black);
 }
@@ -21,4 +33,12 @@
   background-color: var(--color-black);
   color: var(--color-white);
   border: 1px solid transparent;
+}
+
+.btn-color-light-grey-small {
+  background-color: var(--color-light-grey);
+  width: auto;
+  height: auto;
+  font-size: 1.2rem;
+  padding: 5px 15px;
 }

@@ -1,61 +1,102 @@
 {
   "galleries": [
     {
-      "id": "c773eb86-de63-49e9-ae18-10769cc19c9b",
-      "createdTime": "2025-03-26T20:41:32.829Z",
-      "title": "fasfasfasf",
-      "description": "asfasfasfasfasfasf",
-      "format": "json",
+      "id": "9b2d509d-0d24-49a2-917b-741abbe9fcf8",
+      "title": "test test",
+      "description": "ajmoooo ajmo ajmooo ajmoo",
+      "format": "html",
+      "createdTime": "2025-03-28",
       "files": [
         {
-          "name": "Screenshot 2025-02-25 at 19.59.13.png",
-          "size": 831898,
-          "type": "image/png"
+          "name": "10.webp",
+          "size": 170778,
+          "type": "image/webp",
+          "altText": "a building with a driveway and cars parked in front"
         },
         {
-          "name": "Screenshot 2025-02-25 at 19.59.20.png",
-          "size": 823866,
-          "type": "image/png"
+          "name": "11.webp",
+          "size": 209562,
+          "type": "image/webp",
+          "altText": "a large house with a swimming pool"
         },
         {
-          "name": "Screenshot 2025-02-26 at 13.40.20.png",
-          "size": 475255,
-          "type": "image/png"
+          "name": "12.webp",
+          "size": 194227,
+          "type": "image/webp",
+          "altText": "a large house with a swimming pool"
         },
         {
-          "name": "Screenshot 2025-03-03 at 16.17.10 (2).png",
-          "size": 2491560,
-          "type": "image/png"
+          "name": "13.webp",
+          "size": 218292,
+          "type": "image/webp",
+          "altText": "a white house with a driveway and cars parked in front"
+        },
+        {
+          "name": "14.webp",
+          "size": 78672,
+          "type": "image/webp",
+          "altText": "a house with a pool"
+        },
+        {
+          "name": "15.webp",
+          "size": 152552,
+          "type": "image/webp",
+          "altText": "a balcony with plants and a pool"
         }
+      ],
+      "code": [
+        "<div class=\"image-wrap\">\n<img src=\"images/10.webp\" alt=\"a building with a driveway and cars parked in front\" loading=\"lazy\" width=\"500px\" />\n</div>",
+        "<div class=\"image-wrap\">\n<img src=\"images/11.webp\" alt=\"a large house with a swimming pool\" loading=\"lazy\" width=\"500px\" />\n</div>",
+        "<div class=\"image-wrap\">\n<img src=\"images/12.webp\" alt=\"a large house with a swimming pool\" loading=\"lazy\" width=\"500px\" />\n</div>",
+        "<div class=\"image-wrap\">\n<img src=\"images/13.webp\" alt=\"a white house with a driveway and cars parked in front\" loading=\"lazy\" width=\"500px\" />\n</div>",
+        "<div class=\"image-wrap\">\n<img src=\"images/14.webp\" alt=\"a house with a pool\" loading=\"lazy\" width=\"500px\" />\n</div>",
+        "<div class=\"image-wrap\">\n<img src=\"images/15.webp\" alt=\"a balcony with plants and a pool\" loading=\"lazy\" width=\"500px\" />\n</div>"
       ]
     },
     {
-      "id": "832bf1e8-cc0d-4d57-8ed9-f8cfe3f092ca",
-      "createdTime": "2025-03-26T20:55:08.212Z",
-      "title": "fsfafa",
-      "description": "asfasfasfasfsafa",
-      "format": "yaml",
+      "id": "08eb02d5-045e-482e-85a7-8e2b263dd83e",
+      "title": "nafnaksjfnas",
+      "description": "flaksnfkjasnfknasf",
+      "format": "json",
+      "createdTime": "2025-03-28",
       "files": [
         {
-          "name": "Screenshot 2025-02-25 at 19.59.13.png",
-          "size": 831898,
-          "type": "image/png"
+          "name": "6.webp",
+          "size": 244888,
+          "type": "image/webp",
+          "altText": "a large house with a lawn"
         },
         {
-          "name": "Screenshot 2025-02-25 at 19.59.20.png",
-          "size": 823866,
-          "type": "image/png"
+          "name": "7.webp",
+          "size": 206038,
+          "type": "image/webp",
+          "altText": "a house with a swimming pool"
         },
         {
-          "name": "Screenshot 2025-02-26 at 13.40.20.png",
-          "size": 475255,
-          "type": "image/png"
+          "name": "8.webp",
+          "size": 113810,
+          "type": "image/webp",
+          "altText": "a swimming pool in a building"
         },
         {
-          "name": "Screenshot 2025-03-03 at 16.17.10 (2).png",
-          "size": 2491560,
-          "type": "image/png"
+          "name": "9.webp",
+          "size": 175376,
+          "type": "image/webp",
+          "altText": "a house with a swimming pool"
+        },
+        {
+          "name": "10.webp",
+          "size": 170778,
+          "type": "image/webp",
+          "altText": "a building with a driveway and cars parked in front"
         }
+      ],
+      "code": [
+        "<button class=\"button-submit\" type= \"button\">\n<div class=\"div-wrapper\" >\n<img src=\"images/6.webp\" alt=\"a large house with a lawn\" width=\"50px\" loading=\"eager\" class=\"hmm-some-class\" />\n</div>\n</button>",
+        "<button class=\"button-submit\" type= \"button\">\n<div class=\"div-wrapper\" >\n<img src=\"images/7.webp\" alt=\"a house with a swimming pool\" width=\"50px\" loading=\"eager\" class=\"hmm-some-class\" />\n</div>\n</button>",
+        "<button class=\"button-submit\" type= \"button\">\n<div class=\"div-wrapper\" >\n<img src=\"images/8.webp\" alt=\"a swimming pool in a building\" width=\"50px\" loading=\"eager\" class=\"hmm-some-class\" />\n</div>\n</button>",
+        "<button class=\"button-submit\" type= \"button\">\n<div class=\"div-wrapper\" >\n<img src=\"images/9.webp\" alt=\"a house with a swimming pool\" width=\"50px\" loading=\"eager\" class=\"hmm-some-class\" />\n</div>\n</button>",
+        "<button class=\"button-submit\" type= \"button\">\n<div class=\"div-wrapper\" >\n<img src=\"images/10.webp\" alt=\"a building with a driveway and cars parked in front\" width=\"50px\" loading=\"eager\" class=\"hmm-some-class\" />\n</div>\n</button>"
       ]
     }
   ]

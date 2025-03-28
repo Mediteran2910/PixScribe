@@ -1,3 +1,10 @@
+import Header from "../../layout/header/Header";
+import GalleryList from "../../layout/galleryList/GalleryList";
 export default function Home() {
-  return <p>HOME PAGE</p>;
+  return (
+    <>
+      <Header />
+      <GalleryList />
+    </>
+  );
 }

@@ -5,12 +5,14 @@ export default function Textarea({ name, validateDescription }) {
   return (
     <>
       <div className="input-wrapper">
-        <label htmlFor={name} className="input-label">
-          Enter description:
+        <div className="label-required">
+          <label htmlFor={name} className="input-label">
+            Enter description:
+          </label>
           {validateDescription && (
-            <Typography>{validateDescription}</Typography>
+            <Typography caption="caption-red">{validateDescription}</Typography>
           )}
-        </label>
+        </div>
         <textarea
           name={name}
           id={name}

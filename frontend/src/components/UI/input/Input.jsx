@@ -7,9 +7,11 @@ export default function Input({ name, validateTitle, ...restProps }) {
       <div className="input-wrapper">
         <div className="label-required">
           <label htmlFor={name} className="input-label">
-            Enter title:{" "}
-            {validateTitle && <Typography>{validateTitle}</Typography>}
+            Enter title:
           </label>
+          {validateTitle && (
+            <Typography caption="caption-red">{validateTitle}</Typography>
+          )}
         </div>
 
         <input
