@@ -1,4 +1,3 @@
-import Anchors from "../../UI/anchors/anchors";
 import Button from "../../UI/button/Button";
 import Typography from "../../UI/typography/typography";
 import { Link } from "react-router-dom";
@@ -7,19 +6,24 @@ export default function NavBar() {
   return (
     <nav>
       <Link to="/">
-        <Typography body="body-white">Home</Typography>
+        <Typography body="body" color="white">
+          Home
+        </Typography>
       </Link>
       <Link to="/guide">
-        {" "}
-        <Typography body="body-white">Guide</Typography>
+        <Typography body="body" color="white">
+          Guide
+        </Typography>
       </Link>
       <Link to="/about">
-        {" "}
-        <Typography body="body-white">About us</Typography>
+        <Typography body="body" color="white">
+          About us
+        </Typography>
       </Link>
       <Link to="/create">
-        {" "}
-        <Button outline="white">CREATE</Button>
+        <Button outline="white" size="medium">
+          CREATE
+        </Button>
       </Link>
     </nav>
   );

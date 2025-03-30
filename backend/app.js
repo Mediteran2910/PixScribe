@@ -154,7 +154,7 @@ app.post("/update-gallery-code", (req, res) => {
     let generatedCode = gallery.files.map((file) =>
       content
         .replace(/{fileName}/g, file.name)
-        .replace(/{altText}/g, file.altText)
+        .replace(/{alt="altText"}/g, file.altText)
     );
 
     gallery.code = generatedCode;

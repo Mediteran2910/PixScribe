@@ -10,7 +10,9 @@ export default function Input({ name, validateTitle, ...restProps }) {
             Enter title:
           </label>
           {validateTitle && (
-            <Typography caption="caption-red">{validateTitle}</Typography>
+            <Typography caption="caption" color="red">
+              {validateTitle}
+            </Typography>
           )}
         </div>
 

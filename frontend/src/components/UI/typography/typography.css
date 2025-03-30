@@ -3,41 +3,49 @@
   margin: 0;
 }
 
-.txt-body-white {
-  font-size: 1.4rem;
-  color: var(--color-white);
-}
-
-.txt-body-black {
+.txt-body {
   font-size: 1.4rem;
 }
 
-.txt-label-black {
-  font-size: 1.3rem;
-  color: var(--color-black);
-  margin-bottom: 5px;
-}
-
-.txt-caption-grey {
-  color: var(--color-medium-grey);
-  font-size: 0.9rem;
-}
-
-.txt-caption-red {
-  color: var(--color-red-errors);
-  font-size: 0.9rem;
-  font-style: italic;
-}
-
-.txt-h2-black {
-  color: var(--color-black);
+.txt-h2 {
   font-size: 2rem;
 }
 
-.txt-tag-grey {
-  background-color: var(--color-light-grey);
-  color: var(--color-black);
+.txt-caption {
+  font-size: 0.9rem;
+}
+
+.txt-label {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.txt-tag {
   padding: 5px 10px;
   font-size: 1rem;
   border-radius: 5px;
+}
+
+.txt-color-white {
+  color: var(--color-white);
+}
+
+.txt-color-red {
+  color: var(--color-red-errors);
+}
+
+.txt-color-black {
+  color: var(--color-black);
+}
+
+.txt-color-medium-grey {
+  color: var(--color-medium-grey);
+}
+
+.txt-color-light-grey {
+  color: var(--color-light-grey);
+}
+
+.txt-background-light-grey {
+  background-color: var(--color-light-grey);
 }

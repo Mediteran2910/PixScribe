@@ -25,9 +25,13 @@ export default function GalleryInputs({
         validateDescription={validateDescription}
       ></Textarea>
       <div className="input-wrapper">
-        <Typography body="label-black">Choose format:</Typography>{" "}
+        <Typography body="label" color="black">
+          Choose format:
+        </Typography>{" "}
         {validateFormat && (
-          <Typography caption="caption-red">{validateFormat}</Typography>
+          <Typography caption="caption" color="red">
+            {validateFormat}
+          </Typography>
         )}
         <div className="choose-wrapper">
           <InputRadio value={radioHTML_value}></InputRadio>

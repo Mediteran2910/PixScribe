@@ -47,3 +47,15 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.btns-wrap {
+  display: flex;
+  width: 100%;
+}
+
+.btns-wrap-end {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 10px;
+}

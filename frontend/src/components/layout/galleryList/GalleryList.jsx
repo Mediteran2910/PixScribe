@@ -1,6 +1,8 @@
-import axios from "axios";
 import useApi from "../../../hooks/useApi";
 import GalleryCard from "../../widgets/galleryCard/GalleryCard";
+import Filter from "../../UI/filter/Filter";
+import { Link } from "react-router-dom";
+import Button from "../../UI/button/Button";
 import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
 import "./galleryList.css";
 
@@ -12,7 +14,17 @@ export default function GalleryList() {
   }
   return (
     <main className="homepage-main">
-      <ButtonsAction homepage={true} />
+      <div className="home-buttons-wrapper">
+        <div className="filter-wrapper">
+          <Filter onClick={() => toogle(setIsFilter)} />
+        </div>
+        <Link to="/create">
+          {" "}
+          <Button color="black" size="medium">
+            CREATE
+          </Button>
+        </Link>
+      </div>
       {galleries.map((gallery) => (
         <GalleryCard
           key={gallery.id}

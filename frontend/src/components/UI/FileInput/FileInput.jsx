@@ -10,7 +10,9 @@ export default function FileInput({ filesName, validateFile, ...restProps }) {
           Choose Files or Drag
         </label>
         {validateFile && (
-          <Typography caption="caption-red">{validateFile}</Typography>
+          <Typography caption="caption" color="red">
+            {validateFile}
+          </Typography>
         )}
         <input
           type="file"

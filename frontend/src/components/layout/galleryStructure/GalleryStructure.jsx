@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
-import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
+import Button from "../../UI/button/Button";
+
 import "./galleryStructure.css";
 
 export default function GalleryStructure({ backToForm, galleryId }) {
   const [editorInstance, setEditorInstance] = useState(null);
 
   const handleEditorMount = (editor) => setEditorInstance(editor);
-  let initialComment = "//don't touch anything in { }";
+  let initialComment = "<!-- don't touch anything in { } -->";
   const handleFinishClick = async () => {
     if (!editorInstance) return;
     let editorValue = editorInstance
@@ -30,6 +31,19 @@ export default function GalleryStructure({ backToForm, galleryId }) {
     }
   };
 
+  const propsObj = [
+    {
+      btnText: "exit",
+      action: backToForm,
+      outline: "black",
+    },
+    {
+      btnText: "finish",
+      action: handleFinishClick,
+      color: "black",
+    },
+  ];
+
   return (
     <div className="gallery-structure-wrap">
       <div className="code-editor">
@@ -37,7 +51,7 @@ export default function GalleryStructure({ backToForm, galleryId }) {
           height="50vh"
           width="100%"
           defaultLanguage="html"
-          defaultValue={`<img src="images/{fileName}" alt="{altText}" />${initialComment}`}
+          defaultValue={`<img src="images/{fileName}" {alt="altText"}/>${initialComment}`}
           theme="vs-dark"
           onMount={handleEditorMount}
           options={{
@@ -50,11 +64,14 @@ export default function GalleryStructure({ backToForm, galleryId }) {
           }}
         />
       </div>
-      <ButtonsAction
-        handleFinishClick={handleFinishClick}
-        backToForm={backToForm}
-        editorBtns={true}
-      />
+      <div className="editor-btns-wrap">
+        <Button outline="black" size="medium" onClick={backToForm}>
+          EXIT
+        </Button>
+        <Button color="black" size="medium" onClick={handleFinishClick}>
+          FINISH
+        </Button>
+      </div>
     </div>
   );
 }

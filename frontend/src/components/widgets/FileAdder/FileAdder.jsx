@@ -6,8 +6,12 @@ export default function FileAdder({ type, filesName, validateFile }) {
   return (
     <div className="file-adder-el">
       <FileInput filesName={filesName} validateFile={validateFile}></FileInput>
-      <Typography caption="caption-grey">max 15 images</Typography>
-      <Typography caption="caption-grey">max size 2gb</Typography>
+      <Typography caption="caption" color="medium-grey">
+        max 15 images
+      </Typography>
+      <Typography caption="caption-grey" color="medium-grey">
+        max size per image 10MB
+      </Typography>
     </div>
   );
 }

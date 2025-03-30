@@ -1,65 +1,51 @@
 import "./ButtonsAction.css";
 import Button from "../../UI/button/Button";
 import Filter from "../../UI/filter/Filter";
-import { toogle } from "../../../helpers/toogle";
+import { toogle } from "../../../utils/toogle";
 import { Link } from "react-router-dom";
-
+import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
 export default function ButtonsAction({
-  gallerySetup,
-  btnType,
-  editorBtns,
-  backToForm,
-  exitModal,
-  homepage,
-  handleFinishClick,
+  spaceBetween,
+  spaceEvenly,
+  center,
+  end,
+  start,
+  btnsText = [],
+  color = [],
+  outline = [],
+  type,
+  action = [],
+  propsObj = [],
 }) {
   const [isFilter, setIsFilter] = useState(false);
 
-  if (exitModal) {
-    return (
-      <div className="modal-btns">
-        <Button color="black">STAY</Button>
-        <Button outline="black">EXIT</Button>
-      </div>
-    );
-  }
+  // const classes = [];
 
-  if (editorBtns) {
-    return (
-      <div className="editor-btns-wrap">
-        <Button outline="black" onClick={backToForm}>
-          EXIT
-        </Button>
-        <Button color="black" onClick={handleFinishClick}>
-          FINISH
-        </Button>
-      </div>
-    );
-  }
+  // if (spaceBetween) classes.push("btns-wrap-SB");
+  // if (spaceEvenly) classes.push("btns-wrap-SE");
+  // if (center) classes.push("btns-wrap-center");
+  // if (end) classes.push("btns-wrap-end");
+  // if (start) classes.push("btns-wrap-start");
 
-  if (gallerySetup) {
-    return (
-      <Button type={btnType} color="black">
-        CONTINUE
-      </Button>
-    );
-  }
+  // const classNames = classes.map((c) => c);
 
-  if (homepage)
-    return (
-      <div className="home-buttons-wrapper">
-        <div className="filter-wrapper">
-          <Filter
-            onClick={() => toogle(setIsFilter)}
-            homepageFilter={isFilter ? true : false}
-          />
-        </div>
-        <Link to="/create">
-          {" "}
-          <Button color="black">CREATE</Button>
-        </Link>
-      </div>
-    );
+  // //in btnsText i expect array, its important is an array
+  // return (
+  //   <div className={`btns-wrap ${classNames}`}>
+  //     {propsObj.map((p, idx) => (
+  //       <Button
+  //         onClick={p?.action}
+  //         color={p?.color}
+  //         outline={p?.outline}
+  //         key={uuidv4()}
+  //         type={type}
+  //         style={{ marginLeft: end ? "10px" : "" }}
+  //       >
+  //         {p.btnText.toUpperCase()}
+  //       </Button>
+  //     ))}
+  //   </div>
+  // );
 }

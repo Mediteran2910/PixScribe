@@ -6,12 +6,14 @@ export default function Filter({ homepageFilter, onClick }) {
 
   return (
     <>
-      <Button color="light-grey-small" onClick={onClick}>
+      <Button color="light-grey" size="small" onClick={onClick}>
         {homepageFilter ? "<" : "sort"}
       </Button>
       {homepageFilter &&
         scenario.homepageSort.map((s) => (
-          <Button outline="black-small">{s}</Button>
+          <Button outline="black" size="small">
+            {s}
+          </Button>
         ))}
     </>
   );

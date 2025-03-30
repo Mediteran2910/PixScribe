@@ -10,7 +10,9 @@ export default function Textarea({ name, validateDescription }) {
             Enter description:
           </label>
           {validateDescription && (
-            <Typography caption="caption-red">{validateDescription}</Typography>
+            <Typography caption="caption" color="red">
+              {validateDescription}
+            </Typography>
           )}
         </div>
         <textarea

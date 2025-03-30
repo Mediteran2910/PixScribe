@@ -10,14 +10,24 @@ export default function GalleryCard({
 }) {
   return (
     <div className="gallery-card">
-      <Typography h2="black">{galleyTitle}</Typography>
+      <Typography h2="black" color="black">
+        {galleyTitle}
+      </Typography>
       <div className="tags-wrapper">
-        <Typography tag="grey">{galleryFormat.toUpperCase()}</Typography>
-        <Typography tag="grey">{galleryCreatedTime}</Typography>
-        <Typography tag="grey">{galleryNumFiles} images</Typography>
+        <Typography tag="tag" color="black" background="light-grey">
+          {galleryFormat.toUpperCase()}
+        </Typography>
+        <Typography tag="tag" color="black" background="light-grey">
+          {galleryCreatedTime}
+        </Typography>
+        <Typography tag="tag" color="black" background="light-grey">
+          {galleryNumFiles} images
+        </Typography>
       </div>
       <Link to="/gallery">
-        <Button color="black">VIEW</Button>
+        <Button color="black" size="medium">
+          VIEW
+        </Button>
       </Link>
     </div>
   );

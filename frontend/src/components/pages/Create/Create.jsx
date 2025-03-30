@@ -3,7 +3,7 @@ import Header from "../../layout/header/Header";
 import "./create.css";
 import GallerySetup from "../../layout/gallerySetup/GallerySetup";
 import GalleryStructure from "../../layout/galleryStructure/GalleryStructure";
-import { toogle } from "../../../helpers/toogle";
+import { toogle } from "../../../utils/toogle";
 import Modal from "../../layout/modal/Modal";
 
 export default function Create() {
