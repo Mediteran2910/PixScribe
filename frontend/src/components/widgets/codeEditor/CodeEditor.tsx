@@ -6,16 +6,19 @@ import { EditorState } from "@codemirror/state";
 import { html } from "@codemirror/lang-html";
 import { oneDark } from "@codemirror/theme-one-dark";
 
+type Props = {
+  language: "html" | "json" | "yaml";
+  defaultValue: string;
+  onChange: any;
+};
+
 export default function CodeEditor({
-  language = "html",
-  defaultValue = "",
+  language,
+  defaultValue,
   onChange,
-}) {
+}: Props) {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
-
-  let initialComment = "<!-- don't touch anything in { } -->";
-  defaultValue = `<img src="images/{fileName}" {alt="altText"}/>${initialComment}`;
 
   useEffect(() => {
     if (editorRef.current) {

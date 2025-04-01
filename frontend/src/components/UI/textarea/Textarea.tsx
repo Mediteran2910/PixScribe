@@ -1,7 +1,12 @@
 import Typography from "../typography/typography";
 import "./textArea.css";
 
-export default function Textarea({ name, validateDescription }) {
+type Props = {
+  name: string;
+  validate: string;
+} & React.JSX.IntrinsicElements["textarea"];
+
+export default function Textarea({ name, validate, ...restProps }: Props) {
   return (
     <>
       <div className="input-wrapper">
@@ -9,9 +14,9 @@ export default function Textarea({ name, validateDescription }) {
           <label htmlFor={name} className="input-label">
             Enter description:
           </label>
-          {validateDescription && (
-            <Typography caption="caption" color="red">
-              {validateDescription}
+          {validate && (
+            <Typography caption={true} color="red">
+              {validate}
             </Typography>
           )}
         </div>
@@ -19,6 +24,7 @@ export default function Textarea({ name, validateDescription }) {
           name={name}
           id={name}
           placeholder="Your description goes here..."
+          {...restProps}
         ></textarea>
       </div>
     </>

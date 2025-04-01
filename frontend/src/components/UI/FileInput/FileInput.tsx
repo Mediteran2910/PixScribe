@@ -1,7 +1,12 @@
 import "./fileInput.css";
 import Typography from "../typography/typography";
 
-export default function FileInput({ filesName, validateFile, ...restProps }) {
+type Props = {
+  name: "files";
+  validate: string;
+} & React.JSX.IntrinsicElements["input"];
+
+export default function FileInput({ name, validate, ...restProps }: Props) {
   return (
     <>
       <button className="choose-file-btn" type="button">
@@ -9,16 +14,16 @@ export default function FileInput({ filesName, validateFile, ...restProps }) {
           <img src="icons/Vector.png" alt="cloud vector for adding images" />
           Choose Files or Drag
         </label>
-        {validateFile && (
-          <Typography caption="caption" color="red">
-            {validateFile}
+        {validate && (
+          <Typography caption={true} color="red">
+            {validate}
           </Typography>
         )}
         <input
           type="file"
           className="file-input"
           id="file-input"
-          name={filesName}
+          name={name}
           multiple
           accept="image/*"
           {...restProps}

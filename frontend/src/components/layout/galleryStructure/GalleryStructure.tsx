@@ -4,6 +4,7 @@ import Button from "../../UI/button/Button";
 import CodeEditor from "../../widgets/codeEditor/CodeEditor";
 
 import "./galleryStructure.css";
+let initialComment: string = "<!-- don't touch anything in { } -->";
 
 export default function GalleryStructure({ backToForm, galleryId }) {
   // const [editorInstance, setEditorInstance] = useState(null);
@@ -34,7 +35,10 @@ export default function GalleryStructure({ backToForm, galleryId }) {
   return (
     <div className="gallery-structure-wrap">
       <div className="code-editor">
-        <CodeEditor></CodeEditor>
+        <CodeEditor
+          language="html"
+          defaultValue={`<img src="images/{fileName}" {alt="altText"}/>${initialComment}`}
+        ></CodeEditor>
       </div>
       <div className="editor-btns-wrap">
         <Button outline="black" size="medium">

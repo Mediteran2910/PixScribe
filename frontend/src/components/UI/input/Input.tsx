@@ -1,7 +1,12 @@
 import "./input.css";
 import Typography from "../typography/typography";
 
-export default function Input({ name, validateTitle, ...restProps }) {
+type Props = {
+  name: string;
+  validate: string;
+} & React.JSX.IntrinsicElements["input"];
+
+export default function Input({ name, validate, ...restProps }: Props) {
   return (
     <>
       <div className="input-wrapper">
@@ -9,9 +14,9 @@ export default function Input({ name, validateTitle, ...restProps }) {
           <label htmlFor={name} className="input-label">
             Enter title:
           </label>
-          {validateTitle && (
-            <Typography caption="caption" color="red">
-              {validateTitle}
+          {validate && (
+            <Typography caption={true} color="red">
+              {validate}
             </Typography>
           )}
         </div>
