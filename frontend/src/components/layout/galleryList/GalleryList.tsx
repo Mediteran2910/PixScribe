@@ -4,6 +4,7 @@ import Filter from "../../UI/filter/Filter";
 import { Link } from "react-router-dom";
 import Button from "../../UI/button/Button";
 import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
+import { toogle } from "../../../utils/toogle";
 import "./galleryList.css";
 
 export default function GalleryList() {
@@ -14,23 +15,21 @@ export default function GalleryList() {
   }
   return (
     <main className="homepage-main">
-      <div className="home-buttons-wrapper">
-        <div className="filter-wrapper">
-          <Filter onClick={() => toogle(setIsFilter)} />
-        </div>
+      <ButtonsAction spaceBetween={true}>
+        <Filter />
         <Link to="/create">
           {" "}
           <Button color="black" size="medium">
             CREATE
           </Button>
         </Link>
-      </div>
+      </ButtonsAction>
       {galleries.map((gallery) => (
         <GalleryCard
           key={gallery.id}
           galleryCreatedTime={gallery.createdTime}
           galleryFormat={gallery.format}
-          galleyTitle={gallery.title}
+          galleryTitle={gallery.title}
           galleryNumFiles={gallery.files.length}
         />
       ))}

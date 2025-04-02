@@ -1,11 +1,24 @@
-.home-buttons-wrapper {
-  width: 100%;
+.btns-wrap {
   display: flex;
+  width: 100%;
+}
+
+.btns-wrap-direction-row {
+  flex-direction: row;
+}
+
+.btns-wrap-direction-column {
+  flex-direction: column;
+}
+
+.btns-wrap-space-between {
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  margin-bottom: 0px;
-  margin-top: 50px;
+}
+
+.btns-wrap-end {
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .filter-wrapper .btn-outline-black-small {
@@ -46,16 +59,4 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.btns-wrap {
-  display: flex;
-  width: 100%;
-}
-
-.btns-wrap-end {
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  margin-left: 10px;
 }

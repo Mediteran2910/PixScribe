@@ -1,51 +1,39 @@
-// import "./ButtonsAction.css";
-// import Button from "../../UI/button/Button";
-// import Filter from "../../UI/filter/Filter";
-// import { toogle } from "../../../utils/toogle";
-// import { Link } from "react-router-dom";
-// import { v4 as uuidv4 } from "uuid";
-// import { useState } from "react";
+import "./ButtonsAction.css";
 
-// export default function ButtonsAction({
-//   spaceBetween,
-//   spaceEvenly,
-//   center,
-//   end,
-//   start,
-//   btnsText = [],
-//   color = [],
-//   outline = [],
-//   type,
-//   action = [],
-//   propsObj = [],
-// }) {
-//   const [isFilter, setIsFilter] = useState(false);
+type Props = {
+  spaceBetween?: boolean;
+  spaceEvenly?: boolean;
+  center?: boolean;
+  end?: boolean;
+  start?: boolean;
+  direction?: "row" | "column";
+  children: React.ReactNode;
+} & React.JSX.IntrinsicElements["div"];
 
-//   // const classes = [];
+export default function ButtonsAction({
+  spaceBetween,
+  spaceEvenly,
+  center,
+  end,
+  start,
+  direction,
+  children,
+  ...restProps
+}: Props) {
+  const classes = [];
 
-//   // if (spaceBetween) classes.push("btns-wrap-SB");
-//   // if (spaceEvenly) classes.push("btns-wrap-SE");
-//   // if (center) classes.push("btns-wrap-center");
-//   // if (end) classes.push("btns-wrap-end");
-//   // if (start) classes.push("btns-wrap-start");
+  if (spaceBetween) classes.push("space-between");
+  if (spaceEvenly) classes.push("space-evenly");
+  if (center) classes.push("center");
+  if (end) classes.push("end");
+  if (start) classes.push("start");
+  if (direction) classes.push(`direction-${direction}`);
 
-//   // const classNames = classes.map((c) => c);
+  const classNames = classes.map((c) => `btns-wrap-${c}`).join(" ");
 
-//   // //in btnsText i expect array, its important is an array
-//   // return (
-//   //   <div className={`btns-wrap ${classNames}`}>
-//   //     {propsObj.map((p, idx) => (
-//   //       <Button
-//   //         onClick={p?.action}
-//   //         color={p?.color}
-//   //         outline={p?.outline}
-//   //         key={uuidv4()}
-//   //         type={type}
-//   //         style={{ marginLeft: end ? "10px" : "" }}
-//   //       >
-//   //         {p.btnText.toUpperCase()}
-//   //       </Button>
-//   //     ))}
-//   //   </div>
-//   // );
-// }
+  return (
+    <div className={`btns-wrap ${classNames}`} {...restProps}>
+      {children}
+    </div>
+  );
+}

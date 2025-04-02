@@ -8,9 +8,9 @@ import Modal from "../../layout/modal/Modal";
 
 export default function Create() {
   const [toogleBuilding, setToogleBuilding] = useState(false);
-  const [galleryId, setGalleryId] = useState(null);
+  const [galleryId, setGalleryId] = useState<string | null>(null);
 
-  const saveId = (id) => {
+  const saveId = (id: string): void => {
     setGalleryId(id);
   };
 

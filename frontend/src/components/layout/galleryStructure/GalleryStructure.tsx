@@ -2,11 +2,32 @@ import { useState } from "react";
 import axios from "axios";
 import Button from "../../UI/button/Button";
 import CodeEditor from "../../widgets/codeEditor/CodeEditor";
+import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
 
 import "./galleryStructure.css";
+
+type Props = {
+  backToForm: () => void;
+  galleryId: string;
+};
+
 let initialComment: string = "<!-- don't touch anything in { } -->";
 
-export default function GalleryStructure({ backToForm, galleryId }) {
+let defaultValueHTML = `<img src="images/{fileName}" {alt="altText"}/>${initialComment}`;
+let defaultValueJSON = `{
+  "path": "images/{fileName}",
+  "alt": "{altText}",
+}${initialComment}`;
+let defaultValueYAML = `path: "images/{fileName}"
+alt: "{altText}"${initialComment}`;
+
+export default function GalleryStructure({ backToForm, galleryId }: Props) {
+  const handleEditorChange = (
+    newValue: string,
+    setEditorValue: (newValue: string) => {}
+  ) => {
+    setEditorValue(newValue);
+  };
   // const [editorInstance, setEditorInstance] = useState(null);
 
   // const handleEditorMount = (editor) => setEditorInstance(editor);
@@ -37,17 +58,18 @@ export default function GalleryStructure({ backToForm, galleryId }) {
       <div className="code-editor">
         <CodeEditor
           language="html"
-          defaultValue={`<img src="images/{fileName}" {alt="altText"}/>${initialComment}`}
+          defaultValue={defaultValueHTML}
+          onChange={() => handleEditorChange}
         ></CodeEditor>
       </div>
-      <div className="editor-btns-wrap">
-        <Button outline="black" size="medium">
+      <ButtonsAction end={true} direction="row">
+        <Button outline="black" size="medium" onClick={backToForm}>
           EXIT
         </Button>
-        <Button color="black" size="medium">
+        <Button color="black" size="medium" style={{ marginLeft: "10px" }}>
           FINISH
         </Button>
-      </div>
+      </ButtonsAction>
     </div>
   );
 }

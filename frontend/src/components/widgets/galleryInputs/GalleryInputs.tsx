@@ -3,6 +3,17 @@ import Textarea from "../../UI/textarea/Textarea";
 import InputRadio from "../../UI/inputRadio/inputRadio";
 import Typography from "../../UI/typography/typography";
 import "./galleryInputs.css";
+
+type Props = {
+  textAreaName: string;
+  inputName: string;
+  radioHTML_value: string;
+  radioJSON_value: string;
+  radioYAML_value: string;
+  validateTitle: string;
+  validateFormat: string;
+  validateDescription: string;
+};
 export default function GalleryInputs({
   textAreaName,
   inputName,
@@ -12,24 +23,21 @@ export default function GalleryInputs({
   validateTitle,
   validateFormat,
   validateDescription,
-}) {
+}: Props) {
   return (
     <div className="gallery-inputs">
       <Input
         name={inputName}
         placeholder="Your title goes here.."
-        validateTitle={validateTitle}
+        validate={validateTitle}
       ></Input>
-      <Textarea
-        name={textAreaName}
-        validateDescription={validateDescription}
-      ></Textarea>
+      <Textarea name={textAreaName} validate={validateDescription}></Textarea>
       <div className="input-wrapper">
-        <Typography body="label" color="black">
+        <Typography body={true} color="black">
           Choose format:
         </Typography>{" "}
         {validateFormat && (
-          <Typography caption="caption" color="red">
+          <Typography caption={true} color="red">
             {validateFormat}
           </Typography>
         )}

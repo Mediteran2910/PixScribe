@@ -1,6 +1,3 @@
-import { useReducer } from "react";
-import { errorReducer } from "../hooks/errorReducer";
-
 export const errorObj = {
   title: {
     messages: {
@@ -27,26 +24,34 @@ export const errorObj = {
   },
 };
 
-export const empty = (arr, el, fn) => {
-  if (arr) {
-    arr.forEach((i) => {
-      if (!i) {
-        fn();
-      }
-      return;
-    });
-  } else if (el) {
-    !el && fn();
-  }
+// export const empty = (arr, el, fn) => {
+//   if (arr) {
+//     arr.forEach((i) => {
+//       if (!i) {
+//         fn();
+//       }
+//       return;
+//     });
+//   } else if (el) {
+//     !el && fn();
+//   }
 
-  console.log(`ERROR, missing ${i}`);
-};
+//   console.log(`ERROR, missing ${i}`);
+// };
 
-export const invalid = () => {};
+// export const invalid = () => {};
 
-export const validateInputs = (title, description, format, files, setError) => {
-  let errors = {};
-  let isErr = false;
+import { errObj, SetStateFunction } from "../types/types";
+
+export const validateInputs = (
+  title: string,
+  description: string,
+  format: string,
+  files: File[],
+  setError: SetStateFunction<errObj>
+) => {
+  let errors: errObj = {};
+  let isErr: boolean = false;
   const maxFileSize = 10 * 1024 * 1024;
 
   console.log(files);

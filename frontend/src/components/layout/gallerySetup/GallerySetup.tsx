@@ -5,19 +5,33 @@ import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
 import "./gallerySetup.css";
 import axios from "axios";
 import { useState } from "react";
+import { errObj } from "../../../types/types";
 
 import { validateInputs } from "../../../utils/inputErrors";
 
-export default function GallerySetup({ continueBuilding, saveId }) {
-  const [error, setError] = useState({});
+type Props = {
+  continueBuilding: () => void;
+  saveId: (id: string) => void;
+};
 
-  const handleSubmitInputs = async (e) => {
+export default function GallerySetup({ continueBuilding, saveId }: Props) {
+  const [error, setError] = useState<errObj>({});
+
+  const handleSubmitInputs = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const title = formData.get("title").trim();
-    const description = formData.get("description").trim();
-    const format = formData.get("format");
-    const files = formData.getAll("files");
+    const formData = new FormData(e.currentTarget);
+    const titleEntry = formData.get("title");
+    const title = typeof titleEntry === "string" ? titleEntry.trim() : "";
+
+    const descriptionEntry = formData.get("description");
+    const description =
+      typeof descriptionEntry === "string" ? descriptionEntry.trim() : "";
+    const formatEntry = formData.get("format");
+    const format = typeof formatEntry === "string" ? formatEntry : "";
+    const filesEntries = formData.getAll("files");
+    const files = filesEntries.filter(
+      (entry): entry is File => entry instanceof File
+    );
 
     console.log(formData);
     if (validateInputs(title, description, format, files, setError)) {
@@ -46,13 +60,6 @@ export default function GallerySetup({ continueBuilding, saveId }) {
     }
   };
 
-  const propsObj = [
-    {
-      btnText: "continue",
-      color: "black",
-    },
-  ];
-
   return (
     <form className="create-wrapper" onSubmit={handleSubmitInputs}>
       <GalleryInputs
@@ -67,9 +74,11 @@ export default function GallerySetup({ continueBuilding, saveId }) {
       />
       <div className="right-side-wrapp">
         <FileAdder filesName="files" validateFile={error.files} />
-        <Button type="submit" color="black" size="medium">
-          CONTINUE
-        </Button>
+        <ButtonsAction end={true} direction="row">
+          <Button type="submit" color="black" size="medium">
+            CONTINUE
+          </Button>
+        </ButtonsAction>
       </div>
     </form>
   );

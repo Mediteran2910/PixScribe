@@ -4,12 +4,14 @@ import { basicSetup } from "codemirror";
 import { EditorView } from "@codemirror/view";
 import { EditorState } from "@codemirror/state";
 import { html } from "@codemirror/lang-html";
+import { json } from "@codemirror/lang-json";
+import { yaml } from "@codemirror/lang-yaml";
 import { oneDark } from "@codemirror/theme-one-dark";
 
 type Props = {
   language: "html" | "json" | "yaml";
   defaultValue: string;
-  onChange: any;
+  onChange: (value: string) => void;
 };
 
 export default function CodeEditor({
@@ -24,6 +26,8 @@ export default function CodeEditor({
     if (editorRef.current) {
       const languageExtensions = {
         html: html(),
+        json: json(),
+        yaml: yaml(),
       };
 
       const state = EditorState.create({
