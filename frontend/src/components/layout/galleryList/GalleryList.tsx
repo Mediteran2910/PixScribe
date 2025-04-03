@@ -4,7 +4,7 @@ import Filter from "../../UI/filter/Filter";
 import { Link } from "react-router-dom";
 import Button from "../../UI/button/Button";
 import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
-import { toogle } from "../../../utils/toogle";
+
 import "./galleryList.css";
 
 export default function GalleryList() {

@@ -9,16 +9,17 @@ import { yaml } from "@codemirror/lang-yaml";
 import { oneDark } from "@codemirror/theme-one-dark";
 
 type Props = {
-  language: "html" | "json" | "yaml";
-  defaultValue: string;
-  onChange: (value: string) => void;
+  editorLanguage?: "html" | "json" | "yaml";
+  defaultValue?: string;
+  onChange?: (value: string) => void;
 };
 
 export default function CodeEditor({
-  language,
+  editorLanguage,
   defaultValue,
   onChange,
 }: Props) {
+  console.log(editorLanguage);
   const editorRef = useRef(null);
   const viewRef = useRef(null);
 
@@ -34,7 +35,7 @@ export default function CodeEditor({
         doc: defaultValue,
         extensions: [
           basicSetup,
-          languageExtensions[language],
+          languageExtensions[editorLanguage],
           oneDark,
           EditorView.lineWrapping,
           EditorView.updateListener.of((update) => {
@@ -52,7 +53,7 @@ export default function CodeEditor({
 
       return () => viewRef.current.destroy();
     }
-  }, [language, defaultValue]);
+  }, [editorLanguage, defaultValue]);
 
   return (
     <div

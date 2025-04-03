@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./nav-bar.css";
 export default function NavBar() {
-  const links = ["Home", "Guide", "About", "Create"];
+  const links = ["Home", "Guide", "About"];
 
   return (
     <nav>
@@ -15,6 +15,11 @@ export default function NavBar() {
           </Typography>
         </Link>
       ))}
+      <Link to="/create">
+        <Button outline="white" size="medium">
+          Create
+        </Button>
+      </Link>
     </nav>
   );
 }

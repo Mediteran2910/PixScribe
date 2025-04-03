@@ -1,12 +1,19 @@
 import "./input.css";
 import Typography from "../typography/typography";
 
+type ChangeEvt = React.ChangeEvent<HTMLInputElement>;
 type Props = {
   name: string;
   validate: string;
+  onChange: (e: ChangeEvt) => void;
 } & React.JSX.IntrinsicElements["input"];
 
-export default function Input({ name, validate, ...restProps }: Props) {
+export default function Input({
+  name,
+  validate,
+  onChange,
+  ...restProps
+}: Props) {
   return (
     <>
       <div className="input-wrapper">
@@ -27,6 +34,7 @@ export default function Input({ name, validate, ...restProps }: Props) {
           id={name}
           {...restProps}
           className="input-create-title"
+          onChange={onChange}
         />
       </div>
     </>

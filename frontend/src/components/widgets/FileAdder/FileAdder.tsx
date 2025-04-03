@@ -1,21 +1,44 @@
 import FileInput from "../../UI/FileInput/FileInput";
 import Typography from "../../UI/typography/typography";
+import DragDrop from "../DragDrop/DragDrop";
 import "./FileAdder.css";
-
+type ChangeEvt = React.ChangeEvent<HTMLInputElement>;
 type Props = {
   filesName: "files";
   validateFile: string;
+  uploadedFiles?: number;
+  handleChange: (e: ChangeEvt) => void;
+  onDragFiles: (droppedFiles: File[]) => void;
 };
-export default function FileAdder({ filesName, validateFile }: Props) {
+export default function FileAdder({
+  filesName,
+  validateFile,
+  uploadedFiles,
+  handleChange,
+  onDragFiles,
+}: Props) {
   return (
-    <div className="file-adder-el">
-      <FileInput name={filesName} validate={validateFile}></FileInput>
+    <DragDrop
+      count={15}
+      formats={["jpeg", "jpg", "png"]}
+      onUpload={onDragFiles}
+    >
+      <FileInput
+        name={filesName}
+        validate={validateFile}
+        uploadedFiles={uploadedFiles}
+        onChange={handleChange}
+      />
       <Typography caption={true} color="medium-grey">
-        max 15 images
+        {uploadedFiles ? (
+          `you can upload ${15 - uploadedFiles} more images`
+        ) : (
+          <>
+            max 15 images max <br />
+            size per image 10MB
+          </>
+        )}
       </Typography>
-      <Typography caption={true} color="medium-grey">
-        max size per image 10MB
-      </Typography>
-    </div>
+    </DragDrop>
   );
 }

@@ -1,6 +1,11 @@
 import "./inputRadio.css";
+type ChangeEvt = React.ChangeEvent<HTMLInputElement>;
+type Props = {
+  value: string;
+  onChange: (e: ChangeEvt) => void;
+};
 
-export default function InputRadio({ value, ...restProps }) {
+export default function InputRadio({ value, onChange, ...restProps }: Props) {
   return (
     <button type="button">
       <input
@@ -10,6 +15,7 @@ export default function InputRadio({ value, ...restProps }) {
         name="format"
         value={value}
         className="input-radio"
+        onChange={onChange}
       />
 
       <label htmlFor={value} className="radio-label">
