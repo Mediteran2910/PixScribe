@@ -28,7 +28,7 @@ app.get("/galleries", (req, res) => {
     }
     try {
       const galleriesData = JSON.parse(data);
-      res.json(galleriesData.galleries);
+      res.json(galleriesData.galleries.reverse());
     } catch (parseError) {
       return res.status(500).json({ message: "Error parsing JSON data" });
     }
@@ -91,7 +91,7 @@ app.post("/add-gallery", upload.array("files"), async (req, res) => {
     title,
     description,
     format,
-    createdTime,
+    createdTime: new Date(),
     files: filesWithAlt,
   };
 
@@ -169,6 +169,54 @@ app.post("/update-gallery-code", (req, res) => {
         res.json({
           message: "Gallery updated successfully",
           code: generatedCode,
+        });
+      }
+    );
+  });
+});
+
+app.post("/save-template", (req, res) => {
+  const { galleryId, content } = req.body;
+
+  fs.readFile(galleriesFile, "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: "Failed to read database file" });
+    }
+
+    let galleriesData;
+    try {
+      galleriesData = JSON.parse(data);
+    } catch (error) {
+      return res.status(500).json({ error: "Invalid JSON format in database" });
+    }
+
+    const gallery = galleriesData.galleries.find((g) => g.id === galleryId);
+
+    if (!gallery) {
+      return res.status(404).json({ error: "Gallery not found" });
+    }
+
+    gallery.template = content;
+
+    const parsedTemplates = gallery.files.map((file) => {
+      let parsed = content;
+      parsed = parsed.replace(/{fileName}/g, file.name);
+      parsed = parsed.replace(/{altText}/g, file.altText);
+      return parsed;
+    });
+
+    fs.writeFile(
+      galleriesFile,
+      JSON.stringify(galleriesData, null, 2),
+      (err) => {
+        if (err) {
+          return res.status(500).json({ error: "Failed to save template" });
+        }
+
+        res.status(200).json({
+          message: "Template saved and parsed successfully",
+          template: content,
+          parsedTemplates,
         });
       }
     );

@@ -1,25 +1,50 @@
 import FileInput from "../../UI/FileInput/FileInput";
 import Typography from "../../UI/typography/typography";
 import DragDrop from "../DragDrop/DragDrop";
+import { useState, useEffect } from "react";
 import "./FileAdder.css";
 type ChangeEvt = React.ChangeEvent<HTMLInputElement>;
+
 type Props = {
-  filesName: "files";
-  validateFile: string;
+  filesName?: "files";
+  validateFile?: string;
   uploadedFiles?: number;
-  handleChange: (e: ChangeEvt) => void;
-  onDragFiles: (droppedFiles: File[]) => void;
+  onChange?: (e: FilesData) => void;
+};
+
+export type FilesData = {
+  files?: File[];
 };
 export default function FileAdder({
   filesName,
   validateFile,
   uploadedFiles,
-  handleChange,
-  onDragFiles,
+  onChange,
 }: Props) {
+  const [filesData, setFilesData] = useState<FilesData>({ files: [] });
+
+  const MAX_IMAGES = 15;
+
+  useEffect(() => {
+    onChange(filesData);
+  }, [filesData]);
+
+  const updateFiles = (newFiles: File[]) => {
+    setFilesData({ files: [...(filesData.files || []), ...newFiles] });
+  };
+
+  const onDragFiles = (droppedFiles: File[]) => {
+    updateFiles(droppedFiles);
+  };
+
+  const onHandleFileInputChange = (e: ChangeEvt) => {
+    const selectedFiles = Array.from(e.target.files || []);
+    updateFiles(selectedFiles);
+  };
+
   return (
     <DragDrop
-      count={15}
+      count={MAX_IMAGES - uploadedFiles}
       formats={["jpeg", "jpg", "png"]}
       onUpload={onDragFiles}
     >
@@ -27,11 +52,11 @@ export default function FileAdder({
         name={filesName}
         validate={validateFile}
         uploadedFiles={uploadedFiles}
-        onChange={handleChange}
+        onChange={onHandleFileInputChange}
       />
-      <Typography caption={true} color="medium-grey">
+      <Typography caption color="medium-grey">
         {uploadedFiles ? (
-          `you can upload ${15 - uploadedFiles} more images`
+          `you can upload ${MAX_IMAGES - uploadedFiles} more images`
         ) : (
           <>
             max 15 images max <br />

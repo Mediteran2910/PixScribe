@@ -37,7 +37,6 @@ export default function CodeEditor({
           basicSetup,
           languageExtensions[editorLanguage],
           oneDark,
-          EditorView.lineWrapping,
           EditorView.updateListener.of((update) => {
             if (update.changes) {
               onChange?.(update.state.doc.toString());
@@ -55,15 +54,5 @@ export default function CodeEditor({
     }
   }, [editorLanguage, defaultValue]);
 
-  return (
-    <div
-      ref={editorRef}
-      style={{
-        border: "1px solid #444",
-        minHeight: "300px",
-        background: "#1e1e1e",
-        overflowY: "auto",
-      }}
-    />
-  );
+  return <div className="code-editor" ref={editorRef} />;
 }

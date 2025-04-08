@@ -7,7 +7,7 @@ export const initialComment = {
 };
 
 export const defaultValues = {
-  html: `<img src="images/{fileName}" {alt="altText"}/>${initialComment.html}`,
+  html: `<img src="images/{fileName}" alt="{altText}"/>${initialComment.html}`,
   json: `"path": "images/{fileName}",
   "alt": "{altText}",
   ${initialComment.json}`,

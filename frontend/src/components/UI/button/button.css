@@ -23,13 +23,11 @@
 .btn-color-black {
   background-color: var(--color-black);
   color: var(--color-white);
-  border: 1px solid transparent;
 }
 
 .btn-color-light-grey {
   background-color: var(--color-light-grey);
   color: var(--color-black);
-  border: 1px solid transparent;
 }
 
 .btn-outline-white {

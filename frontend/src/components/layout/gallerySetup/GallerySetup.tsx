@@ -1,35 +1,42 @@
-import FileAdder from "../../widgets/FileAdder/FileAdder";
-import GalleryInputs from "../../widgets/galleryInputs/GalleryInputs";
+import FileAdder, { FilesData } from "../../widgets/FileAdder/FileAdder";
+import GalleryInputs, {
+  GalleryFormInputs,
+} from "../../widgets/galleryInputs/GalleryInputs";
 import Button from "../../UI/button/Button";
 import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
 import "./gallerySetup.css";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { errObj } from "../../../types/types";
-import { validateInputs } from "../../../utils/inputErrors";
 
 type ChangeEvt = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
 type Props = {
-  onContinue: () => void;
-  handleChange: (e: ChangeEvt) => void;
-  submitForm: () => void;
-  onDragFiles: (dropedFiles: File[]) => void;
+  handleGalleryInputChange: (data: GalleryFormInputs) => void;
+  handleFilesChange: (filesData: FilesData) => void;
   uploadedFiles?: number;
+  submitForm: () => void;
 };
-
 export default function GallerySetup({
-  onContinue,
-  handleChange,
-  submitForm,
-  onDragFiles,
   uploadedFiles,
+  handleFilesChange,
+  handleGalleryInputChange,
+  submitForm,
 }: Props) {
+  console.log("im running");
   const [error, setError] = useState<errObj>({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    submitForm();
-    onContinue();
+    setIsLoading(true);
+    try {
+      submitForm();
+    } catch (error) {
+      console.log("error occured", error);
+      setIsError(true);
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -40,17 +47,16 @@ export default function GallerySetup({
         radioHTML_value="html"
         radioJSON_value="json"
         radioYAML_value="yaml"
-        validateTitle={error.title}
-        validateDescription={error.description}
-        validateFormat={error.format}
-        handleChange={handleChange}
+        // validateTitle={error.title}
+        // validateDescription={error.description}
+        // validateFormat={error.format}
+        onChange={handleGalleryInputChange}
       />
       <div className="right-side-wrapp">
         <FileAdder
           filesName="files"
-          validateFile={error.files}
-          handleChange={handleChange}
-          onDragFiles={onDragFiles}
+          // validateFile={error.files}
+          onChange={handleFilesChange}
           uploadedFiles={uploadedFiles}
         />
         <ButtonsAction end={true} direction="row">

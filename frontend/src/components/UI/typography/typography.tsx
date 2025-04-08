@@ -1,14 +1,13 @@
 import "./typography.css";
 
-type Variant = boolean;
 type Colors = "black" | "white" | "light-grey" | "medium-grey" | "red";
 type Props = {
   children?: React.ReactNode;
-  body?: Variant;
-  caption?: Variant;
-  label?: Variant;
-  h2?: Variant;
-  tag?: Variant;
+  body?: boolean;
+  caption?: boolean;
+  label?: boolean;
+  tag?: boolean;
+  h2?: boolean;
   color?: Colors;
   background?: "light-grey";
 } & React.JSX.IntrinsicElements["span"];
@@ -24,7 +23,7 @@ export default function Typography({
   background,
   ...restProps
 }: Props) {
-  const classes: string[] = []; //moguc error, ipak nije
+  const classes: string[] = [];
 
   if (body) classes.push("body");
   if (caption) classes.push("caption");

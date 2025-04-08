@@ -1,33 +1,32 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
-export default function useApi() {
-  const [galleries, setGalleries] = useState([]);
+export default function useApi<T>(url: string, config?: AxiosRequestConfig) {
+  const [data, setData] = useState<T | null>(null);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchGalleries = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:8000/galleries");
+        const response = await axios.get(url, config);
 
         if (response.status === 200) {
-          setGalleries(response.data);
-          console.log(response.data);
+          setData(response.data);
         } else {
-          setIsError("Failed to fetch galleries.");
+          setIsError(true);
         }
       } catch (error) {
-        setIsError("Error fetching data.");
+        setIsError(true);
         console.error(error);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchGalleries();
-  }, []);
+    fetchData();
+  }, [url, config]);
 
-  return { galleries, isError, isLoading };
+  return { data, setData, isError, isLoading };
 }

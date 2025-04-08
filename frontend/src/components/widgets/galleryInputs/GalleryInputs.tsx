@@ -3,20 +3,28 @@ import Textarea from "../../UI/textarea/Textarea";
 import InputRadio from "../../UI/inputRadio/InputRadio";
 import Typography from "../../UI/typography/typography";
 import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from "react";
 import "./galleryInputs.css";
+import { useSearchParams } from "react-router-dom";
 
 type ChangeEvt = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
 type Props = {
-  textAreaName: string;
+  textAreaName?: string;
   inputName: string;
-  radioHTML_value: string;
-  radioJSON_value: string;
-  radioYAML_value: string;
-  validateTitle: string;
-  validateFormat: string;
-  validateDescription: string;
-  handleChange: (e: ChangeEvt) => void;
+  radioHTML_value?: string;
+  radioJSON_value?: string;
+  radioYAML_value?: string;
+  validateTitle?: string;
+  validateFormat?: string;
+  validateDescription?: string;
+  onChange?: (e: GalleryFormInputs) => void;
+};
+
+export type GalleryFormInputs = {
+  title: string;
+  description: string;
+  format: "html" | "json" | "yaml";
 };
 export default function GalleryInputs({
   textAreaName,
@@ -27,9 +35,23 @@ export default function GalleryInputs({
   validateTitle,
   validateFormat,
   validateDescription,
-  handleChange,
+  onChange,
 }: Props) {
   const radioValues = [radioHTML_value, radioJSON_value, radioYAML_value];
+  const [gallInputData, setGallInputData] = useState<GalleryFormInputs>({
+    title: "",
+    description: "",
+    format: "html",
+  });
+
+  const onHandleChange = (key: keyof GalleryFormInputs) => {
+    return (e: ChangeEvt) =>
+      setGallInputData((prev) => ({ ...prev, [key]: e.target.value }));
+  };
+
+  useEffect(() => {
+    onChange(gallInputData);
+  }, [gallInputData]);
 
   return (
     <div className="gallery-inputs">
@@ -37,12 +59,12 @@ export default function GalleryInputs({
         name={inputName}
         placeholder="Your title goes here.."
         validate={validateTitle}
-        onChange={handleChange}
+        onChange={onHandleChange("title")}
       ></Input>
       <Textarea
         name={textAreaName}
         validate={validateDescription}
-        onChange={handleChange}
+        onChange={onHandleChange("description")}
       ></Textarea>
       <div className="input-wrapper">
         <Typography body={true} color="black">
@@ -57,7 +79,7 @@ export default function GalleryInputs({
           {radioValues.map((v) => (
             <InputRadio
               value={v}
-              onChange={handleChange}
+              onChange={onHandleChange("format")}
               key={uuidv4()}
             ></InputRadio>
           ))}

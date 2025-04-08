@@ -18,6 +18,43 @@ export default function DragDrop({
 
   useEffect(() => {
     const dropZone = drop.current;
+
+    const handleDragOver = (e: DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+
+    const handleDrop = (e: DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const files = Array.from(e.dataTransfer?.files || []);
+
+      if (count && count < files.length) {
+        console.log(`sorry max uploading files is reached`);
+        return;
+      }
+
+      if (
+        formats &&
+        files.some(
+          (file) =>
+            !formats.some((format) =>
+              file.name.toLowerCase().endsWith(format.toLowerCase())
+            )
+        )
+      ) {
+        console.log(
+          `Only following file formats are acceptable: ${formats.join(", ")}`
+        );
+        return;
+      }
+
+      if (files && files.length) {
+        onUpload(files);
+      }
+    };
+
     if (dropZone) {
       dropZone.addEventListener("dragover", handleDragOver);
       dropZone.addEventListener("drop", handleDrop);
@@ -29,43 +66,7 @@ export default function DragDrop({
         dropZone.removeEventListener("drop", handleDrop);
       }
     };
-  }, []);
-
-  const handleDragOver = (e: DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  const handleDrop = (e: DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const files = Array.from(e.dataTransfer?.files || []);
-
-    if (count && count < files.length) {
-      console.log(`sorry max uploading files is ${count}`);
-      return;
-    }
-
-    if (
-      formats &&
-      files.some(
-        (file) =>
-          !formats.some((format) =>
-            file.name.toLowerCase().endsWith(format.toLowerCase())
-          )
-      )
-    ) {
-      console.log(
-        `Only following file formats are acceptable: ${formats.join(", ")}`
-      );
-      return;
-    }
-
-    if (files && files.length) {
-      onUpload(files);
-    }
-  };
+  }, [count, formats, onUpload]);
 
   return (
     <div className="file-adder-el" ref={drop}>
