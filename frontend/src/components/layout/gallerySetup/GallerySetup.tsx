@@ -22,7 +22,6 @@ export default function GallerySetup({
   handleGalleryInputChange,
   submitForm,
 }: Props) {
-  console.log("im running");
   const [error, setError] = useState<errObj>({});
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);

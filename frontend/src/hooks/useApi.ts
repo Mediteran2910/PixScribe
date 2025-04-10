@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig } from "axios";
 export default function useApi<T>(url: string, config?: AxiosRequestConfig) {
   const [data, setData] = useState<T | null>(null);
   const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +26,8 @@ export default function useApi<T>(url: string, config?: AxiosRequestConfig) {
     };
 
     fetchData();
-  }, [url, config]);
+    console.log(data, "ja san jebeni response");
+  }, []);
 
   return { data, setData, isError, isLoading };
 }

@@ -25,7 +25,6 @@ export default function GalleryStructure({
   galleryId,
 }: Props) {
   const [editorValue, setEditorValue] = useState(defaultValues[editorLanguage]);
-  const { saveTemplateCtx } = useGalleries();
 
   const navigate = useNavigate();
 
@@ -34,8 +33,6 @@ export default function GalleryStructure({
   };
 
   const handleSubmitTemplate = async () => {
-    console.log("ENTERING SUBMIT");
-    console.log("im gallery id", galleryId);
     try {
       const cleanedEditorValue = editorValue
         .replace(/<!--don't touch anything in { }-->/, "")
@@ -55,8 +52,7 @@ export default function GalleryStructure({
       const responseData = await response.data;
 
       if (responseData) {
-        console.log("response is here , i will update the state");
-        saveTemplateCtx(galleryId, responseData);
+        console.log("response is here");
         navigate(`/gallery/${galleryId}`);
       }
     } catch (error) {

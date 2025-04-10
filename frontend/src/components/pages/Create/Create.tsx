@@ -34,8 +34,6 @@ export default function Create() {
     files: [],
   });
 
-  console.log(galleryFormData);
-
   const handleGalleryInputChange = (inputsData: GalleryFormInputs) => {
     setGalleryFormData((prev: GalleyForm) => ({ ...prev, ...inputsData }));
   };

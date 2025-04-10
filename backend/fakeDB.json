@@ -1,64 +1,176 @@
 {
   "galleries": [
     {
-      "id": "8cdf6a5a-aad8-4847-a9bd-baf49ef66431",
+      "id": "dca59fee-bf4b-42a8-99db-d6577e920f10",
       "title": "prvi",
-      "description": "fasfasfasfasf",
+      "description": "fsafasfasf",
       "format": "yaml",
-      "createdTime": "2025-04-07T22:47:10.987Z",
+      "createdTime": "2025-04-10T20:08:16.148Z",
       "files": [
         {
-          "name": "Screenshot 2025-03-03 at 16.17.10.png",
-          "size": 420768,
+          "name": "logo-large.png",
+          "size": 1195,
           "type": "image/png",
-          "altText": "graphical user interface, text, application, email"
+          "altText": "No description available"
         },
         {
-          "name": "Screenshot 2025-03-04 at 18.33.35.png",
-          "size": 753970,
-          "type": "image/png",
-          "altText": "text"
+          "name": "logo-large2.svg",
+          "size": 11053,
+          "type": "image/svg+xml",
+          "altText": "No description available"
         }
       ],
-      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  "
+      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  ajme: \"dramaaa\"\n  ",
+      "parsedTemplates": [
+        "path: \"images/logo-large.png\"\n  alt: \"No description available\"\n  ajme: \"dramaaa\"\n  ",
+        "path: \"images/logo-large2.svg\"\n  alt: \"No description available\"\n  ajme: \"dramaaa\"\n  "
+      ]
     },
     {
-      "id": "52eda13f-7111-4804-95d5-3bb27e4a029a",
+      "id": "42e9d0cf-64f9-4f58-91c3-484878ffe4f1",
       "title": "drugi",
-      "description": "fasfsafasfas",
-      "format": "yaml",
-      "createdTime": "2025-04-07T22:47:26.657Z",
+      "description": "fasfasfasf",
+      "format": "json",
+      "createdTime": "2025-04-10T20:08:40.796Z",
       "files": [
         {
-          "name": "Screenshot 2025-03-03 at 16.17.10.png",
-          "size": 420768,
+          "name": "logo-large.png",
+          "size": 1195,
           "type": "image/png",
-          "altText": "graphical user interface, text, application, email"
+          "altText": "No description available"
         },
         {
-          "name": "Screenshot 2025-03-04 at 18.33.35.png",
-          "size": 753970,
-          "type": "image/png",
-          "altText": "text"
+          "name": "logo-large2.svg",
+          "size": 11053,
+          "type": "image/svg+xml",
+          "altText": "No description available"
         }
       ],
-      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  "
+      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"jebenica\" : teskkaaaa\n  ",
+      "parsedTemplates": [
+        "\"path\": \"images/logo-large.png\",\n  \"alt\": \"No description available\",\n\"jebenica\" : teskkaaaa\n  ",
+        "\"path\": \"images/logo-large2.svg\",\n  \"alt\": \"No description available\",\n\"jebenica\" : teskkaaaa\n  "
+      ]
     },
     {
-      "id": "229a9c3a-d3bb-4934-8a60-be5af357c0e2",
-      "title": "treci",
-      "description": "jeboteee patak",
+      "id": "60c9f249-0f8e-49c8-92b2-299cc5239f54",
+      "title": "treciii",
+      "description": "fakmsfklamsflkasmf",
       "format": "yaml",
-      "createdTime": "2025-04-07T22:47:42.938Z",
+      "createdTime": "2025-04-10T20:09:18.837Z",
       "files": [
         {
-          "name": "Screenshot 2025-03-03 at 16.17.10.png",
-          "size": 420768,
+          "name": "logo-large.png",
+          "size": 1195,
           "type": "image/png",
-          "altText": "graphical user interface, text, application, email"
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large2.svg",
+          "size": 11053,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo.png",
+          "size": 205,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo2.png",
+          "size": 505,
+          "type": "image/png",
+          "altText": "logo"
+        },
+        {
+          "name": "small-logo3.png",
+          "size": 1603,
+          "type": "image/png",
+          "altText": "logo"
         }
       ],
-      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  fss: \"fasfasfasfasf\"\n  "
+      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  data: \"akooo\"\n  ",
+      "parsedTemplates": [
+        "path: \"images/logo-large.png\"\n  alt: \"No description available\"\n  data: \"akooo\"\n  ",
+        "path: \"images/logo-large2.svg\"\n  alt: \"No description available\"\n  data: \"akooo\"\n  ",
+        "path: \"images/small-logo.png\"\n  alt: \"No description available\"\n  data: \"akooo\"\n  ",
+        "path: \"images/small-logo2.png\"\n  alt: \"logo\"\n  data: \"akooo\"\n  ",
+        "path: \"images/small-logo3.png\"\n  alt: \"logo\"\n  data: \"akooo\"\n  "
+      ]
+    },
+    {
+      "id": "5e9e29ae-6b39-4565-ab35-e4473d89b7a7",
+      "title": "cetvrti",
+      "description": "ideeee",
+      "format": "json",
+      "createdTime": "2025-04-10T20:22:17.321Z",
+      "files": [
+        {
+          "name": "logo-large.png",
+          "size": 1195,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large2.svg",
+          "size": 11053,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        }
+      ],
+      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"mozeee\": laganoo idem prema banci\n  ",
+      "parsedTemplates": [
+        "\"path\": \"images/logo-large.png\",\n  \"alt\": \"No description available\",\n\"mozeee\": laganoo idem prema banci\n  ",
+        "\"path\": \"images/logo-large2.svg\",\n  \"alt\": \"No description available\",\n\"mozeee\": laganoo idem prema banci\n  "
+      ]
+    },
+    {
+      "id": "a9dfbbc2-723d-4abc-a744-96a679f478f5",
+      "title": "petii",
+      "description": "ideee petiii",
+      "format": "html",
+      "createdTime": "2025-04-10T20:29:25.578Z",
+      "files": [
+        {
+          "name": "logo-large.png",
+          "size": 1195,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large2.svg",
+          "size": 11053,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo.png",
+          "size": 205,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo2.png",
+          "size": 505,
+          "type": "image/png",
+          "altText": "logo"
+        },
+        {
+          "name": "small-logo3.png",
+          "size": 1603,
+          "type": "image/png",
+          "altText": "logo"
+        }
+      ],
+      "template": "<button class=\"na najajce\">\n<img src=\"images/{fileName}\" alt=\"{altText}\"/>\n  </button>\n",
+      "parsedTemplates": [
+        "<button class=\"na najajce\">\n<img src=\"images/logo-large.png\" alt=\"No description available\"/>\n  </button>\n",
+        "<button class=\"na najajce\">\n<img src=\"images/logo-large2.svg\" alt=\"No description available\"/>\n  </button>\n",
+        "<button class=\"na najajce\">\n<img src=\"images/small-logo.png\" alt=\"No description available\"/>\n  </button>\n",
+        "<button class=\"na najajce\">\n<img src=\"images/small-logo2.png\" alt=\"logo\"/>\n  </button>\n",
+        "<button class=\"na najajce\">\n<img src=\"images/small-logo3.png\" alt=\"logo\"/>\n  </button>\n"
+      ]
     }
   ]
 }

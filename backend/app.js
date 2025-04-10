@@ -21,6 +21,33 @@ app.get("/", (req, res) => {
   res.send("here we go again and again");
 });
 
+app.get("/galleries/metadata", (req, res) => {
+  fs.readFile(galleriesFile, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading database file:", err);
+      return res.status(500).json({ error: "Failed to read database file" });
+    }
+
+    let galleriesData;
+    try {
+      galleriesData = JSON.parse(data);
+    } catch (error) {
+      return res.status(500).json({ error: "Invalid JSON format in database" });
+    }
+
+    const metadata = galleriesData.galleries.map((gallery) => ({
+      id: gallery.id,
+      title: gallery.title,
+      description: gallery.description,
+      format: gallery.format,
+      createdTime: gallery.createdTime,
+      numberOfFiles: gallery.files.length,
+    }));
+
+    res.json(metadata.reverse());
+  });
+});
+
 app.get("/galleries", (req, res) => {
   fs.readFile(path.join(__dirname, "fakeDB.json"), "utf8", (err, data) => {
     if (err) {
@@ -198,12 +225,26 @@ app.post("/save-template", (req, res) => {
 
     gallery.template = content;
 
+    // Add a check to ensure 'files' is not undefined and is an array
+    if (!Array.isArray(gallery.files)) {
+      return res.status(500).json({ error: "Invalid 'files' data in gallery" });
+    }
+
     const parsedTemplates = gallery.files.map((file) => {
-      let parsed = content;
+      // Check if file has the necessary properties
+      if (!file || !file.name || !file.altText) {
+        return res.status(400).json({ error: "File data is incomplete" });
+      }
+
+      // Use regex to replace only the placeholders inside {}
+      let parsed = content || "";
       parsed = parsed.replace(/{fileName}/g, file.name);
       parsed = parsed.replace(/{altText}/g, file.altText);
+
       return parsed;
     });
+
+    gallery.parsedTemplates = parsedTemplates;
 
     fs.writeFile(
       galleriesFile,
@@ -223,6 +264,35 @@ app.post("/save-template", (req, res) => {
   });
 });
 
+app.get("/gallery/:id/template", (req, res) => {
+  const { id } = req.params;
+
+  fs.readFile(galleriesFile, "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: "Failed to read database file" });
+    }
+
+    let galleriesData;
+    try {
+      galleriesData = JSON.parse(data);
+    } catch (error) {
+      return res.status(500).json({ error: "Invalid JSON format in database" });
+    }
+
+    const gallery = galleriesData.galleries.find((g) => g.id === id);
+
+    if (!gallery) {
+      return res.status(404).json({ error: "Gallery not found" });
+    }
+
+    const { template, parsedTemplates = [] } = gallery;
+
+    res.json({
+      template,
+      parsedTemplates,
+    });
+  });
+});
 app.listen(port, () => {
   console.log("listening on the port 8000");
 });

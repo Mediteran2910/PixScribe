@@ -1,42 +1,57 @@
-import { createContext, useContext, ReactNode, SetStateAction } from "react";
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  SetStateAction,
+  useState,
+  useEffect,
+} from "react";
 import useApi from "../hooks/useApi";
+import { GalleryMetadata } from "../components/pages/Home/Home";
 
 export type Gallery = {
-  id: string;
-  title: string;
-  format: "html" | "json" | "yaml";
-  createdTime: string;
-  description: string;
-  files: any[];
+  id?: string;
+  title?: string;
+  format?: "html" | "json" | "yaml";
+  createdTime?: string;
+  description?: string;
+  numberOfFiles?: number;
+  files?: File[];
   template?: string;
-  code?: string;
+  parsedTemplates?: string[];
 };
 
-type ResponseData = {
+export type ResponseData = {
   template: string;
   parsedTemplates: string[];
 };
 
-type GalleriesContextType = {
+type GalleriesContext = {
   galleries: Gallery[];
-  isError: boolean;
-  isLoading: boolean;
   saveTemplateCtx: (galleryId: string, responseData: ResponseData) => void;
   appendGalleryCtx: (newGallery: Gallery) => void;
   setGalleries: React.Dispatch<SetStateAction<Gallery[]>>;
+  isInitialLoad: boolean;
+  isInitialError: boolean;
 };
 
-export const GalleriesContext = createContext<GalleriesContextType | undefined>(
+export const GalleriesContext = createContext<GalleriesContext | undefined>(
   undefined
 );
 
 export function GalleriesProvider({ children }: { children: ReactNode }) {
   const {
-    data: galleries,
-    setData: setGalleries,
-    isError,
-    isLoading,
-  } = useApi<Gallery[]>("http://localhost:8000/galleries");
+    data: initialData,
+    isLoading: isInitialLoad,
+    isError: isInitialError,
+  } = useApi<GalleryMetadata[]>("http://localhost:8000/galleries/metadata");
+  const [galleries, setGalleries] = useState<Gallery[]>([]);
+
+  useEffect(() => {
+    if (initialData) {
+      setGalleries(initialData);
+    }
+  }, [initialData]);
 
   const saveTemplateCtx = (galleryId: string, responseData: ResponseData) => {
     setGalleries((prevGalleries) =>
@@ -45,24 +60,26 @@ export function GalleriesProvider({ children }: { children: ReactNode }) {
           ? {
               ...gallery,
               template: responseData.template,
-              code: responseData.parsedTemplates.join("\n"),
+              parsedTemplates: responseData.parsedTemplates,
             }
           : gallery
       )
     );
   };
+
   const appendGalleryCtx = (newGallery: Gallery) => {
     setGalleries((prev) => [newGallery, ...prev]);
   };
+
   return (
     <GalleriesContext.Provider
       value={{
         galleries,
-        isError,
-        isLoading,
         saveTemplateCtx,
-        setGalleries,
         appendGalleryCtx,
+        setGalleries,
+        isInitialLoad,
+        isInitialError,
       }}
     >
       {children}

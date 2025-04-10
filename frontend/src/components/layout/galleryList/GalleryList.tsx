@@ -23,7 +23,7 @@ export default function GalleryList({ galleries }: { galleries: Gallery[] }) {
           galleryCreatedTime={gallery.createdTime}
           galleryFormat={gallery.format}
           galleryTitle={gallery.title}
-          galleryNumFiles={gallery.files.length}
+          galleryNumFiles={gallery.numberOfFiles}
           galleryDescription={gallery.description}
           galleryId={gallery.id}
         />

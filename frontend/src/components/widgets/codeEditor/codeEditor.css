@@ -2,8 +2,8 @@
   border-radius: 5px;
   align-self: center;
   justify-self: center;
-  width: 700px;
-  height: 400px;
+  width: 100%;
+  height: 600px;
 }
 
 .code-editor .cm-editor,

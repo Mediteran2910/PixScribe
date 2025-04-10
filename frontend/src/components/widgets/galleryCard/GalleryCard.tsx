@@ -29,30 +29,6 @@ export default function GalleryCard({
   const navigate = useNavigate();
   if (isExtended) classes.push("extended");
 
-  // const handleOnViewFe = (galleryId: string) => {
-  //   setGalleries((prev) =>
-  //     prev.map((gallery) => {
-  //       if (gallery.id === galleryId) {
-  //         const parsedFiles = gallery.files.map((file) => {
-  //           let parsed = gallery.template;
-
-  //           parsed = parsed.replace(/{fileName}/g, file.name);
-  //           parsed = parsed.replace(/{altText}/g, file.altText);
-  //           console.log(parsed);
-  //           return parsed;
-  //         });
-
-  //         return {
-  //           ...gallery,
-  //           code: parsedFiles.join("\n"),
-  //         };
-  //       }
-  //       return gallery;
-  //     })
-  //   );
-  //   navigate(`/gallery/${galleryId}`);
-  // };
-
   return (
     <div className="gallery-card">
       <div className="text-wrapper"></div>

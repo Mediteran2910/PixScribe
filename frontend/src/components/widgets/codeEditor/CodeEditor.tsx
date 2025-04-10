@@ -19,7 +19,6 @@ export default function CodeEditor({
   defaultValue,
   onChange,
 }: Props) {
-  console.log(editorLanguage);
   const editorRef = useRef(null);
   const viewRef = useRef(null);
 
