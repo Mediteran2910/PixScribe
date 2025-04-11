@@ -9,22 +9,22 @@ import Modal from "./components/layout/modal/Modal";
 import { useState } from "react";
 import Gallery from "./components/pages/Gallery/Gallery";
 import { GalleriesProvider } from "./Context/GalleriesContext";
+import { ModalProvider } from "./Context/ModalContext";
 
 export default function App() {
-  // const [showModal, setShowModal] = useState(false);
-
-  // const openModal = () => {};
   return (
-    <GalleriesProvider>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/guide" element={<Guide />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/create" element={<Create />} />
-        <Route path="/gallery" element={<Navigate to="/" />} />
-        <Route path="/gallery/:id" element={<Gallery />} />
-      </Routes>
-      {/* <Modal showModal={showModal ? true : false}></Modal> */}
-    </GalleriesProvider>
+    <ModalProvider>
+      <GalleriesProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/guide" element={<Guide />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/gallery" element={<Navigate to="/" />} />
+          <Route path="/gallery/:id" element={<Gallery />} />
+        </Routes>
+      </GalleriesProvider>
+      //{" "}
+    </ModalProvider>
   );
 }

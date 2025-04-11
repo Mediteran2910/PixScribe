@@ -1,19 +1,29 @@
-.input-create-title {
-  width: 100%;
+/* .input-create-title:not(:placeholder-shown):invalid {
+  border: 2px solid red;
+} */
+.inputTxt {
   height: 30px;
   font-size: 1.3rem;
   color: var(--color-black);
   background-color: transparent;
   border: 1px solid var(--color-medium-grey);
-  padding: 5px;
+  height: 35px;
   border-radius: 5px;
 }
 
-.input-create-title::placeholder {
+.inputTxt::placeholder {
   font-size: 1rem;
   color: var(--color-medium-grey);
 }
 
-.input-create-title:not(:placeholder-shown):invalid {
-  border: 2px solid red;
+.inputTxt-full-size {
+  width: 90%;
+}
+
+.inputTxt-half-size {
+  width: 50%;
+}
+
+.inputTxt-quater-size {
+  width: 25%;
 }

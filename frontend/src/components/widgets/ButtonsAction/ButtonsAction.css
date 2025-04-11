@@ -16,6 +16,11 @@
   justify-content: space-between;
 }
 
+.btns-wrap-space-evenly {
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .btns-wrap-end {
   align-items: center;
   justify-content: flex-end;

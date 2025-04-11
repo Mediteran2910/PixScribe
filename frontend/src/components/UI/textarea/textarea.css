@@ -1,13 +1,25 @@
-.input-wrapper textarea {
-  height: 80px;
-  border: 1px solid var(--color-medium-grey);
-  border-radius: 5px;
-  font-size: 1.2rem;
-  font-family: "Lato", sans-serif;
-  padding: 5px;
-}
-
-.input-wrapper textarea::placeholder {
+.txtArea::placeholder {
   font-size: 1rem;
   color: var(--color-medium-grey);
+}
+
+.txtArea {
+  border: 1px solid var(--color-medium-grey);
+  height: 80px;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1.2rem;
+  font-family: "Lato", sans-serif;
+}
+
+.txtArea-full-size {
+  width: 90%;
+}
+
+.txtArea-half-size {
+  width: 50%;
+}
+
+.txtArea-quater-size {
+  width: 25%;
 }

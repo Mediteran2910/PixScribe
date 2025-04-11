@@ -30,6 +30,15 @@
   color: var(--color-black);
 }
 
+.btn-color-red {
+  background-color: var(--color-red-errors);
+  color: var(--color-white);
+}
+
+.btn-icon {
+  background-color: transparent;
+}
+
 .btn-outline-white {
   background: transparent;
   color: var(--color-white);

@@ -225,18 +225,15 @@ app.post("/save-template", (req, res) => {
 
     gallery.template = content;
 
-    // Add a check to ensure 'files' is not undefined and is an array
     if (!Array.isArray(gallery.files)) {
       return res.status(500).json({ error: "Invalid 'files' data in gallery" });
     }
 
     const parsedTemplates = gallery.files.map((file) => {
-      // Check if file has the necessary properties
       if (!file || !file.name || !file.altText) {
         return res.status(400).json({ error: "File data is incomplete" });
       }
 
-      // Use regex to replace only the placeholders inside {}
       let parsed = content || "";
       parsed = parsed.replace(/{fileName}/g, file.name);
       parsed = parsed.replace(/{altText}/g, file.altText);
@@ -293,6 +290,54 @@ app.get("/gallery/:id/template", (req, res) => {
     });
   });
 });
+
+app.patch("/gallery/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, description } = req.body;
+
+  fs.readFile(galleriesFile, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading gallery file:", err);
+      return res.status(500).json({ error: "Failed to read database file" });
+    }
+
+    let galleriesData;
+    try {
+      galleriesData = JSON.parse(data);
+    } catch (parseError) {
+      return res.status(500).json({ error: "Invalid JSON format in database" });
+    }
+
+    const gallery = galleriesData.galleries.find((g) => g.id === id);
+    if (!gallery) {
+      return res.status(404).json({ error: "Gallery not found" });
+    }
+
+    if (title !== undefined) gallery.title = title;
+    if (description !== undefined) gallery.description = description;
+
+    fs.writeFile(
+      galleriesFile,
+      JSON.stringify(galleriesData, null, 2),
+      (err) => {
+        if (err) {
+          console.error("Error writing to gallery file:", err);
+          return res.status(500).json({ error: "Failed to update gallery" });
+        }
+
+        res.status(200).json({
+          message: "Gallery metadata updated successfully",
+          updatedGallery: {
+            id: gallery.id,
+            title: gallery.title,
+            description: gallery.description,
+          },
+        });
+      }
+    );
+  });
+});
+
 app.listen(port, () => {
   console.log("listening on the port 8000");
 });

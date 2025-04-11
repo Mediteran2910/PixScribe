@@ -33,6 +33,7 @@ type GalleriesContext = {
   setGalleries: React.Dispatch<SetStateAction<Gallery[]>>;
   isInitialLoad: boolean;
   isInitialError: boolean;
+  updateMetaDataCtx: (id: string, title: string, description: string) => void;
 };
 
 export const GalleriesContext = createContext<GalleriesContext | undefined>(
@@ -71,6 +72,23 @@ export function GalleriesProvider({ children }: { children: ReactNode }) {
     setGalleries((prev) => [newGallery, ...prev]);
   };
 
+  const updateMetaDataCtx = (
+    id: string,
+    title: string,
+    description: string
+  ) => {
+    setGalleries((prev) =>
+      prev.map((gallery) =>
+        gallery.id === id
+          ? {
+              ...gallery,
+              title,
+              description,
+            }
+          : gallery
+      )
+    );
+  };
   return (
     <GalleriesContext.Provider
       value={{
@@ -80,6 +98,7 @@ export function GalleriesProvider({ children }: { children: ReactNode }) {
         setGalleries,
         isInitialLoad,
         isInitialError,
+        updateMetaDataCtx,
       }}
     >
       {children}

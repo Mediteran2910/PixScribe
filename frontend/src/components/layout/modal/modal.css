@@ -1,0 +1,32 @@
+:modal {
+  background-color: white;
+}
+
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.396);
+}
+
+.modalCnt {
+  display: flex;
+  height: auto;
+  border-radius: 5px;
+  background-color: var(--color-white);
+}
+
+.modalCnt-placement-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.modalCnt-flexDirection-column {
+  flex-direction: column;
+}
+
+.modalCnt-size-medium {
+  width: 600px;
+}
+
+.modal-dialog {
+  border: 1px solid transparent;
+  border-radius: 5px;
+}

@@ -7,5 +7,6 @@ import App from "./App.js";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <App />
+    <div id="modal-root"></div>
   </BrowserRouter>
 );

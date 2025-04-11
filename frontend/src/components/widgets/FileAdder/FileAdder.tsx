@@ -9,6 +9,7 @@ type Props = {
   filesName?: "files";
   validateFile?: string;
   uploadedFiles?: number;
+  valueFiles: File[];
   onChange?: (e: FilesData) => void;
 };
 
@@ -19,9 +20,10 @@ export default function FileAdder({
   filesName,
   validateFile,
   uploadedFiles,
+  valueFiles,
   onChange,
 }: Props) {
-  const [filesData, setFilesData] = useState<FilesData>({ files: [] });
+  const [filesData, setFilesData] = useState<FilesData>({ files: valueFiles });
 
   const MAX_IMAGES = 15;
 

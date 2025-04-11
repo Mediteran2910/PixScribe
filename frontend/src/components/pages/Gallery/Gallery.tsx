@@ -6,8 +6,13 @@ import CodeEditor from "../../widgets/codeEditor/CodeEditor";
 import GalleryCard from "../../widgets/galleryCard/GalleryCard";
 import Header from "../../layout/header/Header";
 import "./gallery.css";
+import Button from "../../UI/button/Button";
+import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
+import Modal from "../../layout/modal/Modal";
+import useModalCtx from "../../../Context/ModalContext";
 
 export default function Gallery() {
+  const { toggleModalVisibility, modals } = useModalCtx();
   const { id } = useParams<{ id: string }>();
 
   const {
@@ -52,12 +57,40 @@ export default function Gallery() {
           galleryDescription={gallery.description}
           galleryNumFiles={gallery.numberOfFiles || gallery.files.length}
           galleryCreatedTime={gallery.createdTime}
+          galleryId={gallery.id}
+          valueFormat={gallery.format}
         />
         <CodeEditor
           editorLanguage={gallery.format}
           defaultValue={gallery.parsedTemplates?.join("\n")}
         />
+        <ButtonsAction end={true}>
+          <Button
+            size="medium"
+            color="red"
+            onClick={() => toggleModalVisibility("galleryModal")}
+          >
+            DELETE
+          </Button>
+          <Button size="medium" color="black" style={{ marginLeft: "10px" }}>
+            SAVE
+          </Button>
+        </ButtonsAction>
       </main>
+      {modals["galleryModal"] && (
+        <Modal modalName="gallryModal">
+          <p>
+            are you sure you want to delete, if you do this there is no going
+            back
+          </p>
+          <Button size="small" color="red">
+            DELETE
+          </Button>
+          <Button size="small" color="black">
+            CANCEL
+          </Button>
+        </Modal>
+      )}
     </>
   );
 }

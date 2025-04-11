@@ -26,6 +26,7 @@ export default function GalleryList({ galleries }: { galleries: Gallery[] }) {
           galleryNumFiles={gallery.numberOfFiles}
           galleryDescription={gallery.description}
           galleryId={gallery.id}
+          valueFormat={gallery.format}
         />
       ))}
     </main>

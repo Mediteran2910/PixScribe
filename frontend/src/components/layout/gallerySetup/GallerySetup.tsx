@@ -15,12 +15,18 @@ type Props = {
   handleFilesChange: (filesData: FilesData) => void;
   uploadedFiles?: number;
   submitForm: () => void;
+  valueTitle: string;
+  valueDescription: string;
+  valueFiles: File[];
 };
 export default function GallerySetup({
   uploadedFiles,
   handleFilesChange,
   handleGalleryInputChange,
   submitForm,
+  valueTitle,
+  valueDescription,
+  valueFiles,
 }: Props) {
   const [error, setError] = useState<errObj>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -46,10 +52,16 @@ export default function GallerySetup({
         radioHTML_value="html"
         radioJSON_value="json"
         radioYAML_value="yaml"
+        valueTitle={valueTitle}
+        valueDescription={valueDescription}
+        textAreaSize="full"
+        txtInputSize="full"
         // validateTitle={error.title}
         // validateDescription={error.description}
         // validateFormat={error.format}
         onChange={handleGalleryInputChange}
+        showFields={{ title: true, description: true, format: true }}
+        inputsWrapWidth="48%"
       />
       <div className="right-side-wrapp">
         <FileAdder
@@ -57,6 +69,7 @@ export default function GallerySetup({
           // validateFile={error.files}
           onChange={handleFilesChange}
           uploadedFiles={uploadedFiles}
+          valueFiles={valueFiles}
         />
         <ButtonsAction end={true} direction="row">
           <Button type="submit" color="black" size="medium">

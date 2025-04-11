@@ -34,6 +34,8 @@ export default function Create() {
     files: [],
   });
 
+  console.log("im create form data", galleryFormData);
+
   const handleGalleryInputChange = (inputsData: GalleryFormInputs) => {
     setGalleryFormData((prev: GalleyForm) => ({ ...prev, ...inputsData }));
   };
@@ -81,6 +83,9 @@ export default function Create() {
             uploadedFiles={galleryFormData.files.length}
             handleGalleryInputChange={handleGalleryInputChange}
             handleFilesChange={handleFilesChange}
+            valueTitle={galleryFormData.title}
+            valueDescription={galleryFormData.description}
+            valueFiles={galleryFormData.files}
           />
         )}
       </main>
