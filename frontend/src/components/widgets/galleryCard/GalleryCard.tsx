@@ -132,7 +132,7 @@ export default function GalleryCard({
             onClick={toogleModalVisibility}
           ></Button>
         ) : (
-          <Link to={`/gallery/${galleryId}`}>
+          <Link to={`gallery/${galleryId}`}>
             <Button color="black" size="medium">
               VIEW
             </Button>

@@ -883,6 +883,53 @@
         "\"path\": \"images/logo-large2.svg\",\n  \"alt\": \"No description available\",\n\"ubilii\": \"izmaltretiraliii\"\n  ",
         "\"path\": \"images/small-logo.png\",\n  \"alt\": \"No description available\",\n\"ubilii\": \"izmaltretiraliii\"\n  "
       ]
+    },
+    {
+      "id": "d6c84653-a40b-49f8-bbf3-c7805aef810c",
+      "title": "tststst",
+      "description": "fasfasfsafasf",
+      "format": "json",
+      "createdTime": "2025-04-14T14:09:04.927Z",
+      "files": [
+        {
+          "name": "finale-large-logo.svg",
+          "size": 11094,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large.png",
+          "size": 1195,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large2.svg",
+          "size": 11053,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo.png",
+          "size": 205,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo2.png",
+          "size": 505,
+          "type": "image/png",
+          "altText": "logo"
+        }
+      ],
+      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"test\": \"nfsjknfjkasnfkjnsa\"\n  ",
+      "parsedTemplates": [
+        "\"path\": \"images/finale-large-logo.svg\",\n  \"alt\": \"No description available\",\n\"test\": \"nfsjknfjkasnfkjnsa\"\n  ",
+        "\"path\": \"images/logo-large.png\",\n  \"alt\": \"No description available\",\n\"test\": \"nfsjknfjkasnfkjnsa\"\n  ",
+        "\"path\": \"images/logo-large2.svg\",\n  \"alt\": \"No description available\",\n\"test\": \"nfsjknfjkasnfkjnsa\"\n  ",
+        "\"path\": \"images/small-logo.png\",\n  \"alt\": \"No description available\",\n\"test\": \"nfsjknfjkasnfkjnsa\"\n  ",
+        "\"path\": \"images/small-logo2.png\",\n  \"alt\": \"logo\",\n\"test\": \"nfsjknfjkasnfkjnsa\"\n  "
+      ]
     }
   ]
 }

@@ -1,34 +1,27 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
+export const ModalContext = createContext<ModalContextType | undefined>(
+  undefined
+);
+
 type ModalProviderProps = {
   children: ReactNode;
 };
 
 type ModalContextType = {
-  toggleModalVisibility: (modalName: string) => void;
-  modals: ModalState;
+  showModal: boolean;
+  toogleModalVisibility: () => void;
 };
-
-type ModalState = {
-  [key: string]: boolean;
-};
-
-export const ModalContext = createContext<ModalContextType | undefined>(
-  undefined
-);
 
 export function ModalProvider({ children }: ModalProviderProps) {
-  const [modals, setModals] = useState<ModalState>({});
+  const [showModal, setShowModal] = useState(false);
 
-  const toggleModalVisibility = (modalName: string) => {
-    setModals((prevModals) => ({
-      ...prevModals,
-      [modalName]: !prevModals[modalName],
-    }));
+  const toogleModalVisibility = () => {
+    setShowModal((prev) => !prev);
   };
 
   return (
-    <ModalContext.Provider value={{ modals, toggleModalVisibility }}>
+    <ModalContext.Provider value={{ showModal, toogleModalVisibility }}>
       {children}
     </ModalContext.Provider>
   );

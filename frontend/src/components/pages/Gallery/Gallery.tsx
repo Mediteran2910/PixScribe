@@ -12,7 +12,7 @@ import Modal from "../../layout/modal/Modal";
 import useModalCtx from "../../../Context/ModalContext";
 
 export default function Gallery() {
-  const { toggleModalVisibility, modals } = useModalCtx();
+  const { toogleModalVisibility } = useModalCtx();
   const { id } = useParams<{ id: string }>();
 
   const {
@@ -65,11 +65,7 @@ export default function Gallery() {
           defaultValue={gallery.parsedTemplates?.join("\n")}
         />
         <ButtonsAction end={true}>
-          <Button
-            size="medium"
-            color="red"
-            onClick={() => toggleModalVisibility("galleryModal")}
-          >
+          <Button size="medium" color="red" onClick={toogleModalVisibility}>
             DELETE
           </Button>
           <Button size="medium" color="black" style={{ marginLeft: "10px" }}>
@@ -77,20 +73,17 @@ export default function Gallery() {
           </Button>
         </ButtonsAction>
       </main>
-      {modals["galleryModal"] && (
-        <Modal modalName="gallryModal">
-          <p>
-            are you sure you want to delete, if you do this there is no going
-            back
-          </p>
-          <Button size="small" color="red">
-            DELETE
-          </Button>
-          <Button size="small" color="black">
-            CANCEL
-          </Button>
-        </Modal>
-      )}
+      <Modal>
+        <p>
+          are you sure you want to delete, if you do this there is no going back
+        </p>
+        <Button size="small" color="red">
+          DELETE
+        </Button>
+        <Button size="small" color="black">
+          CANCEL
+        </Button>
+      </Modal>
     </>
   );
 }
