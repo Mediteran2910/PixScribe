@@ -139,7 +139,15 @@ export default function GalleryCard({
           </Link>
         )}
       </div>
-      <Modal size="medium" flexDirection="column" placement="center">
+      <Modal
+        valueTitle={galleryTitle}
+        valueDescription={galleryDescription}
+        valueFormat={valueFormat}
+        onChange={handleGalleryInputChangeEdit}
+        handleSaveEdits={handleSaveEdits}
+        update={true}
+      ></Modal>
+      {/* <Modal size="medium" flexDirection="column" placement="center">
         <GalleryInputs
           showFields={{ title: true, description: true, format: false }}
           editing
@@ -159,7 +167,7 @@ export default function GalleryCard({
             SAVE
           </Button>
         </ButtonsAction>
-      </Modal>
+      </Modal> */}
     </>
   );
 }
