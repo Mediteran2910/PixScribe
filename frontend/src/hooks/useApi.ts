@@ -26,7 +26,6 @@ export default function useApi<T>(url: string, config?: AxiosRequestConfig) {
     };
 
     fetchData();
-    console.log(data, "ja san jebeni response");
   }, []);
 
   return { data, setData, isError, isLoading };

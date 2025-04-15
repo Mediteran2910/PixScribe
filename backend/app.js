@@ -202,6 +202,65 @@ app.post("/update-gallery-code", (req, res) => {
   });
 });
 
+// app.post("/save-template", (req, res) => {
+//   const { galleryId, content } = req.body;
+
+//   fs.readFile(galleriesFile, "utf8", (err, data) => {
+//     if (err) {
+//       return res.status(500).json({ error: "Failed to read database file" });
+//     }
+
+//     let galleriesData;
+//     try {
+//       galleriesData = JSON.parse(data);
+//     } catch (error) {
+//       return res.status(500).json({ error: "Invalid JSON format in database" });
+//     }
+
+//     const gallery = galleriesData.galleries.find((g) => g.id === galleryId);
+
+//     if (!gallery) {
+//       return res.status(404).json({ error: "Gallery not found" });
+//     }
+
+//     gallery.template = content;
+
+//     if (!Array.isArray(gallery.files)) {
+//       return res.status(500).json({ error: "Invalid 'files' data in gallery" });
+//     }
+
+//     const parsedTemplates = gallery.files.map((file) => {
+//       if (!file || !file.name || !file.altText) {
+//         return res.status(400).json({ error: "File data is incomplete" });
+//       }
+
+//       let parsed = content || "";
+//       parsed = parsed.replace(/{fileName}/g, file.name);
+//       parsed = parsed.replace(/{altText}/g, file.altText);
+
+//       return parsed;
+//     });
+
+//     gallery.parsedTemplates = parsedTemplates;
+
+//     fs.writeFile(
+//       galleriesFile,
+//       JSON.stringify(galleriesData, null, 2),
+//       (err) => {
+//         if (err) {
+//           return res.status(500).json({ error: "Failed to save template" });
+//         }
+
+//         res.status(200).json({
+//           message: "Template saved and parsed successfully",
+//           template: content,
+//           parsedTemplates,
+//         });
+//       }
+//     );
+//   });
+// });
+
 app.post("/save-template", (req, res) => {
   const { galleryId, content } = req.body;
 
@@ -229,19 +288,21 @@ app.post("/save-template", (req, res) => {
       return res.status(500).json({ error: "Invalid 'files' data in gallery" });
     }
 
-    const parsedTemplates = gallery.files.map((file) => {
-      if (!file || !file.name || !file.altText) {
-        return res.status(400).json({ error: "File data is incomplete" });
-      }
+    const parsedTemplate = gallery.files
+      .map((file) => {
+        if (!file || !file.name || !file.altText) {
+          return res.status(400).json({ error: "File data is incomplete" });
+        }
 
-      let parsed = content || "";
-      parsed = parsed.replace(/{fileName}/g, file.name);
-      parsed = parsed.replace(/{altText}/g, file.altText);
+        let parsed = content || "";
+        parsed = parsed.replace(/{fileName}/g, file.name);
+        parsed = parsed.replace(/{altText}/g, file.altText);
 
-      return parsed;
-    });
+        return parsed;
+      })
+      .join("\n");
 
-    gallery.parsedTemplates = parsedTemplates;
+    gallery.parsedTemplate = parsedTemplate;
 
     fs.writeFile(
       galleriesFile,
@@ -254,7 +315,7 @@ app.post("/save-template", (req, res) => {
         res.status(200).json({
           message: "Template saved and parsed successfully",
           template: content,
-          parsedTemplates,
+          parsedTemplate,
         });
       }
     );
@@ -293,7 +354,7 @@ app.get("/gallery/:id/template", (req, res) => {
 
 app.patch("/gallery/:id", (req, res) => {
   const { id } = req.params;
-  const { title, description } = req.body;
+  const { title, description, parsedTemplates } = req.body;
 
   fs.readFile(galleriesFile, "utf8", (err, data) => {
     if (err) {
@@ -315,6 +376,8 @@ app.patch("/gallery/:id", (req, res) => {
 
     if (title !== undefined) gallery.title = title;
     if (description !== undefined) gallery.description = description;
+    if (parsedTemplates !== undefined)
+      gallery.parsedTemplates = parsedTemplates;
 
     fs.writeFile(
       galleriesFile,
@@ -325,14 +388,60 @@ app.patch("/gallery/:id", (req, res) => {
           return res.status(500).json({ error: "Failed to update gallery" });
         }
 
+        const updatedFields = { id: gallery.id };
+        if (title !== undefined) updatedFields.title = gallery.title;
+        if (description !== undefined)
+          updatedFields.description = gallery.description;
+        if (parsedTemplates !== undefined)
+          updatedFields.parsedTemplates = gallery.parsedTemplates;
+
         res.status(200).json({
-          message: "Gallery metadata updated successfully",
-          updatedGallery: {
-            id: gallery.id,
-            title: gallery.title,
-            description: gallery.description,
-          },
+          message: "Gallery updated successfully",
+          updatedGallery: updatedFields,
         });
+      }
+    );
+  });
+});
+
+app.delete("/gallery/:id", (req, res) => {
+  const { id } = req.params;
+
+  fs.readFile(galleriesFile, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading database file:", err);
+      return res.status(500).json({ error: "Failed to read database file" });
+    }
+
+    let galleriesData;
+    try {
+      galleriesData = JSON.parse(data);
+    } catch (parseError) {
+      console.error("Error parsing JSON data:", parseError);
+      return res.status(500).json({ error: "Invalid JSON format in database" });
+    }
+
+    const initialLength = galleriesData.galleries.length;
+    galleriesData.galleries = galleriesData.galleries.filter(
+      (g) => g.id !== id
+    );
+
+    if (galleriesData.galleries.length === initialLength) {
+      return res.status(404).json({ error: "Gallery not found" });
+    }
+
+    fs.writeFile(
+      galleriesFile,
+      JSON.stringify(galleriesData, null, 2),
+      (writeErr) => {
+        if (writeErr) {
+          console.error("Error writing to database file:", writeErr);
+          return res
+            .status(500)
+            .json({ error: "Failed to update database file" });
+        }
+
+        res.sendStatus(200);
       }
     );
   });

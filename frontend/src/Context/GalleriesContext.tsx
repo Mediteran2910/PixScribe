@@ -18,12 +18,18 @@ export type Gallery = {
   numberOfFiles?: number;
   files?: File[];
   template?: string;
-  parsedTemplates?: string[];
+  parsedTemplates?: string;
 };
 
 export type ResponseData = {
-  template: string;
-  parsedTemplates: string[];
+  template?: string;
+  parsedTemplates?: string;
+};
+
+export type UpdateResponse = {
+  title?: string;
+  description?: string;
+  parsedTemplates?: string;
 };
 
 type GalleriesContext = {
@@ -33,7 +39,9 @@ type GalleriesContext = {
   setGalleries: React.Dispatch<SetStateAction<Gallery[]>>;
   isInitialLoad: boolean;
   isInitialError: boolean;
-  updateMetaDataCtx: (id: string, title: string, description: string) => void;
+
+  deleteGalleryCtx: (id: string) => void;
+  updateGalleryCtx: (id: string, obj: UpdateResponse) => void;
 };
 
 export const GalleriesContext = createContext<GalleriesContext | undefined>(
@@ -68,27 +76,35 @@ export function GalleriesProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const deleteGalleryCtx = (id: string) => {
+    setGalleries((prevGalleries) =>
+      prevGalleries.filter((gallery) => gallery.id !== id)
+    );
+  };
+
   const appendGalleryCtx = (newGallery: Gallery) => {
     setGalleries((prev) => [newGallery, ...prev]);
   };
 
-  const updateMetaDataCtx = (
-    id: string,
-    title: string,
-    description: string
-  ) => {
+  const updateGalleryCtx = (id: string, obj: UpdateResponse) => {
     setGalleries((prev) =>
       prev.map((gallery) =>
         gallery.id === id
           ? {
               ...gallery,
-              title,
-              description,
+              ...(obj.title !== undefined && { title: obj.title }),
+              ...(obj.description !== undefined && {
+                description: obj.description,
+              }),
+              ...(obj.parsedTemplates !== undefined && {
+                parsedTemplates: obj.parsedTemplates,
+              }),
             }
           : gallery
       )
     );
   };
+
   return (
     <GalleriesContext.Provider
       value={{
@@ -98,7 +114,9 @@ export function GalleriesProvider({ children }: { children: ReactNode }) {
         setGalleries,
         isInitialLoad,
         isInitialError,
-        updateMetaDataCtx,
+        updateGalleryCtx,
+
+        deleteGalleryCtx,
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import useGalleries, { ResponseData } from "../../../Context/GalleriesContext";
 import useApi from "../../../hooks/useApi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CodeEditor from "../../widgets/codeEditor/CodeEditor";
 import GalleryCard from "../../widgets/galleryCard/GalleryCard";
 import Header from "../../layout/header/Header";
@@ -9,11 +9,20 @@ import "./gallery.css";
 import Button from "../../UI/button/Button";
 import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
 import Modal from "../../layout/modal/Modal";
-import useModalCtx from "../../../Context/ModalContext";
+import axios from "axios";
+import Typography from "../../UI/typography/typography";
+import { useNavigate } from "react-router-dom";
+import { defaultValues } from "../../../utils/defaultEditorValues";
 
 export default function Gallery() {
-  const { toogleModalVisibility } = useModalCtx();
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+  const [isErrorDelete, setIsErrorDelete] = useState(false);
+  const [isLoadingSaveTempl, setIsLoadinSaveTempl] = useState(false);
+  const [isErrorSaveTempl, setIsErrorSaveTempl] = useState(false);
 
   const {
     data: singleGalleryData,
@@ -21,9 +30,20 @@ export default function Gallery() {
     isError: isErrorSingleGallery,
   } = useApi<ResponseData>(`http://localhost:8000/gallery/${id}/template`);
 
-  const { galleries, saveTemplateCtx } = useGalleries();
+  const { galleries, saveTemplateCtx, deleteGalleryCtx, updateGalleryCtx } =
+    useGalleries();
 
   const gallery = galleries.find((gallery) => gallery.id === id);
+
+  const [editorValueGallery, setEditorValueGallery] = useState(
+    defaultValues[gallery?.format]
+  );
+
+  const handleEditorChange = (newValue: string) => {
+    setEditorValueGallery(newValue);
+  };
+
+  console.log(editorValueGallery);
 
   useEffect(() => {
     if (singleGalleryData && gallery) {
@@ -42,9 +62,66 @@ export default function Gallery() {
     saveTemplateCtx,
   ]);
 
+  const onDeleteGallery = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8000/gallery/${gallery.id}`
+      );
+      if (response) console.log("deletion succesfull");
+    } catch {
+      console.log("something is wrong while deleting");
+    }
+  };
+
+  const handleDeleteGallery = async () => {
+    setIsLoadingDelete(true);
+    try {
+      await onDeleteGallery();
+    } catch {
+      setIsErrorDelete(true);
+    } finally {
+      deleteGalleryCtx(gallery.id);
+      setIsLoadingDelete(false);
+      navigate("/");
+    }
+  };
+
+  const onSaveParsedTempl = async () => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:8000/gallery/${gallery.id}`,
+        {
+          parsedTemplates: editorValueGallery,
+        }
+      );
+
+      console.log("Update successful:", response.data);
+      return response.data.updatedGallery;
+    } catch (error) {
+      console.error("Error updating gallery:", error);
+      throw error;
+    }
+  };
+
+  const handleSaveParsedTempl = async () => {
+    setIsLoadinSaveTempl(true);
+    try {
+      const response = await onSaveParsedTempl();
+      if (response.id && response) {
+        updateGalleryCtx(response.id, response);
+      }
+    } catch {
+      setIsErrorSaveTempl(true);
+    } finally {
+      setIsLoadinSaveTempl(false);
+    }
+  };
+
   if (isLoadinSingleGallery) return <div>Loading...</div>;
   if (isErrorSingleGallery) return <div>Error loading gallery data</div>;
   if (!gallery) return <div>Gallery not found</div>;
+  if (isLoadingDelete) return <div>cekaj da obrisen na backendu</div>;
+  if (isErrorDelete) return <div>e jebiga neko sranje se desilo</div>;
 
   return (
     <>
@@ -62,27 +139,50 @@ export default function Gallery() {
         />
         <CodeEditor
           editorLanguage={gallery.format}
-          defaultValue={gallery.parsedTemplates?.join("\n")}
+          defaultValue={gallery?.parsedTemplates}
+          onChange={handleEditorChange}
         />
-        <ButtonsAction end={true}>
-          <Button size="medium" color="red" onClick={toogleModalVisibility}>
+
+        <ButtonsAction end>
+          <Button
+            size="medium"
+            color="red"
+            onClick={() => setIsDeleteModalOpen(true)}
+          >
             DELETE
           </Button>
-          <Button size="medium" color="black" style={{ marginLeft: "10px" }}>
+          <Button
+            size="medium"
+            color="black"
+            style={{ marginLeft: "10px" }}
+            disabled={editorValueGallery === gallery.parsedTemplates}
+            onClick={handleSaveParsedTempl}
+          >
             SAVE
           </Button>
         </ButtonsAction>
       </main>
-      <Modal>
-        <p>
-          are you sure you want to delete, if you do this there is no going back
-        </p>
-        <Button size="small" color="red">
-          DELETE
-        </Button>
-        <Button size="small" color="black">
-          CANCEL
-        </Button>
+      <Modal
+        isModalOpen={isDeleteModalOpen}
+        size="small"
+        flexDirection="column"
+      >
+        <Typography body color="black" style={{ marginBottom: "20px" }}>
+          Are you sure you want to delete this gallery? This action is permanent
+          and cannot be undone.
+        </Typography>
+        <ButtonsAction spaceEvenly>
+          <Button size="small" color="red" onClick={handleDeleteGallery}>
+            DELETE
+          </Button>
+          <Button
+            size="small"
+            color="black"
+            onClick={() => setIsDeleteModalOpen(false)}
+          >
+            CANCEL
+          </Button>
+        </ButtonsAction>
       </Modal>
     </>
   );

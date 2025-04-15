@@ -26,6 +26,10 @@
   width: 600px;
 }
 
+.modalCnt-size-small {
+  width: 400px;
+}
+
 .modal-dialog {
   border: 1px solid transparent;
   border-radius: 5px;

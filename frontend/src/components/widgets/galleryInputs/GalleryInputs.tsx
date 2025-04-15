@@ -64,8 +64,6 @@ export default function GalleryInputs({
     format: valueFormat || "html",
   });
 
-  console.log("im inputs data", gallInputData);
-
   const onHandleChange = (key: keyof GalleryFormInputs) => {
     return (e: ChangeEvt) =>
       setGallInputData((prev) => ({ ...prev, [key]: e.target.value }));

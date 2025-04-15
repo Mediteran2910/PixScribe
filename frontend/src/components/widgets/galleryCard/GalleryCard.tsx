@@ -2,7 +2,7 @@ import Typography from "../../UI/typography/typography";
 import Button from "../../UI/button/Button";
 import { useNavigate } from "react-router-dom";
 import useGalleries from "../../../Context/GalleriesContext";
-import useModalCtx from "../../../Context/ModalContext";
+
 import GalleryInputs from "../galleryInputs/GalleryInputs";
 import { Link } from "react-router-dom";
 import "./galleryCard.css";
@@ -39,8 +39,7 @@ export default function GalleryCard({
   valueFormat,
   isExtended,
 }: Form & React.JSX.IntrinsicElements["div"]) {
-  const { toogleModalVisibility } = useModalCtx();
-  const { updateMetaDataCtx } = useGalleries();
+  const { updateGalleryCtx } = useGalleries();
   const classes = [];
 
   if (isExtended) classes.push("extended");
@@ -50,10 +49,9 @@ export default function GalleryCard({
     description: "",
   });
 
+  const [isUpdateModal, SetIsUpdateOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-
-  console.log("im edit form data", editData);
 
   const handleGalleryInputChangeEdit = (inputsData: EditDataInputs) => {
     setEditData((prev: EditFormData) => ({ ...prev, ...inputsData }));
@@ -81,14 +79,14 @@ export default function GalleryCard({
     setIsLoading(true);
     try {
       const response = await onSaveEdits(editData.title, editData.description);
-      if (response) {
-        updateMetaDataCtx(galleryId, response.title, response.description);
+      if (response.id && response) {
+        updateGalleryCtx(response.id, response);
       }
     } catch {
       setIsError(true);
     } finally {
       setIsLoading(false);
-      toogleModalVisibility();
+      SetIsUpdateOpen(false);
     }
   };
 
@@ -129,7 +127,7 @@ export default function GalleryCard({
             size="small"
             icon="edit"
             iconWidth="25px"
-            onClick={toogleModalVisibility}
+            onClick={() => SetIsUpdateOpen(true)}
           ></Button>
         ) : (
           <Link to={`gallery/${galleryId}`}>
@@ -140,14 +138,11 @@ export default function GalleryCard({
         )}
       </div>
       <Modal
-        valueTitle={galleryTitle}
-        valueDescription={galleryDescription}
-        valueFormat={valueFormat}
-        onChange={handleGalleryInputChangeEdit}
-        handleSaveEdits={handleSaveEdits}
-        update={true}
-      ></Modal>
-      {/* <Modal size="medium" flexDirection="column" placement="center">
+        size="medium"
+        flexDirection="column"
+        placement="center"
+        isModalOpen={isUpdateModal}
+      >
         <GalleryInputs
           showFields={{ title: true, description: true, format: false }}
           editing
@@ -160,14 +155,18 @@ export default function GalleryCard({
           textAreaSize="full"
         />
         <ButtonsAction spaceEvenly>
-          <Button size="medium" outline="black" onClick={toogleModalVisibility}>
+          <Button
+            size="medium"
+            outline="black"
+            onClick={() => SetIsUpdateOpen(false)}
+          >
             EXIT
           </Button>
           <Button size="medium" color="black" onClick={handleSaveEdits}>
             SAVE
           </Button>
         </ButtonsAction>
-      </Modal> */}
+      </Modal>
     </>
   );
 }

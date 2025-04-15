@@ -7,11 +7,7 @@ import UsageGuidelines from "../../widgets/UsageGuidelines/UsageGuidelines";
 import { Link, useNavigate } from "react-router-dom";
 import useGalleries from "../../../Context/GalleriesContext";
 import axios from "axios";
-import {
-  defaultValues,
-  commentText,
-  initialComment,
-} from "../../../utils/defaultEditorValues";
+import { defaultValues } from "../../../utils/defaultEditorValues";
 
 type Props = {
   backToForm: () => void;
