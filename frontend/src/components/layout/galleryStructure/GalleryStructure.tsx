@@ -3,7 +3,7 @@ import { useState } from "react";
 import Button from "../../UI/button/Button";
 import CodeEditor from "../../widgets/codeEditor/CodeEditor";
 import ButtonsAction from "../../widgets/ButtonsAction/ButtonsAction";
-
+import UsageGuidelines from "../../widgets/UsageGuidelines/UsageGuidelines";
 import { Link, useNavigate } from "react-router-dom";
 import useGalleries from "../../../Context/GalleriesContext";
 import axios from "axios";
@@ -63,6 +63,7 @@ export default function GalleryStructure({
 
   return (
     <div className="gallery-structure-wrap">
+      <UsageGuidelines />
       <div className="code-editor">
         <CodeEditor
           editorLanguage={editorLanguage}
