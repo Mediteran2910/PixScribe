@@ -288,13 +288,13 @@ app.post("/save-template", (req, res) => {
       return res.status(500).json({ error: "Invalid 'files' data in gallery" });
     }
 
-    const parsedTemplate = gallery.files
+    const parsedTemplates = gallery.files
       .map((file) => {
         if (!file || !file.name || !file.altText) {
           return res.status(400).json({ error: "File data is incomplete" });
         }
 
-        let parsed = content || "";
+        let parsed = content;
         parsed = parsed.replace(/{fileName}/g, file.name);
         parsed = parsed.replace(/{altText}/g, file.altText);
 
@@ -302,7 +302,7 @@ app.post("/save-template", (req, res) => {
       })
       .join("\n");
 
-    gallery.parsedTemplate = parsedTemplate;
+    gallery.parsedTemplates = parsedTemplates;
 
     fs.writeFile(
       galleriesFile,
@@ -315,7 +315,7 @@ app.post("/save-template", (req, res) => {
         res.status(200).json({
           message: "Template saved and parsed successfully",
           template: content,
-          parsedTemplate,
+          parsedTemplates,
         });
       }
     );
@@ -343,7 +343,7 @@ app.get("/gallery/:id/template", (req, res) => {
       return res.status(404).json({ error: "Gallery not found" });
     }
 
-    const { template, parsedTemplates = [] } = gallery;
+    const { template, parsedTemplates } = gallery;
 
     res.json({
       template,

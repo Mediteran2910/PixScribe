@@ -13,6 +13,7 @@ import axios from "axios";
 import Typography from "../../UI/typography/typography";
 import { useNavigate } from "react-router-dom";
 import { defaultValues } from "../../../utils/defaultEditorValues";
+import { useMemo } from "react";
 
 export default function Gallery() {
   const { id } = useParams<{ id: string }>();
@@ -33,7 +34,10 @@ export default function Gallery() {
   const { galleries, saveTemplateCtx, deleteGalleryCtx, updateGalleryCtx } =
     useGalleries();
 
-  const gallery = galleries.find((gallery) => gallery.id === id);
+  const gallery = useMemo(
+    () => galleries.find((g) => g.id === id),
+    [galleries, id]
+  );
 
   const [editorValueGallery, setEditorValueGallery] = useState(
     defaultValues[gallery?.format]
@@ -43,24 +47,21 @@ export default function Gallery() {
     setEditorValueGallery(newValue);
   };
 
-  console.log(editorValueGallery);
+  const [hasInitialized, setHasInitialized] = useState(false);
 
   useEffect(() => {
-    if (singleGalleryData && gallery) {
+    if (!hasInitialized && singleGalleryData && gallery) {
       if (
         gallery.template !== singleGalleryData.template ||
         gallery.parsedTemplates !== singleGalleryData.parsedTemplates
       ) {
         saveTemplateCtx(id, singleGalleryData);
+        setHasInitialized(true);
       }
     }
-  }, [
-    singleGalleryData,
-    id,
-    gallery?.template,
-    gallery?.parsedTemplates,
-    saveTemplateCtx,
-  ]);
+  }, [singleGalleryData, id, hasInitialized]);
+
+  console.log("im from the context", gallery?.parsedTemplates);
 
   const onDeleteGallery = async () => {
     try {
@@ -107,7 +108,9 @@ export default function Gallery() {
     setIsLoadinSaveTempl(true);
     try {
       const response = await onSaveParsedTempl();
-      if (response.id && response) {
+
+      if (response) {
+        console.log("im response", response);
         updateGalleryCtx(response.id, response);
       }
     } catch {
@@ -122,6 +125,8 @@ export default function Gallery() {
   if (!gallery) return <div>Gallery not found</div>;
   if (isLoadingDelete) return <div>cekaj da obrisen na backendu</div>;
   if (isErrorDelete) return <div>e jebiga neko sranje se desilo</div>;
+  if (isLoadingSaveTempl) return <div>loadan sejvanje cekaj</div>;
+  if (isErrorSaveTempl) return <div>error sejvanje, aj ca sa stranice</div>;
 
   return (
     <>
@@ -139,7 +144,7 @@ export default function Gallery() {
         />
         <CodeEditor
           editorLanguage={gallery.format}
-          defaultValue={gallery?.parsedTemplates}
+          defaultValue={gallery.parsedTemplates}
           onChange={handleEditorChange}
         />
 

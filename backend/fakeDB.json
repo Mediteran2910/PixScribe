@@ -1,11 +1,11 @@
 {
   "galleries": [
     {
-      "id": "4028d203-2dea-4e52-a69f-963c6934251e",
-      "title": "fuck of",
-      "description": "nenenenen",
-      "format": "yaml",
-      "createdTime": "2025-04-15T23:06:39.545Z",
+      "id": "b18ab5c1-92bf-498c-9504-c9f483257e89",
+      "title": "prvii prvi",
+      "description": "mozeee",
+      "format": "html",
+      "createdTime": "2025-04-16T14:26:49.360Z",
       "files": [
         {
           "name": "finale-large-logo.svg",
@@ -38,15 +38,15 @@
           "altText": "logo"
         }
       ],
-      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  just kiddin: \"fuckingg idiot\"\n  ",
-      "parsedTemplate": "path: \"images/finale-large-logo.svg\"\n  alt: \"No description available\"\n  just kiddin: \"fuckingg idiot\"\n  \npath: \"images/logo-large.png\"\n  alt: \"No description available\"\n  just kiddin: \"fuckingg idiot\"\n  \npath: \"images/logo-large2.svg\"\n  alt: \"No description available\"\n  just kiddin: \"fuckingg idiot\"\n  \npath: \"images/small-logo.png\"\n  alt: \"No description available\"\n  just kiddin: \"fuckingg idiot\"\n  \npath: \"images/small-logo2.png\"\n  alt: \"logo\"\n  just kiddin: \"fuckingg idiot\"\n  "
+      "template": "<button class=\"aaaaa\">\n<img src=\"images/{fileName}\" alt=\"{altText}\" loading=\"lazy\"/>\n  </button>",
+      "parsedTemplates": "<button class=\"aaaaa\">\n<img src=\"images/finale-large-logo.svg\" alt=\"No description available\" loading=\"lazy\"/>\n  </button>\n<button class=\"aaaaa\">\n<img src=\"images/logo-large.png\" alt=\"No description available\" loading=\"lazy\"/>\n  </button>\n<button class=\"aaaaa\">\n<img src=\"images/logo-large2.svg\" alt=\"No description available\" loading=\"lazy\"/>\n  </button>\n<button class=\"aaaaa\">\n<img src=\"images/small-logo.png\" alt=\"No description available\" loading=\"lazy\"/>\n  </button>\n<button class=\"aaaaa\">\n<img src=\"images/small-logo2.png\" alt=\"logo\" loading=\"lazy\"/>\n  </button>"
     },
     {
-      "id": "59c6604d-491c-40ab-95db-a072b3769272",
-      "title": "AJ SAD OPE",
-      "description": "FJOFASOIFJAOISF",
-      "format": "html",
-      "createdTime": "2025-04-15T23:16:43.712Z",
+      "id": "452e9efd-8881-4f5b-9f99-d9f53fe3d870",
+      "title": "drugi",
+      "description": "drugi i bla bla bla bla bla bla bla bla",
+      "format": "yaml",
+      "createdTime": "2025-04-16T14:30:47.503Z",
       "files": [
         {
           "name": "finale-large-logo.svg",
@@ -73,8 +73,160 @@
           "altText": "No description available"
         }
       ],
-      "template": "<img src=\"images/{fileName}\" alt=\"{altText}\"/>\nMRS PICKU VISE",
-      "parsedTemplate": "<img src=\"images/finale-large-logo.svg\" alt=\"No description available\"/>\nMRS PICKU VISE\n<img src=\"images/logo-large.png\" alt=\"No description available\"/>\nMRS PICKU VISE\n<img src=\"images/logo-large2.svg\" alt=\"No description available\"/>\nMRS PICKU VISE\n<img src=\"images/small-logo.png\" alt=\"No description available\"/>\nMRS PICKU VISE"
+      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  drugiiii: \"kabum mada fakas\"\n  ",
+      "parsedTemplates": "path: \"images/finale-large-logo.svg\"\n  alt: \"No description available\"\n  drugiiii: \"kabum mada fakas\"\n  \npath: \"images/logo-large.png\"\n  alt: \"No description available\"\n  drugiiii: \"kabum mada fakas\"\n  \npath: \"images/logo-large2.svg\"\n  alt: \"No description available\"\n  drugiiii: \"kabum mada fakas\"\n  \npath: \"images/small-logo.png\"\n  alt: \"No description available\"\n  drugiiii: \"kabum mada fakas\"\n\n  mali update: \"mali update\"\n  veliki update: \"nee\"\n  test: test\n  aj opet: opeeeet\n  aj stani: STANIII\n  koji kk: koji kk\n  a jugaaa: teskoo jugo\n  sumnjivo: dada\n  ne updejta ctx jbg\n  "
+    },
+    {
+      "id": "934e8b68-0c9b-4ff4-a89c-a09c57d35918",
+      "title": "trrecii jamson",
+      "description": "treci jamson lagan ko perce ",
+      "format": "json",
+      "createdTime": "2025-04-16T14:32:06.857Z",
+      "files": [
+        {
+          "name": "finale-large-logo.svg",
+          "size": 11094,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large.png",
+          "size": 1195,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large2.svg",
+          "size": 11053,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo.png",
+          "size": 205,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo2.png",
+          "size": 505,
+          "type": "image/png",
+          "altText": "logo"
+        },
+        {
+          "name": "small-logo3.png",
+          "size": 1603,
+          "type": "image/png",
+          "altText": "logo"
+        },
+        {
+          "name": "small.logo4.png",
+          "size": 8668,
+          "type": "image/png",
+          "altText": "logo"
+        }
+      ],
+      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"kakav laganicevic\": \"previse lagani\"\n  ",
+      "parsedTemplates": "\"path\": \"images/finale-large-logo.svg\",\n  \"alt\": \"No description available\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/logo-large.png\",\n  \"alt\": \"No description available\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/logo-large2.svg\",\n  \"alt\": \"No description available\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/small-logo.png\",\n  \"alt\": \"No description available\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/small-logo2.png\",\n  \"alt\": \"logo\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/small-logo3.png\",\n  \"alt\": \"logo\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/small.logo4.png\",\n  \"alt\": \"logo\",\n\"kakav laganicevic\": \"previse lagani\"\n\n\"jedan mali updejt\": \"baci jameson popij pivu boati\"\n  aaaaa"
+    },
+    {
+      "id": "2d5a90a3-f3e7-4d3f-9564-5bcfa0d0ee92",
+      "title": "ma neradi",
+      "description": "aaaaa",
+      "format": "json",
+      "createdTime": "2025-04-16T17:02:20.968Z",
+      "files": [
+        {
+          "name": "finale-large-logo.svg",
+          "size": 11094,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large.png",
+          "size": 1195,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large2.svg",
+          "size": 11053,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo.png",
+          "size": 205,
+          "type": "image/png",
+          "altText": "No description available"
+        }
+      ],
+      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n  ",
+      "parsedTemplates": "\"path\": \"images/finale-large-logo.svg\",\n  \"alt\": \"No description available\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n  \n\"path\": \"images/logo-large.png\",\n  \"alt\": \"No description available\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n  \n\"path\": \"images/logo-large2.svg\",\n  \"alt\": \"No description available\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n  \n\"path\": \"images/small-logo.png\",\n  \"alt\": \"No description available\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n\"kurcina\": teska\nza probit\nbrate bolesti\nteska retardacija\nbgm\nteski\nghbj\n\n  "
+    },
+    {
+      "id": "0ce5f562-f90e-4e07-9045-445d2ed2e26d",
+      "title": "mislis",
+      "description": "mislin mislin",
+      "format": "yaml",
+      "createdTime": "2025-04-16T19:20:24.999Z",
+      "files": [
+        {
+          "name": "finale-large-logo.svg",
+          "size": 11094,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large.png",
+          "size": 1195,
+          "type": "image/png",
+          "altText": "No description available"
+        },
+        {
+          "name": "logo-large2.svg",
+          "size": 11053,
+          "type": "image/svg+xml",
+          "altText": "No description available"
+        },
+        {
+          "name": "small-logo.png",
+          "size": 205,
+          "type": "image/png",
+          "altText": "No description available"
+        }
+      ],
+      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  aj opisuj\n  ",
+      "parsedTemplates": "path: \"images/finale-large-logo.svg\"\n  alt: \"No description available\"\n  aj opisuj\n  \npath: \"images/logo-large.png\"\n  alt: \"No description available\"\n  aj opisuj\n  \npath: \"images/logo-large2.svg\"\n  alt: \"No description available\"\n  aj opisuj\n  \npath: \"images/small-logo.png\"\n  alt: \"No description available\"\n  aj opisuj\n  fafasfasf\n  mrs\n  a jbt\n  nene\n  bbbb\n  ddd\n  inklm\n  kllkmkl\n  jknknl\n  toooo\n  neee\n  drama"
+    },
+    {
+      "id": "b8037558-df1f-4aa9-820f-07495bb5cc02",
+      "title": "vila",
+      "description": "vila vila ",
+      "format": "json",
+      "createdTime": "2025-04-16T19:21:53.983Z",
+      "files": [
+        {
+          "name": "1 naslovna.webp",
+          "size": 151560,
+          "type": "image/webp",
+          "altText": "a house with a pool"
+        },
+        {
+          "name": "3 (1).webp",
+          "size": 454510,
+          "type": "image/webp",
+          "altText": "a town with trees and water in the background"
+        },
+        {
+          "name": "3 (2).webp",
+          "size": 176338,
+          "type": "image/webp",
+          "altText": "a building with many windows"
+        }
+      ],
+      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\n  ",
+      "parsedTemplates": "\"path\": \"images/1 naslovna.webp\",\n  \"alt\": \"a house with a pool\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\n  \n\"path\": \"images/3 (1).webp\",\n  \"alt\": \"a town with trees and water in the background\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\n  \n\"path\": \"images/3 (2).webp\",\n  \"alt\": \"a building with many windows\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\nmaybeee\nbut just maybe\nnee\npun kurac\nnnnnn\nhmmm\ndzzzzzfasa\nmmmm\nnnn\nok\nmozdaa\na ok\n  "
     }
   ]
 }
