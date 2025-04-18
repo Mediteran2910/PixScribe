@@ -144,7 +144,9 @@ export default function Gallery() {
         />
         <CodeEditor
           editorLanguage={gallery.format}
-          defaultValue={gallery.parsedTemplates}
+          defaultValue={
+            gallery.parsedTemplates || singleGalleryData?.parsedTemplates
+          }
           onChange={handleEditorChange}
         />
 
@@ -164,6 +166,15 @@ export default function Gallery() {
             onClick={handleSaveParsedTempl}
           >
             SAVE
+          </Button>
+          <Button
+            size="medium"
+            color="black"
+            onClick={() => {
+              navigator.clipboard.writeText(editorValueGallery);
+            }}
+          >
+            copy
           </Button>
         </ButtonsAction>
       </main>

@@ -197,12 +197,12 @@
         }
       ],
       "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  aj opisuj\n  ",
-      "parsedTemplates": "path: \"images/finale-large-logo.svg\"\n  alt: \"No description available\"\n  aj opisuj\n  \npath: \"images/logo-large.png\"\n  alt: \"No description available\"\n  aj opisuj\n  \npath: \"images/logo-large2.svg\"\n  alt: \"No description available\"\n  aj opisuj\n  \npath: \"images/small-logo.png\"\n  alt: \"No description available\"\n  aj opisuj\n  fafasfasf\n  mrs\n  a jbt\n  nene\n  bbbb\n  ddd\n  inklm\n  kllkmkl\n  jknknl\n  toooo\n  neee\n  drama"
+      "parsedTemplates": "path: \"images/finale-large-logo.svg\"\n  alt: \"No description available\"\n  aj opisuj\n  \npath: \"images/logo-large.png\"\n  alt: \"No description available\"\n  aj opisuj\n  \npath: \"images/logo-large2.svg\"\n  alt: \"No description available\"\n  aj opisuj\n  \npath: \"images/small-logo.png\"\n  alt: \"No description available\"\n  aj opisuj\n  fafasfasf\n  mrs\n  a jbt\n  nene\n  bbbb\n  ddd\n  inklm\n  kllkmkl\n  jknknl\n  toooo\n  neee\n  drama\n  probaaa"
     },
     {
       "id": "b8037558-df1f-4aa9-820f-07495bb5cc02",
-      "title": "vila",
-      "description": "vila vila ",
+      "title": "vila sss",
+      "description": "vilakis",
       "format": "json",
       "createdTime": "2025-04-16T19:21:53.983Z",
       "files": [
@@ -226,7 +226,89 @@
         }
       ],
       "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\n  ",
-      "parsedTemplates": "\"path\": \"images/1 naslovna.webp\",\n  \"alt\": \"a house with a pool\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\n  \n\"path\": \"images/3 (1).webp\",\n  \"alt\": \"a town with trees and water in the background\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\n  \n\"path\": \"images/3 (2).webp\",\n  \"alt\": \"a building with many windows\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\nmaybeee\nbut just maybe\nnee\npun kurac\nnnnnn\nhmmm\ndzzzzzfasa\nmmmm\nnnn\nok\nmozdaa\na ok\n  "
+      "parsedTemplates": "\"path\": \"images/1 naslovna.webp\",\n  \"alt\": \"a house with a pool\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\n  \n\"path\": \"images/3 (1).webp\",\n  \"alt\": \"a town with trees and water in the background\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\n  \n\"path\": \"images/3 (2).webp\",\n  \"alt\": \"a building with many windows\",\n\"ma daj nes\": \"bilo sta, bukvalno bilo sta\"\nmaybeee\nbut just maybe\nnee\npun kurac\nnnnnn\nhmmm\ndzzzzzfasa\nmmmm\nnnn\nok\nmozdaa\na ok\nproba\nsad je toto\n  "
+    },
+    {
+      "id": "68e0b992-a158-4f25-a7a6-854d0319d84d",
+      "title": "aj da vidimo lagg",
+      "description": "laganicevicec",
+      "format": "json",
+      "createdTime": "2025-04-18T08:57:32.031Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi3ucm_XIAA49k9.png",
+          "size": 204450,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ],
+      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"okej\": \"thats fine\"\n  ",
+      "parsedTemplates": "\"path\": \"images/Gi3r8hkXEAAH55a.png\",\n  \"alt\": \"chart, histogram\",\n\"okej\": \"thats fine\"\n  \n\"path\": \"images/Gi3sCBGW8AA1Rff.png\",\n  \"alt\": \"chart\",\n\"okej\": \"thats fine\"\n  \n\"path\": \"images/Gi3ucm_XIAA49k9.png\",\n  \"alt\": \"chart\",\n\"okej\": \"thats fine\"\n\nstill working\nokok\nfinaly\n  "
+    },
+    {
+      "id": "3104e076-e16d-46a7-9a0c-6ab3c9ede922",
+      "title": "bomba",
+      "description": "teska",
+      "format": "yaml",
+      "createdTime": "2025-04-18T09:04:52.088Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi3ucm_XIAA49k9.png",
+          "size": 204450,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi4cUJSXQAAQvaV.png",
+          "size": 104168,
+          "type": "image/png",
+          "altText": "chart, line chart"
+        },
+        {
+          "name": "Gi4cX_HWsAAVIoF.png",
+          "size": 104883,
+          "type": "image/png",
+          "altText": "chart, line chart"
+        },
+        {
+          "name": "Gi4fEodWgAAALSj.png",
+          "size": 103836,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi4fJYNXEAA3DGN.png",
+          "size": 107298,
+          "type": "image/png",
+          "altText": "chart, line chart"
+        }
+      ],
+      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  resio: \"baticee\"\n  ",
+      "parsedTemplates": "path: \"images/Gi3r8hkXEAAH55a.png\"\n  alt: \"chart, histogram\"\n  resio: \"baticee\"\n  \npath: \"images/Gi3sCBGW8AA1Rff.png\"\n  alt: \"chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi3ucm_XIAA49k9.png\"\n  alt: \"chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi4cUJSXQAAQvaV.png\"\n  alt: \"chart, line chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi4cX_HWsAAVIoF.png\"\n  alt: \"chart, line chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi4fEodWgAAALSj.png\"\n  alt: \"chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi4fJYNXEAA3DGN.png\"\n  alt: \"chart, line chart\"\n  resio: \"baticee\"\n\n  jel se moze updejtat: a ne sine\n  ajmooo\n  ajmee"
     }
   ]
 }
