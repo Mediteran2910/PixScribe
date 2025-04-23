@@ -10,6 +10,7 @@ type Props = {
   validateFile?: string;
   uploadedFiles?: number;
   valueFiles: File[];
+  isAddingActive?: boolean;
   onChange?: (e: FilesData) => void;
 };
 
@@ -21,6 +22,7 @@ export default function FileAdder({
   validateFile,
   uploadedFiles,
   valueFiles,
+  // isAddingActive,
   onChange,
 }: Props) {
   const [filesData, setFilesData] = useState<FilesData>({ files: valueFiles });
@@ -45,27 +47,33 @@ export default function FileAdder({
   };
 
   return (
-    <DragDrop
-      count={MAX_IMAGES - uploadedFiles}
-      formats={["jpeg", "jpg", "png"]}
-      onUpload={onDragFiles}
-    >
-      <FileInput
-        name={filesName}
-        validate={validateFile}
-        uploadedFiles={uploadedFiles}
-        onChange={onHandleFileInputChange}
-      />
-      <Typography caption color="medium-grey">
-        {uploadedFiles ? (
-          `you can upload ${MAX_IMAGES - uploadedFiles} more images`
-        ) : (
-          <>
-            max 15 images max <br />
-            size per image 10MB
-          </>
-        )}
-      </Typography>
-    </DragDrop>
+    <div className="file-adder-wrap">
+      {/* {isAddingActive ? (
+        <p>cekajj</p>
+      ) : ( */}
+      <DragDrop
+        count={MAX_IMAGES - uploadedFiles}
+        formats={["jpeg", "jpg", "png"]}
+        onUpload={onDragFiles}
+      >
+        <FileInput
+          name={filesName}
+          validate={validateFile}
+          uploadedFiles={uploadedFiles}
+          onChange={onHandleFileInputChange}
+        />
+        <Typography caption color="medium-grey">
+          {uploadedFiles ? (
+            `you can upload ${MAX_IMAGES - uploadedFiles} more images`
+          ) : (
+            <>
+              max 15 images max <br />
+              size per image 10MB
+            </>
+          )}
+        </Typography>
+      </DragDrop>
+      {/* )} */}
+    </div>
   );
 }

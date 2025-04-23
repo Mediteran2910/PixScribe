@@ -130,41 +130,6 @@
       "parsedTemplates": "\"path\": \"images/finale-large-logo.svg\",\n  \"alt\": \"No description available\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/logo-large.png\",\n  \"alt\": \"No description available\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/logo-large2.svg\",\n  \"alt\": \"No description available\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/small-logo.png\",\n  \"alt\": \"No description available\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/small-logo2.png\",\n  \"alt\": \"logo\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/small-logo3.png\",\n  \"alt\": \"logo\",\n\"kakav laganicevic\": \"previse lagani\"\n  \n\"path\": \"images/small.logo4.png\",\n  \"alt\": \"logo\",\n\"kakav laganicevic\": \"previse lagani\"\n\n\"jedan mali updejt\": \"baci jameson popij pivu boati\"\n  aaaaa"
     },
     {
-      "id": "2d5a90a3-f3e7-4d3f-9564-5bcfa0d0ee92",
-      "title": "ma neradi",
-      "description": "aaaaa",
-      "format": "json",
-      "createdTime": "2025-04-16T17:02:20.968Z",
-      "files": [
-        {
-          "name": "finale-large-logo.svg",
-          "size": 11094,
-          "type": "image/svg+xml",
-          "altText": "No description available"
-        },
-        {
-          "name": "logo-large.png",
-          "size": 1195,
-          "type": "image/png",
-          "altText": "No description available"
-        },
-        {
-          "name": "logo-large2.svg",
-          "size": 11053,
-          "type": "image/svg+xml",
-          "altText": "No description available"
-        },
-        {
-          "name": "small-logo.png",
-          "size": 205,
-          "type": "image/png",
-          "altText": "No description available"
-        }
-      ],
-      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n  ",
-      "parsedTemplates": "\"path\": \"images/finale-large-logo.svg\",\n  \"alt\": \"No description available\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n  \n\"path\": \"images/logo-large.png\",\n  \"alt\": \"No description available\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n  \n\"path\": \"images/logo-large2.svg\",\n  \"alt\": \"No description available\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n  \n\"path\": \"images/small-logo.png\",\n  \"alt\": \"No description available\",\n\"puknit cu\": \"dajte mi pistolj da se obisin\"\n\"kurcina\": teska\nza probit\nbrate bolesti\nteska retardacija\nbgm\nteski\nghbj\n\n  "
-    },
-    {
       "id": "0ce5f562-f90e-4e07-9045-445d2ed2e26d",
       "title": "mislis",
       "description": "mislin mislin",
@@ -309,6 +274,566 @@
       ],
       "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  resio: \"baticee\"\n  ",
       "parsedTemplates": "path: \"images/Gi3r8hkXEAAH55a.png\"\n  alt: \"chart, histogram\"\n  resio: \"baticee\"\n  \npath: \"images/Gi3sCBGW8AA1Rff.png\"\n  alt: \"chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi3ucm_XIAA49k9.png\"\n  alt: \"chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi4cUJSXQAAQvaV.png\"\n  alt: \"chart, line chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi4cX_HWsAAVIoF.png\"\n  alt: \"chart, line chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi4fEodWgAAALSj.png\"\n  alt: \"chart\"\n  resio: \"baticee\"\n  \npath: \"images/Gi4fJYNXEAA3DGN.png\"\n  alt: \"chart, line chart\"\n  resio: \"baticee\"\n\n  jel se moze updejtat: a ne sine\n  ajmooo\n  ajmee"
+    },
+    {
+      "id": "9302e17e-9e48-474e-adb1-29888e17c38d",
+      "title": "moglo bi radit",
+      "description": "da",
+      "format": "yaml",
+      "createdTime": "2025-04-18T14:52:27.637Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ],
+      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  radi jel: super \n  ",
+      "parsedTemplates": "path: \"images/Gi3r8hkXEAAH55a.png\"\n  alt: \"chart, histogram\"\n  radi jel: super \n  \npath: \"images/Gi3sCBGW8AA1Rff.png\"\n  alt: \"chart\"\n  radi jel: super \n  "
+    },
+    {
+      "id": "e8444470-3197-456b-9fb0-16c1d59cddee",
+      "title": "asfas",
+      "description": "fasfasfasf",
+      "format": "json",
+      "createdTime": "2025-04-22T21:32:32.600Z",
+      "files": [
+        {
+          "name": "Gi3ucm_XIAA49k9.png",
+          "size": 204450,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi4cUJSXQAAQvaV.png",
+          "size": 104168,
+          "type": "image/png",
+          "altText": "chart, line chart"
+        }
+      ]
+    },
+    {
+      "id": "31573188-5b62-4046-b2b8-dd302a73a67b",
+      "title": "fasfasf",
+      "description": "asfasfasf",
+      "format": "json",
+      "createdTime": "2025-04-22T21:42:34.992Z",
+      "files": [
+        {
+          "name": "Gi3ucm_XIAA49k9.png",
+          "size": 204450,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi4cUJSXQAAQvaV.png",
+          "size": 104168,
+          "type": "image/png",
+          "altText": "chart, line chart"
+        }
+      ],
+      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n  ",
+      "parsedTemplates": "\"path\": \"images/Gi3ucm_XIAA49k9.png\",\n  \"alt\": \"chart\",\n  \n\"path\": \"images/Gi4cUJSXQAAQvaV.png\",\n  \"alt\": \"chart, line chart\",\n  "
+    },
+    {
+      "id": "007182ad-4f08-46e2-9767-3c21cd205200",
+      "title": "nenen",
+      "description": "dadd",
+      "format": "yaml",
+      "createdTime": "2025-04-22T22:09:06.888Z",
+      "files": [
+        {
+          "name": "Gi3ucm_XIAA49k9.png",
+          "size": 204450,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi4cUJSXQAAQvaV.png",
+          "size": 104168,
+          "type": "image/png",
+          "altText": "chart, line chart"
+        }
+      ]
+    },
+    {
+      "id": "460fbd23-58ac-4a1c-8a77-ad952b12f478",
+      "title": "nkansfkjasn",
+      "description": "faknsfkansfka",
+      "format": "yaml",
+      "createdTime": "2025-04-22T22:25:32.398Z",
+      "files": [
+        {
+          "name": "Gi3ucm_XIAA49k9.png",
+          "size": 204450,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi4cUJSXQAAQvaV.png",
+          "size": 104168,
+          "type": "image/png",
+          "altText": "chart, line chart"
+        }
+      ]
+    },
+    {
+      "id": "1ff6f9aa-f367-4023-9ab1-015171a85a5f",
+      "title": "nkansfkjasn",
+      "description": "faknsfkansfka",
+      "format": "yaml",
+      "createdTime": "2025-04-22T22:26:13.392Z",
+      "files": [
+        {
+          "name": "Gi3ucm_XIAA49k9.png",
+          "size": 204450,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi4cUJSXQAAQvaV.png",
+          "size": 104168,
+          "type": "image/png",
+          "altText": "chart, line chart"
+        }
+      ]
+    },
+    {
+      "id": "71467000-f56f-4f69-bd09-d1b79fd265be",
+      "title": "bbbb",
+      "description": "hehehehe",
+      "format": "yaml",
+      "createdTime": "2025-04-22T22:26:47.830Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ],
+      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  super aj: jeje lagano\n  ",
+      "parsedTemplates": "path: \"images/Gi3r8hkXEAAH55a.png\"\n  alt: \"chart, histogram\"\n  super aj: jeje lagano\n  \npath: \"images/Gi3sCBGW8AA1Rff.png\"\n  alt: \"chart\"\n  super aj: jeje lagano\n  "
+    },
+    {
+      "id": "8045e220-dd7d-4920-aa1c-14996f667d66",
+      "title": "blaaah",
+      "description": "hahahaha",
+      "format": "yaml",
+      "createdTime": "2025-04-22T22:30:15.479Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "7b1047c0-1592-4a82-86ab-6e7ecf2776f4",
+      "title": "blaaah",
+      "description": "hahahaha",
+      "format": "yaml",
+      "createdTime": "2025-04-22T22:30:29.659Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "018697e8-d562-4fdd-bd3a-9de3f9f42222",
+      "title": "blaaah",
+      "description": "hahahaha",
+      "format": "yaml",
+      "createdTime": "2025-04-22T22:30:34.371Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "75523a56-bd77-463c-ac5c-7c231af47005",
+      "title": "wtf",
+      "description": "kk sine",
+      "format": "json",
+      "createdTime": "2025-04-22T23:04:04.517Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ],
+      "template": "\"path\": \"images/{fileName}\",\n  \"alt\": \"{altText}\",\n\"dobroe\": jeje,\n  ",
+      "parsedTemplates": "\"path\": \"images/Gi3r8hkXEAAH55a.png\",\n  \"alt\": \"chart, histogram\",\n\"dobroe\": jeje,\n  \n\"path\": \"images/Gi3sCBGW8AA1Rff.png\",\n  \"alt\": \"chart\",\n\"dobroe\": jeje,\n  "
+    },
+    {
+      "id": "80427914-8162-4f41-8838-66fac72175a0",
+      "title": "ajmeee",
+      "description": "aaaaaa",
+      "format": "json",
+      "createdTime": "2025-04-22T23:04:41.402Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "94069eb6-97a2-4cf5-9fee-6fd38eed6e6f",
+      "title": "ajmeee",
+      "description": "aaaaaa",
+      "format": "html",
+      "createdTime": "2025-04-22T23:04:53.182Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ],
+      "template": "<img src=\"images/{fileName}\" alt=\"{altText}\"/>",
+      "parsedTemplates": "<img src=\"images/Gi3r8hkXEAAH55a.png\" alt=\"chart, histogram\"/>\n<img src=\"images/Gi3sCBGW8AA1Rff.png\" alt=\"chart\"/>"
+    },
+    {
+      "id": "9576f93e-2c5e-4e1d-93a9-f7bb49321607",
+      "title": "ajj baticee",
+      "description": "hehehehee",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:06:40.815Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "69fc79c8-a141-453c-a312-c6e44955d396",
+      "title": "fasf",
+      "description": "asfasf",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:11:14.938Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "1a49c787-fa47-4e50-8112-011bfe39a901",
+      "title": "fasf",
+      "description": "asfasf",
+      "format": "html",
+      "createdTime": "2025-04-22T23:13:45.886Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "04087bd9-77e8-4e44-ad13-c76f9f1a32ba",
+      "title": "fasfas",
+      "description": "fasfasfasf",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:14:04.569Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "4ed6ceac-cd89-45db-bbfd-ba3429366a85",
+      "title": "rqwrrwq",
+      "description": "rqr",
+      "format": "json",
+      "createdTime": "2025-04-22T23:15:46.353Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "6a29b093-790f-4dfc-ab26-8cd85a3e6e9b",
+      "title": "gasgasg",
+      "description": "asgasgags",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:16:10.221Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        }
+      ]
+    },
+    {
+      "id": "e53bfd49-8c67-49e3-b938-1892a1094323",
+      "title": "hmm",
+      "description": "okoko",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:17:44.491Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ],
+      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  okej: \"this is fine\"\n  ",
+      "parsedTemplates": "path: \"images/Gi3r8hkXEAAH55a.png\"\n  alt: \"chart, histogram\"\n  okej: \"this is fine\"\n  \npath: \"images/Gi3sCBGW8AA1Rff.png\"\n  alt: \"chart\"\n  okej: \"this is fine\"\n  "
+    },
+    {
+      "id": "9a34ac03-c9d8-4b6a-ae3c-68761b429328",
+      "title": "kjbkjbfa",
+      "description": "snfjaksfjnasf",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:25:40.482Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "7cd814d8-bc0d-4be1-a987-10c5f9af0a70",
+      "title": "aaauh",
+      "description": "ahahah",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:26:46.192Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "8cf65f72-9b52-4097-8a51-e5792c36db3e",
+      "title": "sfsafasf",
+      "description": "sfasfasf",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:30:03.791Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "fd3a39f1-db79-48af-b0ce-25dae19cef35",
+      "title": "heheh",
+      "description": "reess",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:31:22.857Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ],
+      "template": "path: \"images/{fileName}\"\n  alt: \"{altText}\"\n  okej: dada\n  ",
+      "parsedTemplates": "path: \"images/Gi3r8hkXEAAH55a.png\"\n  alt: \"chart, histogram\"\n  okej: dada\n  \npath: \"images/Gi3sCBGW8AA1Rff.png\"\n  alt: \"chart\"\n  okej: dada\n  "
+    },
+    {
+      "id": "f1f71f8d-508c-4c4e-99f7-1cb6532caff2",
+      "title": "ahahahahah",
+      "description": "kaoosss 240 linija komponenta boati",
+      "format": "yaml",
+      "createdTime": "2025-04-22T23:54:27.851Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        },
+        {
+          "name": "Gi3ucm_XIAA49k9.png",
+          "size": 204450,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
+    },
+    {
+      "id": "85923116-456d-449f-8560-67196aa806c8",
+      "title": "njnjnjnj",
+      "description": "spavanjee",
+      "format": "yaml",
+      "createdTime": "2025-04-23T01:12:04.056Z",
+      "files": [
+        {
+          "name": "Gi3r8hkXEAAH55a.png",
+          "size": 206596,
+          "type": "image/png",
+          "altText": "chart, histogram"
+        },
+        {
+          "name": "Gi3sCBGW8AA1Rff.png",
+          "size": 209345,
+          "type": "image/png",
+          "altText": "chart"
+        }
+      ]
     }
   ]
 }

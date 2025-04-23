@@ -69,7 +69,7 @@ export default function DragDrop({
   }, [count, formats, onUpload]);
 
   return (
-    <div className="file-adder-el" ref={drop}>
+    <div className="drag-drop" ref={drop}>
       {children}
     </div>
   );

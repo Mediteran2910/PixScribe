@@ -30,6 +30,7 @@ export type UpdateResponse = {
   title?: string;
   description?: string;
   parsedTemplates?: string;
+  files?: File[];
 };
 
 type GalleriesContext = {
@@ -98,6 +99,9 @@ export function GalleriesProvider({ children }: { children: ReactNode }) {
               }),
               ...(obj.parsedTemplates !== undefined && {
                 parsedTemplates: obj.parsedTemplates,
+              }),
+              ...(obj.files !== undefined && {
+                files: [...gallery.files, ...obj.files],
               }),
             }
           : gallery

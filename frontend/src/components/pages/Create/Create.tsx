@@ -21,10 +21,10 @@ export type GalleyForm = {
 type ChangeEvt = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
 export default function Create() {
-  console.log("im create page and im running");
   const [toogleFormSteps, setToogleFormSteps] = useState(false);
   const [galleryId, setGalleryId] = useState<string | null>(null);
-  const { appendGalleryCtx } = useGalleries();
+  const [countdownTime, setCountdownTime] = useState(null);
+  const { appendGalleryCtx, updateGalleryCtx } = useGalleries();
 
   const [galleryFormData, setGalleryFormData] = useState<GalleyForm>({
     title: "",
@@ -34,10 +34,17 @@ export default function Create() {
     files: [],
   });
 
-  console.log("im create form data", galleryFormData);
+  const [additionalFiles, setAdditionalFiles] = useState({ files: [] });
 
   const handleGalleryInputChange = (inputsData: GalleryFormInputs) => {
     setGalleryFormData((prev: GalleyForm) => ({ ...prev, ...inputsData }));
+  };
+
+  const handleExtraFilesChange = (filesData: FilesData) => {
+    setAdditionalFiles((prev) => ({
+      ...prev,
+      ...filesData,
+    }));
   };
 
   const handleFilesChange = (filesData: FilesData) => {
@@ -48,7 +55,6 @@ export default function Create() {
   };
 
   const submitForm = async () => {
-    toogle(setToogleFormSteps);
     const formDataToSend = convertToFormData(galleryFormData);
     try {
       const response = await axios.post(
@@ -57,14 +63,39 @@ export default function Create() {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
-      if (response.data?.gallery?.id) {
+      if (response.data?.gallery?.id && response.data.time) {
         setGalleryId(response.data.gallery.id);
         appendGalleryCtx(response.data.gallery);
+        setCountdownTime(response.data.time);
       }
       console.log("Gallery added successfully:", response.data);
     } catch (error) {
       console.error("Error adding gallery:", error);
     }
+  };
+
+  const extraFilesSubmit = async () => {
+    const formDataToSend = convertToFormData(additionalFiles);
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/append-images/${galleryId}`,
+        formDataToSend,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+
+      if (response.data?.gallery?.id && response.data.time) {
+        setGalleryId(response.data.gallery.id);
+        updateGalleryCtx(response.data.gallery.id, response.data.gallery.files);
+        setCountdownTime(response.data.time);
+      }
+      console.log("Extra files added successfully:", response.data);
+    } catch (error) {
+      console.error("Error adding extra files:", error);
+    }
+  };
+
+  const nextFormStep = (b: boolean) => {
+    setToogleFormSteps(b);
   };
 
   return (
@@ -73,7 +104,7 @@ export default function Create() {
       <main className="main-create">
         {toogleFormSteps ? (
           <GalleryStructure
-            backToForm={() => toogle(setToogleFormSteps)}
+            backToForm={() => setToogleFormSteps(false)}
             galleryId={galleryId}
             editorLanguage={galleryFormData?.format}
           />
@@ -86,6 +117,10 @@ export default function Create() {
             valueTitle={galleryFormData.title}
             valueDescription={galleryFormData.description}
             valueFiles={galleryFormData.files}
+            countdownTimeRes={countdownTime}
+            nextFormStep={nextFormStep}
+            handleExtraFilesChange={handleExtraFilesChange}
+            extraFilesSubmit={extraFilesSubmit}
           />
         )}
       </main>

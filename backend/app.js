@@ -157,6 +157,7 @@ app.post("/add-gallery", upload.array("files"), async (req, res) => {
         res.status(201).json({
           message: "Gallery added successfully",
           gallery: newGalleryDB,
+          time: new Date(),
         });
       }
     );
@@ -446,6 +447,71 @@ app.delete("/gallery/:id", (req, res) => {
     );
   });
 });
+
+app.post(
+  "/append-images/:galleryId",
+  upload.array("files"),
+  async (req, res) => {
+    const galleryId = req.params.galleryId; // Get the galleryId from the URL parameter
+    const files = req.files;
+
+    // Proceed with processing the files and appending them to the correct gallery
+    const filesWithAlt = [];
+    for (const file of files) {
+      const altText = await getAltText(file.buffer);
+      filesWithAlt.push({
+        name: file.originalname,
+        size: file.size,
+        type: file.mimetype,
+        altText: altText || "No description available",
+      });
+    }
+
+    // Load the gallery from the fakeDB.json file
+    fs.readFile(galleriesFile, "utf8", (err, data) => {
+      if (err) {
+        return res.status(500).json({ error: "Failed to read database file" });
+      }
+
+      let galleriesData = { galleries: [] };
+      try {
+        galleriesData = JSON.parse(data);
+      } catch (error) {
+        return res
+          .status(500)
+          .json({ error: "Invalid JSON format in database" });
+      }
+
+      const galleryIndex = galleriesData.galleries.findIndex(
+        (gallery) => gallery.id === galleryId
+      );
+
+      if (galleryIndex === -1) {
+        return res.status(404).json({ error: "Gallery not found" });
+      }
+
+      // Append the new files to the gallery's files array
+      galleriesData.galleries[galleryIndex].files.push(...filesWithAlt);
+
+      // Write the updated gallery back to the file
+      fs.writeFile(
+        galleriesFile,
+        JSON.stringify(galleriesData, null, 2),
+        (err) => {
+          if (err) {
+            return res.status(500).json({ error: "Failed to save gallery" });
+          }
+          console.log("Gallery successfully updated.");
+          res.status(200).json({
+            message: "Files successfully appended",
+            gallery: galleriesData.galleries[galleryIndex], // Return the updated gallery
+            time: new Date(),
+          });
+        }
+      );
+    });
+  }
+);
 
 app.listen(port, () => {
   console.log("listening on the port 8000");

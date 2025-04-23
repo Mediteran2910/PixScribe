@@ -1,21 +1,8 @@
-.drag-class {
-  width: 300px;
-  height: 300px;
-  border: 2px dotted black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.file-adder-el {
-  border: 2px dashed var(--color-medium-grey);
+.drag-drop {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  border-radius: 10px;
 }
