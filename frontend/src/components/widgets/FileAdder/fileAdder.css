@@ -9,3 +9,9 @@
   margin-bottom: 20px;
   border-radius: 10px;
 }
+
+.added-images-container {
+  max-height: 40%;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+}

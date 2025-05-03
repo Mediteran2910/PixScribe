@@ -1,9 +1,22 @@
+import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import FileInput from "../../UI/FileInput/FileInput";
 import Typography from "../../UI/typography/typography";
 import DragDrop from "../DragDrop/DragDrop";
-import { useState, useEffect } from "react";
+import AddedImg from "../../UI/addedImg/addedImg";
+import Button from "../../UI/button/Button";
 import "./FileAdder.css";
+
 type ChangeEvt = React.ChangeEvent<HTMLInputElement>;
+
+type FileWithId = {
+  id: string;
+  file: File;
+};
+
+export type FilesData = {
+  files?: File[];
+};
 
 type Props = {
   filesName?: "files";
@@ -14,27 +27,32 @@ type Props = {
   onChange?: (e: FilesData) => void;
 };
 
-export type FilesData = {
-  files?: File[];
-};
 export default function FileAdder({
   filesName,
   validateFile,
-  uploadedFiles,
+  uploadedFiles = 0,
   valueFiles,
-  // isAddingActive,
   onChange,
 }: Props) {
-  const [filesData, setFilesData] = useState<FilesData>({ files: valueFiles });
-
   const MAX_IMAGES = 15;
+  const [filesData, setFilesData] = useState<FileWithId[]>([]);
 
   useEffect(() => {
-    onChange(filesData);
+    if (valueFiles.length !== filesData.length) {
+      setFilesData(valueFiles.map((file) => ({ id: uuidv4(), file })));
+    }
+  }, [valueFiles]);
+
+  useEffect(() => {
+    onChange?.({ files: filesData.map((f) => f.file) });
   }, [filesData]);
 
   const updateFiles = (newFiles: File[]) => {
-    setFilesData({ files: [...(filesData.files || []), ...newFiles] });
+    const filesWithIds = newFiles.map((file) => ({
+      id: uuidv4(),
+      file,
+    }));
+    setFilesData((prev) => [...prev, ...filesWithIds]);
   };
 
   const onDragFiles = (droppedFiles: File[]) => {
@@ -46,34 +64,41 @@ export default function FileAdder({
     updateFiles(selectedFiles);
   };
 
+  const onDeleteImages = (id: string) => {
+    setFilesData((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="file-adder-wrap">
-      {/* {isAddingActive ? (
-        <p>cekajj</p>
-      ) : ( */}
       <DragDrop
         count={MAX_IMAGES - uploadedFiles}
         formats={["jpeg", "jpg", "png"]}
         onUpload={onDragFiles}
       >
+        {filesData.length > 0 && (
+          <div className="added-images-container">
+            {filesData.map(({ id, file }) => (
+              <AddedImg
+                key={id}
+                file={file}
+                onDeleteImages={() => onDeleteImages(id)}
+              />
+            ))}
+          </div>
+        )}
+
         <FileInput
           name={filesName}
           validate={validateFile}
           uploadedFiles={uploadedFiles}
           onChange={onHandleFileInputChange}
         />
-        <Typography caption color="medium-grey">
-          {uploadedFiles ? (
-            `you can upload ${MAX_IMAGES - uploadedFiles} more images`
-          ) : (
-            <>
-              max 15 images max <br />
-              size per image 10MB
-            </>
-          )}
+        <Typography caption color="medium-grey" style={{ marginTop: "10px" }}>
+          {filesData.length > 0
+            ? `${filesData.length} images uploaded`
+            : "size per image 10MB"}
         </Typography>
       </DragDrop>
-      {/* )} */}
     </div>
   );
 }

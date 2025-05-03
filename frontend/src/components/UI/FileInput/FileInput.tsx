@@ -1,6 +1,7 @@
 import "./fileInput.css";
 import Typography from "../typography/typography";
 import { placeholder } from "@codemirror/view";
+import Button from "../button/Button";
 
 type ChangeEvt = React.ChangeEvent<HTMLInputElement>;
 type Props = {
@@ -28,21 +29,31 @@ export default function FileInput({
   uploadedFiles,
   ...restProps
 }: Props) {
+  const classes: string[] = [];
+
+  if (!uploadedFiles) {
+    classes.push("choose");
+  } else classes.push("add");
+
+  const classNames = classes.map((c) => `${c}-files`).join("");
   return (
     <>
       <button className="choose-file-btn" type="button">
-        <label htmlFor="file-input" className="choose-file-label">
-          <img
-            src={uploadedFiles ? icons.succes.src : icons.initial.src}
-            alt={uploadedFiles ? icons.succes.alt : icons.initial.alt}
-          />
-          Choose Files or Drag
+        <label htmlFor="file-input" className={classNames}>
+          {!uploadedFiles ? (
+            <>
+              <img src={icons.initial.src} alt={icons.initial.alt} />
+              Choose files or drag
+            </>
+          ) : (
+            "Add more"
+          )}
         </label>
-        {validate && (
+        {/* {validate && (
           <Typography caption={true} color="red">
             {validate}
           </Typography>
-        )}
+        )} */}
         <input
           type="file"
           className="file-input"

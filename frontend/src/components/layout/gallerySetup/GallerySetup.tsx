@@ -16,8 +16,8 @@ type ChangeEvt = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
 type Props = {
   handleGalleryInputChange: (data: GalleryFormInputs) => void;
-  handleFilesChange: (filesData: FilesData) => void;
-  handleExtraFilesChange: (filesData: FilesData) => void;
+  handleFilesChange: (filesData: FilesData, isAditional: boolean) => void;
+  // handleExtraFilesChange: (filesData: FilesData) => void;
   extraFilesSubmit: () => void;
   uploadedFiles?: number;
   submitForm: () => void;
@@ -30,7 +30,7 @@ type Props = {
 export default function GallerySetup({
   uploadedFiles,
   handleFilesChange,
-  handleExtraFilesChange,
+  // handleExtraFilesChange,
   extraFilesSubmit,
   handleGalleryInputChange,
   submitForm,
@@ -48,19 +48,26 @@ export default function GallerySetup({
   const [addingMoreImages, setAddingMoreImages] = useState(false);
   const [secondsLeftCoutdown, setSecondsLeftCountdown] = useState(null);
   const [countingFinished, setCountingFinished] = useState(false);
+  const STARTING_COUNTDOWN_SECONDS = 25;
 
   useEffect(() => {
+    console.log("Countdown time received:", countdownTimeRes);
+
     if (countdownTimeRes) {
+      const currentTime = new Date().getTime();
+      const backendTime = new Date(countdownTimeRes).getTime();
+
       const secondsDiff = Math.max(
         0,
-        Math.floor(
-          (new Date().getTime() - new Date(countdownTimeRes).getTime()) / 1000
-        )
+        Math.floor((currentTime - backendTime) / 1000)
       );
-      const countdownDuration = 90 - secondsDiff;
+      const countdownDuration = Math.max(
+        0,
+        STARTING_COUNTDOWN_SECONDS - secondsDiff
+      );
+
+      console.log("Seconds left for countdown:", countdownDuration);
       setSecondsLeftCountdown(countdownDuration);
-    } else {
-      return;
     }
   }, [countdownTimeRes]);
 
@@ -113,7 +120,7 @@ export default function GallerySetup({
           <FileAdder
             filesName="files"
             // validateFile={error.files}
-            onChange={handleFilesChange}
+            onChange={(filesData) => handleFilesChange(filesData, false)}
             uploadedFiles={uploadedFiles}
             valueFiles={valueFiles}
             isAddingActive={addingMoreImages}
@@ -201,14 +208,14 @@ export default function GallerySetup({
             <FileAdder
               filesName="files"
               // validateFile={error.files}
-              onChange={handleExtraFilesChange}
+              onChange={(filesData) => handleFilesChange(filesData, true)}
               uploadedFiles={uploadedFiles}
               valueFiles={valueFiles}
               isAddingActive={addingMoreImages}
             />
             <ButtonsAction end={true}>
               <Button size="medium" color="black" onClick={extraFilesSubmit}>
-                Finish
+                Next
               </Button>
             </ButtonsAction>
           </>

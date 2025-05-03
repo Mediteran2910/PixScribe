@@ -452,10 +452,9 @@ app.post(
   "/append-images/:galleryId",
   upload.array("files"),
   async (req, res) => {
-    const galleryId = req.params.galleryId; // Get the galleryId from the URL parameter
+    const galleryId = req.params.galleryId;
     const files = req.files;
 
-    // Proceed with processing the files and appending them to the correct gallery
     const filesWithAlt = [];
     for (const file of files) {
       const altText = await getAltText(file.buffer);
@@ -467,7 +466,6 @@ app.post(
       });
     }
 
-    // Load the gallery from the fakeDB.json file
     fs.readFile(galleriesFile, "utf8", (err, data) => {
       if (err) {
         return res.status(500).json({ error: "Failed to read database file" });
@@ -490,10 +488,8 @@ app.post(
         return res.status(404).json({ error: "Gallery not found" });
       }
 
-      // Append the new files to the gallery's files array
       galleriesData.galleries[galleryIndex].files.push(...filesWithAlt);
 
-      // Write the updated gallery back to the file
       fs.writeFile(
         galleriesFile,
         JSON.stringify(galleriesData, null, 2),
@@ -504,7 +500,7 @@ app.post(
           console.log("Gallery successfully updated.");
           res.status(200).json({
             message: "Files successfully appended",
-            gallery: galleriesData.galleries[galleryIndex], // Return the updated gallery
+            gallery: galleriesData.galleries[galleryIndex],
             time: new Date(),
           });
         }

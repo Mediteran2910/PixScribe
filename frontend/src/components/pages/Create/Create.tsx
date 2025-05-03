@@ -34,24 +34,35 @@ export default function Create() {
     files: [],
   });
 
+  console.log("hi main data", galleryFormData.files);
+
   const [additionalFiles, setAdditionalFiles] = useState({ files: [] });
+
+  console.log("im additional files", additionalFiles);
 
   const handleGalleryInputChange = (inputsData: GalleryFormInputs) => {
     setGalleryFormData((prev: GalleyForm) => ({ ...prev, ...inputsData }));
   };
 
-  const handleExtraFilesChange = (filesData: FilesData) => {
-    setAdditionalFiles((prev) => ({
-      ...prev,
-      ...filesData,
-    }));
-  };
+  // const handleExtraFilesChange = (filesData: FilesData) => {
+  //   setAdditionalFiles((prev) => ({
+  //     ...prev,
+  //     ...filesData,
+  //   }));
+  // };
 
-  const handleFilesChange = (filesData: FilesData) => {
-    setGalleryFormData((prev: GalleyForm) => ({
-      ...prev,
-      ...filesData,
-    }));
+  const handleFilesChange = (filesData: FilesData, isAditional: boolean) => {
+    if (isAditional) {
+      setAdditionalFiles((prev) => ({
+        ...prev,
+        ...filesData,
+      }));
+    } else {
+      setGalleryFormData((prev: GalleyForm) => ({
+        ...prev,
+        ...filesData,
+      }));
+    }
   };
 
   const submitForm = async () => {
@@ -75,6 +86,7 @@ export default function Create() {
   };
 
   const extraFilesSubmit = async () => {
+    nextFormStep(true);
     const formDataToSend = convertToFormData(additionalFiles);
     try {
       const response = await axios.post(
@@ -119,7 +131,7 @@ export default function Create() {
             valueFiles={galleryFormData.files}
             countdownTimeRes={countdownTime}
             nextFormStep={nextFormStep}
-            handleExtraFilesChange={handleExtraFilesChange}
+            // handleExtraFilesChange={handleExtraFilesChange}
             extraFilesSubmit={extraFilesSubmit}
           />
         )}

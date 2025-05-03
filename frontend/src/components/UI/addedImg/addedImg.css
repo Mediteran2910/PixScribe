@@ -1,0 +1,16 @@
+.added-img-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-light-grey);
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.added-img {
+  width: 30px;
+}
+
+/* var(--color-light-grey) */
