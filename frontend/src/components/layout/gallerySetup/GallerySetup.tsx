@@ -8,6 +8,7 @@ import Modal from "../modal/Modal";
 import "./gallerySetup.css";
 import { useEffect, useState } from "react";
 import { errObj } from "../../../types/types";
+import Progress from "../../UI/Progress/Progress";
 import Typography from "../../UI/typography/typography";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import Countdown from "../../UI/countdown/Countdown";
@@ -73,6 +74,7 @@ export default function GallerySetup({
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    nextFormStep(true);
     setIsLoading(true);
     try {
       submitForm();
@@ -138,7 +140,7 @@ export default function GallerySetup({
           </ButtonsAction>
         </div>
       </form>
-      <Modal
+      {/* <Modal
         isModalOpen={isImagesModalOpen}
         size="small"
         flexDirection="column"
@@ -220,7 +222,7 @@ export default function GallerySetup({
             </ButtonsAction>
           </>
         )}
-      </Modal>
+      </Modal> */}
     </>
   );
 }

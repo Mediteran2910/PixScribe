@@ -21,7 +21,7 @@ export type Gallery = {
   parsedTemplates?: string;
 };
 
-export type ResponseData = {
+export type TemplatesResponse = {
   template?: string;
   parsedTemplates?: string;
 };
@@ -30,17 +30,17 @@ export type UpdateResponse = {
   title?: string;
   description?: string;
   parsedTemplates?: string;
+  template?: string;
   files?: File[];
 };
 
 type GalleriesContext = {
   galleries: Gallery[];
-  saveTemplateCtx: (galleryId: string, responseData: ResponseData) => void;
+  saveTemplateCtx: (galleryId: string, responseData: TemplatesResponse) => void;
   appendGalleryCtx: (newGallery: Gallery) => void;
   setGalleries: React.Dispatch<SetStateAction<Gallery[]>>;
   isInitialLoad: boolean;
   isInitialError: boolean;
-
   deleteGalleryCtx: (id: string) => void;
   updateGalleryCtx: (id: string, obj: UpdateResponse) => void;
 };
@@ -63,7 +63,10 @@ export function GalleriesProvider({ children }: { children: ReactNode }) {
     }
   }, [initialData]);
 
-  const saveTemplateCtx = (galleryId: string, responseData: ResponseData) => {
+  const saveTemplateCtx = (
+    galleryId: string,
+    responseData: TemplatesResponse
+  ) => {
     setGalleries((prevGalleries) =>
       prevGalleries.map((gallery) =>
         gallery.id === galleryId
@@ -99,6 +102,9 @@ export function GalleriesProvider({ children }: { children: ReactNode }) {
               }),
               ...(obj.parsedTemplates !== undefined && {
                 parsedTemplates: obj.parsedTemplates,
+              }),
+              ...(obj.template !== undefined && {
+                template: obj.template,
               }),
               ...(obj.files !== undefined && {
                 files: [...gallery.files, ...obj.files],

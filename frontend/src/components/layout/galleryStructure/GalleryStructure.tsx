@@ -8,17 +8,24 @@ import { Link, useNavigate } from "react-router-dom";
 import useGalleries from "../../../Context/GalleriesContext";
 import axios from "axios";
 import { defaultValues } from "../../../utils/defaultEditorValues";
+import Progress from "../../UI/Progress/Progress";
 
 type Props = {
   backToForm: () => void;
   galleryId: string;
   editorLanguage: "html" | "json" | "yaml";
+  proccesImgCounter: number;
+  filesLength: number;
+  cooldown: boolean;
 };
 
 export default function GalleryStructure({
   backToForm,
   editorLanguage,
   galleryId,
+  proccesImgCounter,
+  filesLength,
+  cooldown,
 }: Props) {
   const [editorValue, setEditorValue] = useState(defaultValues[editorLanguage]);
 
@@ -60,10 +67,16 @@ export default function GalleryStructure({
   return (
     <div className="gallery-structure-wrap">
       <UsageGuidelines />
+      <Progress
+        proccesingCounter={proccesImgCounter}
+        filesLength={filesLength}
+        cooldown={cooldown}
+      ></Progress>
       <div className="code-editor">
         <CodeEditor
           editorLanguage={editorLanguage}
           defaultValue={defaultValues[editorLanguage]}
+          readOnly={false}
           onChange={handleEditorChange}
         ></CodeEditor>
       </div>

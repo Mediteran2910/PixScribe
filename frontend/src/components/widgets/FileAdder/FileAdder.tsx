@@ -34,7 +34,7 @@ export default function FileAdder({
   valueFiles,
   onChange,
 }: Props) {
-  const MAX_IMAGES = 15;
+  const MAX_IMAGES = 15555;
   const [filesData, setFilesData] = useState<FileWithId[]>([]);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export default function FileAdder({
     <div className="file-adder-wrap">
       <DragDrop
         count={MAX_IMAGES - uploadedFiles}
-        formats={["jpeg", "jpg", "png"]}
+        formats={["jpeg", "jpg", "png", "webp", "svg"]}
         onUpload={onDragFiles}
       >
         {filesData.length > 0 && (

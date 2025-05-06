@@ -24,7 +24,12 @@ export default function Create() {
   const [toogleFormSteps, setToogleFormSteps] = useState(false);
   const [galleryId, setGalleryId] = useState<string | null>(null);
   const [countdownTime, setCountdownTime] = useState(null);
+  const [proccesImgCounter, setProccesImgCounter] = useState(0);
+  const [cooldownActive, setCooldownActive] = useState(false);
+
   const { appendGalleryCtx, updateGalleryCtx } = useGalleries();
+
+  console.log(proccesImgCounter);
 
   const [galleryFormData, setGalleryFormData] = useState<GalleyForm>({
     title: "",
@@ -65,23 +70,61 @@ export default function Create() {
     }
   };
 
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
   const submitForm = async () => {
-    const formDataToSend = convertToFormData(galleryFormData);
+    const { files, ...formMetaData } = galleryFormData;
+    console.log("Sending metadata to backend:", formMetaData);
+
     try {
+      // Step 1: Send metadata
       const response = await axios.post(
         "http://localhost:8000/add-gallery",
-        formDataToSend,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        formMetaData
       );
 
       if (response.data?.gallery?.id && response.data.time) {
-        setGalleryId(response.data.gallery.id);
+        const newGalleryId = response.data.gallery.id;
+        setGalleryId(newGalleryId);
         appendGalleryCtx(response.data.gallery);
-        setCountdownTime(response.data.time);
+
+        // Step 2: Upload files in batches
+        const batchSize = 15;
+        for (let i = 0; i < files.length; i += batchSize) {
+          const batch = files.slice(i, i + batchSize);
+
+          await Promise.all(
+            batch.map(async (file) => {
+              const formData = new FormData();
+              formData.append("file", file);
+              formData.append("id", newGalleryId);
+
+              try {
+                const fileResponse = await axios.post(
+                  "http://localhost:8000/add-gallery",
+                  formData,
+                  { headers: { "Content-Type": "multipart/form-data" } }
+                );
+
+                console.log("File uploaded:", fileResponse.data);
+                setProccesImgCounter((prev) => prev + 1);
+              } catch (err) {
+                console.error("Error uploading file:", file.name, err);
+              }
+            })
+          );
+
+          if (i + batchSize < files.length) {
+            console.log("Batch done. Cooldown starting...");
+            setCooldownActive(true); // 👉 update your UI here
+            await delay(70000);
+            setCooldownActive(false); // reset after cooldown
+          }
+        }
       }
-      console.log("Gallery added successfully:", response.data);
     } catch (error) {
-      console.error("Error adding gallery:", error);
+      console.error("Error adding gallery or uploading files:", error);
     }
   };
 
@@ -119,6 +162,9 @@ export default function Create() {
             backToForm={() => setToogleFormSteps(false)}
             galleryId={galleryId}
             editorLanguage={galleryFormData?.format}
+            proccesImgCounter={proccesImgCounter}
+            filesLength={galleryFormData.files.length}
+            cooldown={cooldownActive}
           />
         ) : (
           <GallerySetup

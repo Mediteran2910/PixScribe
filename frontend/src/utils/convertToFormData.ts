@@ -1,7 +1,9 @@
 import { GalleyForm } from "../components/pages/Create/Create";
 import { FilesData } from "../components/widgets/FileAdder/FileAdder";
 
-export const convertToFormData = (formData: GalleyForm | FilesData) => {
+export const convertToFormData = (
+  formData: GalleyForm | FilesData | File[]
+) => {
   const formDataSend = new FormData();
   for (const [key, value] of Object.entries(formData)) {
     if (Array.isArray(value)) {

@@ -22,7 +22,9 @@
     "react": "^19.0.0",
     "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "^19.0.0",
+    "react-progressbar.js": "^0.2.0",
     "react-router-dom": "^7.4.0",
+    "react-spinners": "^0.17.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {

@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
-import useGalleries, { ResponseData } from "../../../Context/GalleriesContext";
+import useGalleries, {
+  TemplatesResponse,
+} from "../../../Context/GalleriesContext";
 import useApi from "../../../hooks/useApi";
 import { useEffect, useState } from "react";
 import CodeEditor from "../../widgets/codeEditor/CodeEditor";
@@ -24,12 +26,15 @@ export default function Gallery() {
   const [isErrorDelete, setIsErrorDelete] = useState(false);
   const [isLoadingSaveTempl, setIsLoadinSaveTempl] = useState(false);
   const [isErrorSaveTempl, setIsErrorSaveTempl] = useState(false);
+  const [isReadOnly, setIsReadOnly] = useState(true);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [parsedCode, setParsedCode] = useState("");
 
   const {
     data: singleGalleryData,
     isLoading: isLoadinSingleGallery,
     isError: isErrorSingleGallery,
-  } = useApi<ResponseData>(`http://localhost:8000/gallery/${id}/template`);
+  } = useApi<TemplatesResponse>(`http://localhost:8000/gallery/${id}/template`);
 
   const { galleries, saveTemplateCtx, deleteGalleryCtx, updateGalleryCtx } =
     useGalleries();
@@ -46,6 +51,8 @@ export default function Gallery() {
   const handleEditorChange = (newValue: string) => {
     setEditorValueGallery(newValue);
   };
+
+  console.log(editorValueGallery);
 
   const [hasInitialized, setHasInitialized] = useState(false);
 
@@ -87,12 +94,12 @@ export default function Gallery() {
     }
   };
 
-  const onSaveParsedTempl = async () => {
+  const onUpdateTemplate = async () => {
     try {
       const response = await axios.patch(
         `http://localhost:8000/gallery/${gallery.id}`,
         {
-          parsedTemplates: editorValueGallery,
+          template: editorValueGallery,
         }
       );
 
@@ -104,10 +111,10 @@ export default function Gallery() {
     }
   };
 
-  const handleSaveParsedTempl = async () => {
+  const handleUpdateTemplate = async () => {
     setIsLoadinSaveTempl(true);
     try {
-      const response = await onSaveParsedTempl();
+      const response = await onUpdateTemplate();
 
       if (response) {
         console.log("im response", response);
@@ -116,6 +123,8 @@ export default function Gallery() {
     } catch {
       setIsErrorSaveTempl(true);
     } finally {
+      setIsReadOnly(true);
+      setIsUpdateModalOpen(false);
       setIsLoadinSaveTempl(false);
     }
   };
@@ -142,11 +151,22 @@ export default function Gallery() {
           galleryId={gallery.id}
           valueFormat={gallery.format}
         />
+        <ButtonsAction start>
+          <Button size="small" onClick={() => setIsReadOnly(true)}>
+            Code
+          </Button>
+          <Button size="small" onClick={() => setIsReadOnly(false)}>
+            Template
+          </Button>
+        </ButtonsAction>
         <CodeEditor
           editorLanguage={gallery.format}
           defaultValue={
-            gallery.parsedTemplates || singleGalleryData?.parsedTemplates
+            isReadOnly
+              ? gallery.parsedTemplates || singleGalleryData?.parsedTemplates
+              : gallery.template
           }
+          readOnly={isReadOnly ? true : false}
           onChange={handleEditorChange}
         />
 
@@ -158,24 +178,27 @@ export default function Gallery() {
           >
             DELETE
           </Button>
-          <Button
-            size="medium"
-            color="black"
-            style={{ marginLeft: "10px" }}
-            disabled={editorValueGallery === gallery.parsedTemplates}
-            onClick={handleSaveParsedTempl}
-          >
-            SAVE
-          </Button>
-          <Button
-            size="medium"
-            color="black"
-            onClick={() => {
-              navigator.clipboard.writeText(editorValueGallery);
-            }}
-          >
-            copy
-          </Button>
+          {!isReadOnly ? (
+            <Button
+              size="medium"
+              color="black"
+              style={{ marginLeft: "10px" }}
+              disabled={editorValueGallery === gallery.template}
+              onClick={() => setIsUpdateModalOpen(true)}
+            >
+              RUN
+            </Button>
+          ) : (
+            <Button
+              size="medium"
+              color="black"
+              onClick={() => {
+                navigator.clipboard.writeText(gallery.parsedTemplates);
+              }}
+            >
+              copy
+            </Button>
+          )}
         </ButtonsAction>
       </main>
       <Modal
@@ -197,6 +220,29 @@ export default function Gallery() {
             onClick={() => setIsDeleteModalOpen(false)}
           >
             CANCEL
+          </Button>
+        </ButtonsAction>
+      </Modal>
+      <Modal
+        isModalOpen={isUpdateModalOpen}
+        size="small"
+        flexDirection="column"
+      >
+        <Typography body color="black" style={{ marginBottom: "20px" }}>
+          Are you sure you want to continue? This action will overwrite the
+          current template and regenerate code for all files using the new
+          template. These changes are permanent and cannot be undone.
+        </Typography>
+        <ButtonsAction spaceEvenly>
+          <Button
+            size="small"
+            outline="black"
+            onClick={() => setIsUpdateModalOpen(false)}
+          >
+            CANCEL
+          </Button>
+          <Button size="small" color="black" onClick={handleUpdateTemplate}>
+            CONTINUE
           </Button>
         </ButtonsAction>
       </Modal>

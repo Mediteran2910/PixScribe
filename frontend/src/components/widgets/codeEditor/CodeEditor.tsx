@@ -12,12 +12,14 @@ type Props = {
   editorLanguage?: "html" | "json" | "yaml";
   defaultValue?: string;
   onChange?: (value: string) => void;
+  readOnly?: boolean;
 };
 
 export default function CodeEditor({
   editorLanguage,
   defaultValue,
   onChange,
+  readOnly,
 }: Props) {
   const editorRef = useRef(null);
   const viewRef = useRef(null);
@@ -36,6 +38,7 @@ export default function CodeEditor({
           basicSetup,
           languageExtensions[editorLanguage],
           oneDark,
+          EditorView.editable.of(!readOnly),
           EditorView.updateListener.of((update) => {
             if (update.changes) {
               onChange?.(update.state.doc.toString());

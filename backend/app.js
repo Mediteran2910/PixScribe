@@ -17,6 +17,24 @@ const ENDPOINT = process.env.AZURE_ENDPOINT;
 
 const galleriesFile = path.join(__dirname, "fakeDB.json");
 
+function readDB() {
+  try {
+    const data = fs.readFileSync(galleriesFile, "utf8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Failed to read or parse database:", error);
+    return { galleries: [] };
+  }
+}
+
+function writeDB(data) {
+  try {
+    fs.writeFileSync(galleriesFile, JSON.stringify(data, null, 2), "utf8");
+  } catch (error) {
+    console.error("Failed to write database:", error);
+  }
+}
+
 app.get("/", (req, res) => {
   res.send("here we go again and again");
 });
@@ -63,105 +81,110 @@ app.get("/galleries", (req, res) => {
 });
 
 const upload = multer();
+let azureRequestCount = 0;
+let cooldownActive = false;
 
-app.post("/add-gallery", upload.array("files"), async (req, res) => {
-  console.log("Received files:", req.files);
+async function getAltText(imageBuffer) {
+  const apiUrl = `${ENDPOINT}/vision/v3.1/describe`;
 
-  const { title, description, format, createdTime } = req.body;
-  const files = req.files;
+  const response = await axios.post(apiUrl, imageBuffer, {
+    headers: {
+      "Ocp-Apim-Subscription-Key": API_KEY,
+      "Content-Type": "application/octet-stream",
+    },
+    params: { maxCandidates: 1, language: "en" },
+  });
 
-  const filesWithAlt = [];
+  return (
+    response.data.description?.captions?.[0]?.text || "No description available"
+  );
+}
 
-  async function getAltText(imageBuffer) {
-    const apiUrl = `${ENDPOINT}/vision/v3.1/describe`;
+app.post("/add-gallery", upload.single("file"), async (req, res) => {
+  const { title, description, format, createdTime, id } = req.body;
+  const file = req.file;
 
-    try {
-      console.log("Sending image for alt text generation...");
-      const response = await axios.post(apiUrl, imageBuffer, {
-        headers: {
-          "Ocp-Apim-Subscription-Key": API_KEY,
-          "Content-Type": "application/octet-stream",
-        },
-        params: { maxCandidates: 1, language: "en" },
+  try {
+    // === HANDLE METADATA ===
+    if (!file && title && description && format) {
+      const newGallery = {
+        id: uuidv4(),
+        title,
+        description,
+        format,
+        createdTime: new Date(),
+        files: [],
+      };
+
+      const db = readDB();
+      db.galleries.push(newGallery);
+      writeDB(db);
+
+      return res.status(201).json({
+        message: "Gallery metadata saved",
+        gallery: newGallery,
+        time: new Date(),
       });
-
-      console.log("Received alt text from Azure:", response.data);
-      return (
-        response.data.description.captions[0]?.text ||
-        "No description available"
-      );
-    } catch (error) {
-      console.error("Error getting alt text:", error);
-      return "No description available";
-    }
-  }
-
-  for (const file of files) {
-    console.log("Processing file:", file.originalname);
-
-    if (!file.originalname) {
-      return res.status(400).json({ error: "Missing file name" });
     }
 
-    const altText = await getAltText(file.buffer);
-
-    filesWithAlt.push({
-      name: file.originalname,
-      size: file.size,
-      type: file.mimetype,
-      altText: altText || "No description available",
-    });
-  }
-
-  const newGalleryDB = {
-    id: uuidv4(),
-    title,
-    description,
-    format,
-    createdTime: new Date(),
-    files: filesWithAlt,
-  };
-
-  console.log("New gallery data:", newGalleryDB);
-
-  fs.readFile(galleriesFile, "utf8", (err, data) => {
-    if (err) {
-      console.error("Error reading gallery file:", err);
-      return res.status(500).json({ error: "Failed to read database file" });
-    }
-
-    let galleriesData = { galleries: [] };
-
-    try {
-      galleriesData = JSON.parse(data);
-    } catch (error) {
-      console.error("Error parsing JSON data:", error);
-      return res.status(500).json({ error: "Invalid JSON format in database" });
-    }
-
-    if (!Array.isArray(galleriesData.galleries)) {
-      galleriesData.galleries = [];
-    }
-
-    galleriesData.galleries.push(newGalleryDB);
-
-    fs.writeFile(
-      galleriesFile,
-      JSON.stringify(galleriesData, null, 2),
-      (err) => {
-        if (err) {
-          console.error("Error writing to gallery file:", err);
-          return res.status(500).json({ error: "Failed to save gallery" });
-        }
-        console.log("Gallery successfully added to database.");
-        res.status(201).json({
-          message: "Gallery added successfully",
-          gallery: newGalleryDB,
-          time: new Date(),
+    // === HANDLE SINGLE FILE UPLOAD ===
+    if (file && id) {
+      // Cooldown mechanism
+      if (cooldownActive) {
+        return res.status(429).json({
+          message: "Cooldown active due to Azure rate limiting. Please wait.",
         });
       }
-    );
-  });
+
+      // Proceed with Azure call
+      let altText;
+      try {
+        altText = await getAltText(file.buffer);
+        azureRequestCount++;
+      } catch (err) {
+        console.error("Azure error:", err);
+        return res.status(500).json({ error: "Failed to generate alt text" });
+      }
+
+      // Start cooldown if limit approached
+      if (azureRequestCount >= 15) {
+        cooldownActive = true;
+        setTimeout(() => {
+          azureRequestCount = 0;
+          cooldownActive = false;
+          console.log("Cooldown ended, Azure requests reset.");
+        }, 70 * 1000); // 70 seconds
+      }
+
+      const newFileEntry = {
+        name: file.originalname,
+        size: file.size,
+        type: file.mimetype,
+        altText: altText || "No description available",
+      };
+
+      const db = readDB();
+      const gallery = db.galleries.find((g) => g.id === id);
+
+      if (!gallery) {
+        return res.status(404).json({ error: "Gallery not found" });
+      }
+
+      gallery.files.push(newFileEntry);
+      writeDB(db);
+
+      return res.status(200).json({
+        message: "File processed and added",
+        file: newFileEntry,
+        cooldownStarted: azureRequestCount === 15,
+      });
+    }
+
+    return res.status(400).json({ error: "Invalid request" });
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    return res.status(500).json({ error: "Server error" });
+  }
 });
 
 app.post("/update-gallery-code", (req, res) => {
@@ -285,26 +308,6 @@ app.post("/save-template", (req, res) => {
 
     gallery.template = content;
 
-    if (!Array.isArray(gallery.files)) {
-      return res.status(500).json({ error: "Invalid 'files' data in gallery" });
-    }
-
-    const parsedTemplates = gallery.files
-      .map((file) => {
-        if (!file || !file.name || !file.altText) {
-          return res.status(400).json({ error: "File data is incomplete" });
-        }
-
-        let parsed = content;
-        parsed = parsed.replace(/{fileName}/g, file.name);
-        parsed = parsed.replace(/{altText}/g, file.altText);
-
-        return parsed;
-      })
-      .join("\n");
-
-    gallery.parsedTemplates = parsedTemplates;
-
     fs.writeFile(
       galleriesFile,
       JSON.stringify(galleriesData, null, 2),
@@ -314,9 +317,8 @@ app.post("/save-template", (req, res) => {
         }
 
         res.status(200).json({
-          message: "Template saved and parsed successfully",
+          message: "Template saved successfully",
           template: content,
-          parsedTemplates,
         });
       }
     );
@@ -344,7 +346,20 @@ app.get("/gallery/:id/template", (req, res) => {
       return res.status(404).json({ error: "Gallery not found" });
     }
 
-    const { template, parsedTemplates } = gallery;
+    const parsedTemplates = gallery.files
+      .map((file) => {
+        if (!file || !file.name || !file.altText) return "";
+
+        let filled = gallery.template;
+        filled = filled.replace(/{fileName}/g, file.name);
+        filled = filled.replace(/{altText}/g, file.altText);
+
+        return filled;
+      })
+      .join("\n");
+    console.log(parsedTemplates);
+
+    const { template } = gallery;
 
     res.json({
       template,
@@ -355,7 +370,7 @@ app.get("/gallery/:id/template", (req, res) => {
 
 app.patch("/gallery/:id", (req, res) => {
   const { id } = req.params;
-  const { title, description, parsedTemplates } = req.body;
+  const { title, description, template } = req.body;
 
   fs.readFile(galleriesFile, "utf8", (err, data) => {
     if (err) {
@@ -377,8 +392,7 @@ app.patch("/gallery/:id", (req, res) => {
 
     if (title !== undefined) gallery.title = title;
     if (description !== undefined) gallery.description = description;
-    if (parsedTemplates !== undefined)
-      gallery.parsedTemplates = parsedTemplates;
+    if (template !== undefined) gallery.template = template;
 
     fs.writeFile(
       galleriesFile,
@@ -389,12 +403,26 @@ app.patch("/gallery/:id", (req, res) => {
           return res.status(500).json({ error: "Failed to update gallery" });
         }
 
+        // Construct minimal response
         const updatedFields = { id: gallery.id };
         if (title !== undefined) updatedFields.title = gallery.title;
         if (description !== undefined)
           updatedFields.description = gallery.description;
-        if (parsedTemplates !== undefined)
-          updatedFields.parsedTemplates = gallery.parsedTemplates;
+        if (template !== undefined) updatedFields.template = gallery.template;
+
+        // Generate parsedTemplates dynamically for frontend use
+        const parsedTemplates = gallery.files
+          .map((file) => {
+            if (!file?.name || !file?.altText) return "";
+            let filled = gallery.template;
+            filled = filled.replace(/{fileName}/g, file.name);
+            filled = filled.replace(/{altText}/g, file.altText);
+            return filled;
+          })
+          .join("\n");
+
+        // Include parsedTemplates in the response only — not saved in DB
+        updatedFields.parsedTemplates = parsedTemplates;
 
         res.status(200).json({
           message: "Gallery updated successfully",

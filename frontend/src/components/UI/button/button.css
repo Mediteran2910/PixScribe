@@ -21,16 +21,19 @@
 }
 
 .btn-color-black {
+  border: 1px solid var(--color-black);
   background-color: var(--color-black);
   color: var(--color-white);
 }
 
 .btn-color-light-grey {
+  border: 1px solid var(--color-light-grey);
   background-color: var(--color-light-grey);
   color: var(--color-black);
 }
 
 .btn-color-red {
+  border: 1px solid var(--color-red-errors);
   background-color: var(--color-red-errors);
   color: var(--color-white);
 }
