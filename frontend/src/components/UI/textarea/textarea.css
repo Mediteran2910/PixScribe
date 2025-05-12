@@ -1,10 +1,12 @@
 .txtArea::placeholder {
   font-size: 1rem;
-  color: var(--color-medium-grey);
+  color: var(--color-light-grey);
 }
 
 .txtArea {
-  border: 1px solid var(--color-medium-grey);
+  border: 1px solid var(--color-light-grey);
+  color: var(--color-white);
+  background: transparent;
   height: 80px;
   border-radius: 5px;
   padding: 5px;

@@ -127,16 +127,12 @@ app.post("/add-gallery", upload.single("file"), async (req, res) => {
       });
     }
 
-    // === HANDLE SINGLE FILE UPLOAD ===
     if (file && id) {
-      // Cooldown mechanism
       if (cooldownActive) {
         return res.status(429).json({
           message: "Cooldown active due to Azure rate limiting. Please wait.",
         });
       }
-
-      // Proceed with Azure call
       let altText;
       try {
         altText = await getAltText(file.buffer);
@@ -145,15 +141,13 @@ app.post("/add-gallery", upload.single("file"), async (req, res) => {
         console.error("Azure error:", err);
         return res.status(500).json({ error: "Failed to generate alt text" });
       }
-
-      // Start cooldown if limit approached
       if (azureRequestCount >= 15) {
         cooldownActive = true;
         setTimeout(() => {
           azureRequestCount = 0;
           cooldownActive = false;
           console.log("Cooldown ended, Azure requests reset.");
-        }, 70 * 1000); // 70 seconds
+        }, 70 * 1000);
       }
 
       const newFileEntry = {
@@ -403,14 +397,12 @@ app.patch("/gallery/:id", (req, res) => {
           return res.status(500).json({ error: "Failed to update gallery" });
         }
 
-        // Construct minimal response
         const updatedFields = { id: gallery.id };
         if (title !== undefined) updatedFields.title = gallery.title;
         if (description !== undefined)
           updatedFields.description = gallery.description;
         if (template !== undefined) updatedFields.template = gallery.template;
 
-        // Generate parsedTemplates dynamically for frontend use
         const parsedTemplates = gallery.files
           .map((file) => {
             if (!file?.name || !file?.altText) return "";
@@ -421,7 +413,6 @@ app.patch("/gallery/:id", (req, res) => {
           })
           .join("\n");
 
-        // Include parsedTemplates in the response only — not saved in DB
         updatedFields.parsedTemplates = parsedTemplates;
 
         res.status(200).json({

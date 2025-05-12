@@ -14,12 +14,25 @@ export default function AddedImg({ file, onDeleteImages }: Props) {
         alt={file.name}
         className="added-img"
       />
-      <Typography caption color="black" style={{ marginInline: "10px" }}>
-        {`${file.name.slice(0, 15)}...`}
+      <Typography
+        caption
+        color="light-grey"
+        style={{
+          marginInline: "10px",
+          maxWidth: "80%",
+          maxHeight: "80%",
+          overflowX: "scroll",
+          overflowY: "scroll",
+        }}
+      >
+        {file.name}
       </Typography>
-      <Button size="small" outline="black" onClick={onDeleteImages}>
-        x
-      </Button>
+      <Button
+        icon="remove"
+        size="small"
+        iconWidth="20px"
+        onClick={onDeleteImages}
+      ></Button>
     </div>
   );
 }

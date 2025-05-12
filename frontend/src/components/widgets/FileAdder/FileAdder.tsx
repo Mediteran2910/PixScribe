@@ -93,10 +93,14 @@ export default function FileAdder({
           uploadedFiles={uploadedFiles}
           onChange={onHandleFileInputChange}
         />
-        <Typography caption color="medium-grey" style={{ marginTop: "10px" }}>
-          {filesData.length > 0
-            ? `${filesData.length} images uploaded`
-            : "size per image 10MB"}
+        <Typography caption color="light-grey" style={{ marginTop: "10px" }}>
+          {filesData.length > 0 ? (
+            `${filesData.length} images uploaded`
+          ) : (
+            <>
+              max size per file - 4MB <br /> formats - jpeg, jpg, png
+            </>
+          )}
         </Typography>
       </DragDrop>
     </div>

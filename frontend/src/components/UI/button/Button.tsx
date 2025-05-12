@@ -6,7 +6,7 @@ type Props = {
   color?: Colors;
   outline?: Colors;
   size: "small" | "medium" | "large";
-  icon?: "edit";
+  icon?: "edit" | "plus" | "remove";
   iconWidth?: string;
 } & React.JSX.IntrinsicElements["button"];
 
@@ -14,6 +14,14 @@ const icons = {
   edit: {
     src: "/icons/edit.svg",
     alt: "edit icon",
+  },
+  plus: {
+    src: "/icons/plus.svg",
+    alt: "plus icon",
+  },
+  remove: {
+    src: "icons/deleteImg.svg",
+    alt: "x icon for deleting",
   },
 };
 

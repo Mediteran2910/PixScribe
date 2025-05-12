@@ -101,8 +101,8 @@ export default function GalleryInputs({
       )}
 
       {showFields?.format !== false && (
-        <div className="input-wrapper">
-          <Typography body={true} color="black">
+        <div className="input-wrapper" style={{ marginBottom: "0" }}>
+          <Typography label color="light-grey">
             Choose format:
           </Typography>
           {validateFormat && (

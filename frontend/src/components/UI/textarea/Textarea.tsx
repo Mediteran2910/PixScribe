@@ -30,8 +30,10 @@ export default function Textarea({
     <>
       <div className="input-wrapper">
         <div className="label-required">
-          <label htmlFor={name} className="input-label">
-            {editing ? "Update description" : "Enter description"}
+          <label htmlFor={name} style={{ marginBottom: "5px" }}>
+            <Typography label color="light-grey">
+              {editing ? "Update description" : "Enter description"}
+            </Typography>
           </label>
           {validate && (
             <Typography caption={true} color="red">

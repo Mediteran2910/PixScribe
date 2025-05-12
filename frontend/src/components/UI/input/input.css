@@ -4,16 +4,16 @@
 .inputTxt {
   height: 30px;
   font-size: 1.3rem;
-  color: var(--color-black);
+  color: var(--color-white);
   background-color: transparent;
-  border: 1px solid var(--color-medium-grey);
+  border: 1px solid var(--color-light-grey);
   height: 35px;
   border-radius: 5px;
 }
 
 .inputTxt::placeholder {
   font-size: 1rem;
-  color: var(--color-medium-grey);
+  color: var(--color-light-grey);
 }
 
 .inputTxt-full-size {

@@ -5,7 +5,12 @@ type Props = {
   onChange: (e: ChangeEvt) => void;
 };
 
-export default function InputRadio({ value, onChange, ...restProps }: Props) {
+export default function InputRadio({
+  value,
+  onChange,
+
+  ...restProps
+}: Props) {
   return (
     <button type="button">
       <input

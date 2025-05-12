@@ -18,8 +18,6 @@ type ChangeEvt = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 type Props = {
   handleGalleryInputChange: (data: GalleryFormInputs) => void;
   handleFilesChange: (filesData: FilesData, isAditional: boolean) => void;
-  // handleExtraFilesChange: (filesData: FilesData) => void;
-  extraFilesSubmit: () => void;
   uploadedFiles?: number;
   submitForm: () => void;
   valueTitle: string;
@@ -31,8 +29,7 @@ type Props = {
 export default function GallerySetup({
   uploadedFiles,
   handleFilesChange,
-  // handleExtraFilesChange,
-  extraFilesSubmit,
+
   handleGalleryInputChange,
   submitForm,
   valueTitle,
@@ -127,19 +124,20 @@ export default function GallerySetup({
             valueFiles={valueFiles}
             isAddingActive={addingMoreImages}
           />
-          <ButtonsAction end={true} direction="row">
-            <Button
-              type="button"
-              onClick={handleFormSubmit}
-              color="black"
-              size="medium"
-              disabled={addingMoreImages}
-            >
-              CONTINUE
-            </Button>
-          </ButtonsAction>
         </div>
+        {/* TODO, MICI OVAJ BOTUN ODAVDE I IZBACI GA VANKA I ONDA PORAVNAJ ONE INPUTE */}
       </form>
+      <ButtonsAction end={true} direction="row" style={{ marginTop: "15px" }}>
+        <Button
+          type="button"
+          onClick={handleFormSubmit}
+          color="black"
+          size="medium"
+          disabled={addingMoreImages}
+        >
+          CONTINUE
+        </Button>
+      </ButtonsAction>
       {/* <Modal
         isModalOpen={isImagesModalOpen}
         size="small"

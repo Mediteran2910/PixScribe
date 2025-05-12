@@ -102,7 +102,7 @@ export default function GalleryCard({
     <>
       <div className="gallery-card">
         <div className="text-wrapper"></div>
-        <Typography h2={true} color="black">
+        <Typography h2={true} color="white">
           {galleryTitle}
         </Typography>
         {isExtended && (
@@ -111,15 +111,24 @@ export default function GalleryCard({
           </Typography>
         )}
         <div className="tags-wrapper">
-          <Typography tag color="black" background="light-grey">
-            {galleryFormat.toUpperCase()}
-          </Typography>
-          <Typography tag={true} color="black" background="light-grey">
-            {new Date(galleryCreatedTime).toLocaleDateString()}
-          </Typography>
-          <Typography tag={true} color="black" background="light-grey">
-            {galleryNumFiles} images
-          </Typography>
+          <div className="tag">
+            <img src="icons/code.svg" alt="icon of the code block" />
+            <Typography caption color="black">
+              {galleryFormat.toUpperCase()}
+            </Typography>
+          </div>
+          <div className="tag">
+            <img src="icons/calendar.svg" alt="calendar icon" />
+            <Typography caption color="black">
+              {new Date(galleryCreatedTime).toLocaleDateString()}
+            </Typography>
+          </div>
+          <div className="tag">
+            <img src="icons/image-icon.svg" alt="image icon" />
+            <Typography caption color="black">
+              {galleryNumFiles} images
+            </Typography>
+          </div>
         </div>
         {isExtended ? (
           <Button

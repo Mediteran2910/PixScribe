@@ -30,8 +30,10 @@ export default function Input({
     <>
       <div className="input-wrapper">
         <div className="label-required">
-          <label htmlFor={name} className="input-label">
-            {editing ? "Update title" : "Enter title"}
+          <label htmlFor={name} style={{ marginBottom: "5px" }}>
+            <Typography label color="light-grey">
+              {editing ? "Update title" : "Enter title"}
+            </Typography>
           </label>
           {validate && (
             <Typography caption={true} color="red">

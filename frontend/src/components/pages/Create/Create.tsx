@@ -49,13 +49,6 @@ export default function Create() {
     setGalleryFormData((prev: GalleyForm) => ({ ...prev, ...inputsData }));
   };
 
-  // const handleExtraFilesChange = (filesData: FilesData) => {
-  //   setAdditionalFiles((prev) => ({
-  //     ...prev,
-  //     ...filesData,
-  //   }));
-  // };
-
   const handleFilesChange = (filesData: FilesData, isAditional: boolean) => {
     if (isAditional) {
       setAdditionalFiles((prev) => ({
@@ -78,7 +71,6 @@ export default function Create() {
     console.log("Sending metadata to backend:", formMetaData);
 
     try {
-      // Step 1: Send metadata
       const response = await axios.post(
         "http://localhost:8000/add-gallery",
         formMetaData
@@ -89,7 +81,6 @@ export default function Create() {
         setGalleryId(newGalleryId);
         appendGalleryCtx(response.data.gallery);
 
-        // Step 2: Upload files in batches
         const batchSize = 15;
         for (let i = 0; i < files.length; i += batchSize) {
           const batch = files.slice(i, i + batchSize);
@@ -117,35 +108,14 @@ export default function Create() {
 
           if (i + batchSize < files.length) {
             console.log("Batch done. Cooldown starting...");
-            setCooldownActive(true); // 👉 update your UI here
+            setCooldownActive(true);
             await delay(70000);
-            setCooldownActive(false); // reset after cooldown
+            setCooldownActive(false);
           }
         }
       }
     } catch (error) {
       console.error("Error adding gallery or uploading files:", error);
-    }
-  };
-
-  const extraFilesSubmit = async () => {
-    nextFormStep(true);
-    const formDataToSend = convertToFormData(additionalFiles);
-    try {
-      const response = await axios.post(
-        `http://localhost:8000/append-images/${galleryId}`,
-        formDataToSend,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
-
-      if (response.data?.gallery?.id && response.data.time) {
-        setGalleryId(response.data.gallery.id);
-        updateGalleryCtx(response.data.gallery.id, response.data.gallery.files);
-        setCountdownTime(response.data.time);
-      }
-      console.log("Extra files added successfully:", response.data);
-    } catch (error) {
-      console.error("Error adding extra files:", error);
     }
   };
 
@@ -177,8 +147,6 @@ export default function Create() {
             valueFiles={galleryFormData.files}
             countdownTimeRes={countdownTime}
             nextFormStep={nextFormStep}
-            // handleExtraFilesChange={handleExtraFilesChange}
-            extraFilesSubmit={extraFilesSubmit}
           />
         )}
       </main>
